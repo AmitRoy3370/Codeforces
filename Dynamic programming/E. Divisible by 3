@@ -1,0 +1,95 @@
+import java.util.Scanner;
+
+public class E_Divisible_by_3 {
+
+    static Scanner in=new Scanner(System.in);
+    
+    static int n;
+    
+    static long a[],dp[][][];
+    
+    public static void main(String[] args) {
+   
+        n=in.nextInt();
+        
+        a=new long[n+1];
+        
+        dp=new long[n+1][3][3];
+        
+        for(int i=1;i<=n;i++){
+            
+            a[i]=in.nextLong();
+            
+            dp[i][0][(int)(a[i]%3)]=1;
+            
+        }
+        
+        for(int i=1;i<=n;i++){
+            
+            for(int j=0;j<3;j++){
+                
+                for(int k=0;k<3;k++){
+                    
+                    int jj=(j+(int)a[i]*k )%3;
+                    int kk=(k+(int)a[i])%3;
+                    
+                    dp[i][jj][kk]+=dp[i-1][j][k];
+                    
+                }
+                
+            }
+            
+        }
+        
+        /*for(int i=1;i<=n;i++){
+            
+            for(int j=0;j<3;j++){
+                
+                System.out.print(dp[i][0][j]+" ");
+                
+            }
+            
+            System.out.println();
+            
+        }*/
+        
+        long ans=0;
+        
+        for(int i=1;i<=n;i++){
+            
+            for(int j=0;j<3;j++){
+                
+                ans+=dp[i][0][j];
+                
+            }
+            
+        }
+        
+        System.out.println(ans);
+        
+    }
+   
+}
+/*
+
+3
+5 23 2021
+
+
+*/
+
+/*
+
+5
+0 0 1 3 3
+
+
+*/
+
+/*
+
+10
+0 1 2 3 4 5 6 7 8 9
+
+
+*/

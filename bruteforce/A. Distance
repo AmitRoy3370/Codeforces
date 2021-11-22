@@ -1,0 +1,42 @@
+import java.util.Scanner;
+
+public class A_Distance{
+	
+	static Scanner in=new Scanner(System.in);
+	
+	static int testCases,x,y;
+	
+	static void solve(){
+		
+		if(((x+y) & 1)>=1 ){
+		
+		   System.out.println(-1+" "+(-1) );
+		
+		}else if(x%2==1){
+		
+		  System.out.println(x/2+" "+((y/2)+1) );
+		
+		}else{
+			
+			System.out.println(x/2+" "+((y/2)) );
+			
+		}
+		
+	}
+	
+	public static void main(String [] amit){
+		
+		testCases=in.nextInt();
+		
+		for(int t=0;t<testCases;t++){
+			
+			x=in.nextInt();
+			y=in.nextInt();
+			
+			solve();
+			
+		}
+		
+	}
+		
+}

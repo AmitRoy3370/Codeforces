@@ -1,0 +1,61 @@
+import java.util.Scanner;
+
+public class Solution{
+    
+    static Scanner in=new Scanner(System.in);
+    
+    static int n;
+    
+    static int a[];
+    
+    public static void main(String [] amit){
+        
+        n=in.nextInt();
+        
+        a=new int[n];
+        
+        int max=Integer.MIN_VALUE;
+        
+        for(int i=0;i<n;i++){
+            
+            a[i]=in.nextInt();
+            
+            max=Math.max(max,a[i]);
+            
+        }
+        
+        long dp[][]=new long[2][(1 << 20) + 3];
+        
+        dp[1][0]=1;
+        
+        long x=0,ans=0;
+        
+        for(int i=0;i<n;i++){
+            
+            x^=a[i];
+            
+        //    System.out.println(x+" ");
+            
+            ans+=dp[i%2][(int)x];
+            
+            dp[i%2][(int)x]++;
+            
+        }
+        
+        /*for(int i[]: dp){
+            
+            for(int j: i){
+                
+                System.out.print(j+" ");
+                
+            }
+            
+            System.out.println();
+            
+        }*/
+        
+        System.out.print(ans);
+        
+    }
+    
+}

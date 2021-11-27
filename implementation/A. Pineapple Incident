@@ -1,0 +1,42 @@
+import java.util.Scanner;
+
+public class MyClass {
+    
+    static Scanner in=new Scanner(System.in);
+    
+    static long t,s,x;
+    
+    public static void main(String amit[]) {
+      
+      t=in.nextLong();
+      s=in.nextLong();
+      x=in.nextLong();
+      
+      if(t!=x && (x<t+s  ) ){
+          
+          System.out.println("NO");
+          
+          return;
+          
+      }
+      
+      if(t==x){
+          
+          System.out.print("YES");
+          
+          return;
+          
+      }
+      
+      if(Math.abs(x-t)%s==0 || (Math.abs(x-t-1))%s==0 ){
+          
+          System.out.print("YES");
+          
+      }else{
+          
+          System.out.print("NO");
+          
+      }
+      
+    }
+}

@@ -1,0 +1,118 @@
+import java.util.Scanner;
+
+public class MyClass {
+   
+   static Scanner in=new Scanner(System.in);
+   
+    public static void main(String args[]) {
+      
+      int a=in.nextInt();
+      int b=in.nextInt();
+      int x=in.nextInt();
+      
+      char ans[]=new char[a+b];
+      
+      int n=a+b;
+      
+      if(x==1 ){
+          
+          int index=0;
+          
+          while(a>0 && index<n ){
+              
+              ans[index++]='0';
+              
+              a--;
+              
+          }
+          
+          while(b>0 && index<n ){
+              
+              ans[index++]='1';
+              
+              b--;
+              
+          }
+          
+          System.out.print(new String(ans) );
+          
+          return;
+          
+      }
+      
+      char bin[]={'1','0'};
+      
+      int index=(a>b?1:0),lastIndex=index;
+      
+      for(int i=0;i<x;i++){
+          
+          ans[i]=bin[index];
+          
+          lastIndex=index;
+          
+          if(index==1){
+              
+              a--;
+              
+          }else{
+              
+              b--;
+              
+          }
+          
+          index=(++index)%2;
+          
+      }
+      
+      if(lastIndex==1 ){
+          
+           index=x;
+          
+          while(a>0 && index<n){
+              
+              ans[index++]='0';
+              
+              --a;
+              //index++;
+              
+          }
+          
+           while(b>0 && index<n){
+              
+              ans[index++]='1';
+              
+              --b;
+              //index++;
+              
+          }
+          
+      }else{
+          
+           index=x;
+          
+       //   System.out.println("here");
+          
+          while(b>0 && index<n){
+              
+              ans[index++]='1';
+              
+              --b;
+              //index++;
+              
+          }
+          
+           while(a>0 && index<n){
+              
+              ans[index++]='0';
+              
+              --a;
+              //index++;
+              
+          }
+          
+      }
+      
+      System.out.println(new String(ans) );
+      
+    }
+}

@@ -1,0 +1,22 @@
+  import java.util.Scanner;
+  
+  public class BigInteger {
+  private static Scanner cin;
+  
+  public static void main(String[] args) {
+cin = new Scanner(System.in);
+java.math.BigInteger a;
+java.math.BigInteger b;
+java.math.BigInteger c;
+a = cin.nextBigInteger();
+b = cin.nextBigInteger();
+c = cin.nextBigInteger();
+if((a.add(b)).compareTo(c)==0)System.out.println("YES\n");
+else if((a.add(c)).compareTo(b)==0)System.out.println("YES\n");
+else if((b.add(c)).compareTo(a)==0)System.out.println("YES\n");
+else if((a.add(a)).compareTo(b)==0||(a.add(a)).compareTo(c)==0)System.out.println("YES\n");
+else if((b.add(b)).compareTo(a)==0||(b.add(b)).compareTo(c)==0)System.out.println("YES\n");
+else if((c.add(c)).compareTo(a)==0||(c.add(c)).compareTo(b)==0)System.out.println("YES\n");
+else System.out.println("NO\n");
+}
+}

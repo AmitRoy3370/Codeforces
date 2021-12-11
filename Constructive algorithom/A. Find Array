@@ -1,0 +1,50 @@
+import java.util.Scanner;
+
+public class MyClass {
+    
+    static Scanner in=new Scanner(System.in);
+    
+    public static void main(String args[]) {
+      
+      int testCases=in.nextInt();
+      
+      for(int t=0;t<testCases;t++){
+          
+          int n=in.nextInt();
+          
+          if(n==1){
+              
+              System.out.println(1);
+              
+              continue;
+              
+          }
+          
+          int i=2;
+          
+          int time=1;
+          
+          for( i=n;i<=n*2 && time<=n;i++){
+             
+             System.out.print(i+" ");
+             
+             i++;
+             
+             time++;
+             
+             if(time<=n){
+             
+             System.out.print(i+" ");
+              
+             }
+              
+              ++time;
+              
+          }
+          
+         System.out.println();
+          
+      }
+      
+    }
+}

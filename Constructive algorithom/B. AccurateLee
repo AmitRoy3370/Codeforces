@@ -1,0 +1,17 @@
+import java.util.Scanner;
+
+public class AccurateLee {
+	public static void main(String[] args) {
+
+		Scanner in = new Scanner(System.in);
+		int t = in.nextInt();
+		while (t-- > 0) {
+			int n = in.nextInt();
+			String s = in.next();
+
+			int f1 = s.indexOf("1"), l0 = s.lastIndexOf("0");
+			System.out.println(f1 != -1 && l0 > f1 ? s.substring(0, f1) + s.substring(l0) : s);
+		}
+		in.close();
+	}
+}

@@ -1,0 +1,145 @@
+import java.util.Scanner;
+
+public class C_Bad_Sequence{
+	
+	static Scanner in=new Scanner(System.in);
+	
+	static int n;
+	
+	static char a[];
+	
+	public static void main(String [] amit){
+		
+		n=in.nextInt();
+		
+		a=in.next().toCharArray();
+		
+		int first=0,second=0;
+		
+		for(char i: a){
+			
+			if(i=='('){
+				
+				first++;
+				
+			}else{
+				
+				second++;
+				
+			}
+			
+		}
+		
+		if(Math.abs(first-second)!=0 ){
+			
+			System.out.println("NO");
+			
+			return;
+			
+		}
+		
+		Stack<Character> stack=new Stack<>();
+		
+		for(int i=0;i<n;i++){
+			
+			if(a[i]=='(' ){
+				
+				stack.push(a[i]);
+				
+			}else{
+				
+				if(!stack.isEmpty() ){
+					
+					stack.pop();
+					
+				}
+				
+			}
+			
+		}
+		
+		if(stack.size()==1 || stack.size()==0 ){
+			
+			System.out.println("YES");
+			
+		}else{
+			
+			System.out.println("NO");
+			
+		}
+		
+	}
+	
+	static class Node<T>{
+		
+		T data;
+		Node<T> next;
+		
+		public Node(T data){
+			
+			this.data=data;
+			this.next=next;
+			
+		}
+		
+	}
+	
+	static class Stack<T>{
+		
+		int len;
+		
+		Node<T> node;
+		
+		public Stack(){
+			
+			node=null;
+			
+			len=0;
+			
+		}
+		
+		void push(T data){
+			
+			Node<T> temp=new Node<>(data);
+			
+			temp.next=node;
+			
+			node=temp;
+			
+			len++;
+			
+		}
+		
+		int size(){
+			
+			return len;
+			
+		}
+		
+		boolean isEmpty(){
+			
+			return this.size()==0;
+			
+		}
+		
+		T pop(){
+			
+			if(isEmpty() ){
+				
+				throw new ArrayIndexOutOfBoundsException();
+				
+			}
+			
+			T data=node.data;
+			
+			node=node.next;
+			
+			--len;
+			
+			return data;
+			
+		}
+		
+	}
+	
+}

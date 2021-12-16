@@ -1,0 +1,41 @@
+import java.util.Scanner;
+//import java.util.Arrays;
+//import java.util.Map;
+//import java.util.HashMap;
+
+public class A_Polycarp_and_Sums_of_Subsequences{
+	
+	static Scanner in=new Scanner(System.in);
+	
+	static int testCases,n;
+	static long a[];
+	
+	static void solve(){
+		
+		System.out.println(a[0]+" "+a[1]+" "+(a[n-1]-a[0]-a[1]) );
+		
+	}
+	
+	public static void main(String [] amit){
+		
+		testCases=in.nextInt();
+		
+		for(int t=0;t<testCases;t++){
+			
+			a=new long[7];
+			
+			n=7;
+			
+			for(int i=0;i<7;i++){
+				
+				a[i]=in.nextLong();
+				
+			}
+			
+			solve();
+			
+		}
+		
+	}
+	
+}

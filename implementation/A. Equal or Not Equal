@@ -1,0 +1,65 @@
+import java.util.Scanner;
+
+public class A_Equal_or_Not_Equal {
+
+    static int testCases;
+    
+    static Scanner in=new Scanner(System.in);
+    
+    static char a[];
+    
+    static void solve(){
+        
+        int number_of_N=0;
+        
+        int n=a.length;
+        
+        for(char i: a){
+            
+            if(i=='N'){
+                
+                number_of_N++;
+                
+            }
+            
+        }
+        
+        if(number_of_N==1 ){
+            
+            System.out.println("No");
+            
+        }else{
+            
+            System.out.println("YES");
+            
+        }
+        
+   //     System.out.println(a[0]!=a[n-1]?"NO":"YES" );
+        
+    }
+    
+    public static void main(String[] amit) {
+        
+        testCases=in.nextInt();
+        
+        for(int t=0;t<testCases;t++){
+            
+            a=in.next().toCharArray();
+            
+            solve();
+            
+        }
+        
+    }
+    
+}
+/*
+
+4
+EEE
+EN
+ENNEENE
+NENN
+
+
+*/

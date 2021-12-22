@@ -1,0 +1,59 @@
+import java.util.Scanner;
+
+public class B_Average_Sleep_Time {
+
+    static Scanner in=new Scanner(System.in);
+    
+    static int n;
+    static double k;
+    
+    static double a[];
+    
+    public static void main(String[] amit) {
+        
+        n=in.nextInt();
+        k=in.nextDouble();
+        
+        a=new double[n+1];
+        
+        for(int i=1;i<=n;i++){
+            
+            a[i]=in.nextDouble();
+            
+        }
+        
+        if(n==1){
+            
+               System.out.printf("%.6f",a[1]);
+            
+               return;
+               
+        }
+        
+        double prefix[]=new double[n+1];
+        
+        for(int i=1;i<=n;i++){
+            
+            prefix[i]=prefix[i-1]+a[i];
+            
+        }
+        
+        double sum=0.0;
+        
+        double pair=0.0;
+        
+        for(int i=(int)k;i<=n;i++,pair++){
+            
+            sum+=(prefix[i]-prefix[i-(int)k] );
+            
+        //    System.out.println("pre sum: "+(prefix[i]-prefix[i-(int)k] ) );
+            
+        }
+        
+      //  System.out.println("sum: "+sum+" pair: "+pair);
+        
+        System.out.printf("%.6f",sum/pair);
+        
+    }
+    
+}

@@ -1,0 +1,64 @@
+import java.util.Scanner;
+
+public class MyClass {
+    
+    static Scanner in=new Scanner(System.in);
+    
+    static int testCases,n;
+    
+    static String a[];
+    
+    static void solve(){
+        
+        StringBuilder ans=new StringBuilder();
+        
+        ans.append(a[0] );
+        
+        boolean f=false;
+        
+        for(int i=1;i<n;i++){
+
+            if(a[i].charAt(0)!=ans.toString().charAt(ans.toString().length()-1 ) ){
+                
+                ans.append(a[i].charAt(0) );
+                
+                f=true;
+                
+            }
+            
+            ans.append(a[i].charAt(1) );
+            
+        }
+        
+        if(!f){
+            
+            ans.append('a' );
+            
+        }
+        
+        System.out.println(ans.toString() );
+        
+    }
+    
+    public static void main(String args[]) {
+      
+      testCases=in.nextInt();
+      
+      for(int t=0;t<testCases;t++){
+          
+          n=in.nextInt()-2;
+          
+          a=new String[n];
+          
+          for(int i=0;i<n;i++){
+          
+           a[i]=in.next();
+          
+          }
+          
+          solve();
+          
+      }
+      
+    }
+}

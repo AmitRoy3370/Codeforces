@@ -1,0 +1,42 @@
+import java.util.Scanner;
+
+public class Triangles_on_a_Rectangle {
+
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        int t = sc.nextInt();
+        for (int cc = 0; cc < t; cc++) {
+            int w = sc.nextInt(), h = sc.nextInt();
+            long ll = 0, l = 0;
+            int left = 0, right = 0, n = 0;
+            for (int cc2 = 0; cc2 < 4; cc2++) {
+                n = sc.nextInt();
+                for (int i = 0; i < n; i++) {
+                    int num = sc.nextInt();
+                    if (i == 0)
+                        left = num;
+                    if (i == n - 1)
+                        right = num;
+                }
+                l = right - left;
+                if(cc2 < 2){
+                    l*=h;
+                }
+                else {
+                    l*=w;
+                }
+                if (l > ll){
+                    ll = l;
+                }
+            }
+            System.out.println(ll);
+
+        }
+        sc.close();
+    }
+
+}
+
+/*
+
+*/

@@ -1,0 +1,78 @@
+import java.util.Scanner;
+
+public class A_Ancient_Civilization{
+	
+	static Scanner in=new Scanner(System.in);
+	
+	static int testCases,n,l;
+	
+	static long a[];
+	
+	static void solve(){
+		
+		String ans="";
+		
+		for(int j=0;j<l;j++){
+			
+			int even=0,odd=0;
+			
+			for(int i=0;i<n;i++){
+				
+				if(a[i]%2==0 ){
+					
+					even++;
+					
+				}else{
+					
+					odd++;
+					
+				}
+				
+				a[i]/=2;
+				
+			}
+			
+			if(odd>even ){
+				
+				//ans.append(0);
+				
+				ans="1"+ans;
+				
+			}else{
+				
+				//ans.append(1);
+				
+				ans="0"+ans;
+				
+			}
+			
+		}
+		
+		System.out.println(Integer.parseInt(ans,2));
+		
+	}
+	
+	public static void main(String [] amit){
+		
+		testCases=in.nextInt();
+		
+		for(int t=0;t<testCases;t++){
+			
+			n=in.nextInt();
+			l=in.nextInt();
+			
+			a=new long[n];
+			
+			for(int i=0;i<n;i++){
+				
+				a[i]=in.nextLong();
+				
+			}
+			
+			solve();
+			
+		}
+		
+	}
+	
+}

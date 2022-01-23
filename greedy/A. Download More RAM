@@ -1,0 +1,85 @@
+import java.util.Scanner;
+
+public class MyClass {
+    
+    static Scanner in=new Scanner(System.in);
+    
+    static int testCases,n,k;
+    
+    static int a[],b[];
+    
+    static void solve(){
+        
+        boolean visited[]=new boolean[n];
+        
+        int ans=k;
+        
+        while(true){
+            
+            int i=0;
+            
+            for(i=0;i<n;i++){
+                
+                if(!visited[i] && a[i]<=k ){
+                    
+                    visited[i]=true;
+                    
+                    break;
+                    
+                }
+                
+            }
+            
+            if(i==n){
+                
+                break;
+                
+            }
+            
+            //System.out.println("k: "+k);
+            
+            if(k>=a[i]){
+            
+              k+=b[i];
+            
+              ans=Math.max(ans,a[i]+b[i]);
+            
+            }
+            
+        }
+        
+        System.out.println(k);
+        
+    }
+    
+    public static void main(String amit[]) {
+      
+      testCases=in.nextInt();
+      
+      for(int t=0;t<testCases;t++){
+          
+          n=in.nextInt();
+          k=in.nextInt();
+          
+          a=new int[n];
+          
+          b=new int[n];
+          
+          for(int i=0;i<n;i++){
+              
+              a[i]=in.nextInt();
+              
+          }
+          
+          for(int i=0;i<n;i++){
+              
+              b[i]=in.nextInt();
+              
+          }
+          
+          solve();
+          
+      }
+      
+    }
+}

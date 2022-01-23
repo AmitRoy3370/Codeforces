@@ -1,0 +1,58 @@
+import java.util.Scanner;
+
+public class MyClass {
+    
+    static Scanner in=new Scanner(System.in);
+    
+    static int testCases;
+    
+    static long l,r,k;
+    
+    static void solve(){
+        
+        long odd=(l%2==0 && r%2==0 )?(r-l)/2:((r-l)/2)+1;
+      
+      if(k==0){  
+        
+        if(l==r){
+            
+            if(r==1){
+                
+                System.out.println("NO");
+                
+            }else{
+                
+                System.out.println("YES");
+                
+            }
+            
+        }else{
+            
+            System.out.println("NO");
+            
+        }
+        
+        return;
+        
+      }    
+        
+        System.out.println((odd<=k?"YES":"NO") );
+        
+    }
+    
+    public static void main(String args[]) {
+      
+      testCases=in.nextInt();
+      
+      for(int t=0;t<testCases;t++){
+          
+          l=in.nextLong();
+          r=in.nextLong();
+          k=in.nextLong();
+          
+          solve();
+          
+      }
+      
+    }
+}

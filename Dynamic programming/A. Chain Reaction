@@ -1,0 +1,60 @@
+import java.util.Scanner;
+
+public class MyClass {
+    
+    static Scanner in=new Scanner(System.in);
+    
+    static int n,N=((int)1e6)+1;
+    
+    static int b[]=new int[((int)1e6)+1];
+    
+    static long dp[]=new long[((int)1e6)+1 ];
+    
+    static void solve(){
+        
+        if(b[0]>0 ){
+            
+            dp[0]=1;
+            
+        }
+        
+        long max=dp[0];
+        
+        for(int i=1;i<N;i++){
+            
+            if(b[i]==0 ){
+            
+              dp[i]=dp[i-1];
+            
+            }else if(b[i]>=i ){
+                
+                dp[i]=1;
+                
+            }else{
+                
+                dp[i]=dp[i-b[i]-1 ]+1;
+                
+            }
+            
+            max=Math.max(dp[i],max);
+            
+        }
+        
+        System.out.print(n-max );
+        
+    }
+    
+    public static void main(String amit[]) {
+      
+      n=in.nextInt();
+      
+      for(int i=0;i<n;i++){
+          
+          b[in.nextInt() ]=in.nextInt();
+          
+      }
+      
+      solve();
+      
+    }
+}

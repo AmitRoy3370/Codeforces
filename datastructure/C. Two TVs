@@ -1,0 +1,67 @@
+import java.util.Scanner;
+import java.util.List;
+import java.util.ArrayList;
+import java.util.Collections;
+
+public class MyClass {
+    
+    static Scanner in=new Scanner(System.in);
+    
+    static List<Long> list_start=new ArrayList<>();
+    
+    static List<Long> list_end=new ArrayList<>();
+    
+    public static void main(String args[]) {
+      
+      int n=in.nextInt();
+      
+      for(int i=0;i<n;i++){
+          
+         list_start.add(in.nextLong());
+         list_end.add(in.nextLong());
+         
+      }
+      
+      Collections.sort(list_start);
+      Collections.sort(list_end);
+      
+      /*for(schedule i: list){
+          
+          System.out.println(i.startTime+" "+i.endTime);
+          
+      }*/
+      
+      long ans=0;
+      
+      for(int i=0,j=0;i<n;i++){
+          
+          for(;list_start.get(i)>list_end.get(j);j++ );
+              
+              ans=Math.max(ans,i-j+1 );
+              
+      }
+      
+      System.out.println((ans>=3?"NO":"YES"));
+      
+    }
+    
+    static class schedule implements Comparable<schedule> {
+        
+        long startTime,endTime;
+        
+        public schedule(long startTime,long endTime){
+            
+            this.startTime=startTime;
+            this.endTime=endTime;
+            
+        }
+        
+        public int compareTo(schedule t){
+            
+            return Long.compare(this.startTime,t.startTime);
+            
+        }
+        
+    }
+    
+}

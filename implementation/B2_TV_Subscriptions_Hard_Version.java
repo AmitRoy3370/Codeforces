@@ -1,0 +1,65 @@
+import java.util.Map;
+import java.util.HashMap;
+import java.util.Scanner;
+
+public class B2_TV_Subscriptions_Hard_Version {
+
+    static Scanner in = new Scanner(System.in);
+
+    static int testCases, n, k, d;
+
+    static int a[];
+
+    static void solve() {
+
+        Map<Integer, Integer> map = new HashMap<>();
+
+        for (int i = 0; i < d; i++) {
+
+            map.put(a[i], map.getOrDefault(a[i], 0) + 1);
+
+        }
+
+        int ans = map.size();
+
+        for (int i = d; i < n; i++) {
+
+            int frequency = map.get(a[i - d]);
+
+            if (frequency == 1)
+                map.remove(a[i - d]);
+            else
+                map.put(a[i - d], map.getOrDefault(a[i - d], 0) - 1);
+
+            map.put(a[i], map.getOrDefault(a[i], 0) + 1);
+
+            ans = Math.min(ans, map.size());
+
+        }
+
+        System.out.println(ans);
+
+    }
+
+    public static void main(String[] amit) {
+
+        testCases = in.nextInt();
+
+        for (int t = 0; t < testCases; t++) {
+
+            n = in.nextInt();
+            k = in.nextInt();
+            d = in.nextInt();
+
+            a = new int[n];
+
+            for (int i = 0; i < n; i++)
+                a[i] = in.nextInt();
+
+            solve();
+
+        }
+
+    }
+
+}

@@ -1,0 +1,179 @@
+import java.util.Scanner;
+
+public class A_Escape_from_Stones {
+    
+    static Scanner in=new Scanner(System.in);
+    
+    static int n;
+    
+    static char a[];
+    
+    static StringBuilder ans=new StringBuilder();
+    
+    static void solve(){
+        
+        ArrayList<Integer> left=new ArrayList<>();
+        
+        ArrayList<Integer> right=new ArrayList<>();
+        
+        for(int i=0;i<n;i++){
+            
+            if(a[i]=='l' ){
+                
+                left.push(i+1);
+                
+            }else{
+                
+                right.add(i+1);
+                
+            }
+            
+        }
+        
+        try{
+        
+           right.print();
+        
+        }catch(ArrayIndexOutOfBoundsException e){
+            
+            
+        }
+        
+        try{
+        
+          left.print();
+        
+        }catch(ArrayIndexOutOfBoundsException e){
+            
+            
+        }
+        
+        System.out.println(ans.toString() );
+        
+    }
+    
+    public static void main(String args[]) {
+      
+      a=in.next().toCharArray();
+      
+      n=a.length;
+      
+      solve();
+      
+    }
+    
+    static class Node<T>{
+        
+        T data;
+        Node<T> next;
+        
+        public Node(T data){
+            
+            this.data=data;
+            this.next=null;
+            
+        }
+        
+    }
+    
+    static class ArrayList<T>{
+        
+        Node<T> head,tail;
+        int len;
+        
+        public ArrayList(){
+            
+            this.head=null;
+            this.tail=null;
+            this.len=0;
+            
+        }
+        
+        int size(){
+            
+            return len;
+            
+        }
+        
+        boolean isEmpty(){
+            
+            return size()==0;
+            
+        }
+        
+        void add(T data){
+            
+            if(isEmpty() ){
+                
+                Node<T> newNode=new Node<>(data);
+                
+                head=newNode;
+                tail=newNode;
+                
+                ++len;
+                return;
+                
+            }
+            
+            Node<T> newNode=new Node<>(data);
+            
+            this.tail.next=newNode;
+            
+            this.tail=newNode;
+            
+            ++len;
+            
+        }
+        
+        void push(T data){
+            
+            if(isEmpty() ){
+                
+                Node<T> newNode=new Node<>(data);
+                
+                head=newNode;
+                tail=newNode;
+                
+                ++len;
+                
+                return;
+                
+            }
+            
+            Node<T> newNode=new Node<>(data);
+            
+            newNode.next=head;
+            
+            head=newNode;
+            
+            ++len;
+            
+        }
+        
+        void print() throws ArrayIndexOutOfBoundsException {
+            
+            if(isEmpty() ){
+                
+                throw new ArrayIndexOutOfBoundsException();
+                
+            }
+            
+            Node<T> temp=head;
+            
+            while(temp!=null){
+                
+                //System.out.println(temp.data.toString()+" " );
+                
+                ans.append(temp.data.toString() ).append("\n");
+                
+                temp=temp.next;
+                
+            }
+            
+            //System.out.println();
+            
+        }
+        
+    }
+    
+}

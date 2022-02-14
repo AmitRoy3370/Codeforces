@@ -1,0 +1,11 @@
+import java.util.Scanner;
+
+public class letswatchfootball {
+
+    public static void main(String[] args) {
+        Scanner in = new Scanner(System.in);
+        int a = in.nextInt(), b = in.nextInt(), c = in.nextInt();
+        int ans = (int) ((a - b) * c + b - 1) / b;
+        System.out.println(ans);
+    }
+}

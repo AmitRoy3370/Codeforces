@@ -1,0 +1,22 @@
+import java.util.*;
+public class rr{
+public static void main(String[] args){
+Scanner ob=new Scanner(System.in);
+int t=ob.nextInt();
+int n,k,min;
+while(t>0){
+n=ob.nextInt();
+k=ob.nextInt();
+min=n;
+if(n<=k) System.out.println("1");
+else{
+for(int j=1;j*j<=n;j++){
+if(n%j==0){
+if(j<=k) min=Math.min(min,n/j);
+if((n/j)<=k) min=Math.min(min,j);
+}}
+System.out.println(min);
+}
+t--;
+}
+ }}

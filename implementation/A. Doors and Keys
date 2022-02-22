@@ -1,0 +1,69 @@
+import java.util.Scanner;
+
+public class MyClass {
+    
+    static Scanner in=new Scanner(System.in);
+    
+    static int testCases,n;
+    
+    static char a[];
+    
+    static void solve(){
+        
+        boolean ok_Red=false,ok_Green=false,ok_Blue=false;
+        
+        for(char i: a){
+            
+            if(Character.isLowerCase(i) && i=='r' ){
+                
+                ok_Red=true;
+                
+            }else if(Character.isLowerCase(i) && i=='g' ){
+                
+                ok_Green=true;
+                
+            }else if(Character.isLowerCase(i) && i=='b' ){
+                
+                ok_Blue=true;
+                
+            }else if(Character.isUpperCase(i) && i=='R' && !ok_Red ){
+                
+                System.out.println("NO");
+                
+                return;
+                
+            }else if(Character.isUpperCase(i) && i=='G' && !ok_Green ){
+                
+                System.out.println("NO");
+                return;
+                
+            }else if(Character.isUpperCase(i) && i=='B' && !ok_Blue ){
+                
+                System.out.println("NO");
+                return;
+                
+            }
+            
+        }
+        
+        System.out.println("YES");
+        
+    }
+    
+    public static void main(String args[]) {
+        
+        testCases=in.nextInt();
+        
+        for(int t=0;t<testCases;t++){
+            
+            a=in.next().toCharArray();
+            
+            n=a.length;
+            
+            solve();
+            
+        }
+
+    }
+
+}

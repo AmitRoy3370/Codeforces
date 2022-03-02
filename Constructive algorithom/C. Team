@@ -1,0 +1,96 @@
+
+import java.util.Scanner;
+
+public class C_Teams {
+
+    static Scanner in = new Scanner(System.in);
+
+    static int n, m;
+
+    static void solve() {
+
+        if (n > m + 1 || 2 * n + 2 < m) {
+
+            System.out.println(-1);
+
+            return;
+
+        }
+
+        StringBuilder ans = new StringBuilder();
+
+        char added_character = '1';
+
+        int k = 0;
+
+        while (n > 0 || m > 0) {
+
+            if ((added_character - '0' != 1) || (m > n && k < 2)) {
+
+                added_character = '1';
+
+                --m;
+
+                ++k;
+
+            } else {
+
+                added_character = '0';
+
+                --n;
+                k = 0;
+
+            }
+
+            ans.append(added_character - '0');
+
+        }
+
+        System.out.println(ans.toString());
+    }
+
+    public static void main(String[] amit) {
+
+        n = in.nextInt();
+
+        m = in.nextInt();
+
+        solve();
+
+    }
+
+}
+/*
+
+1 2
+
+
+ */
+
+ /*
+
+4 8
+
+
+ */
+
+ /*
+
+4 10
+
+
+ */
+
+ /*
+
+1 5
+
+
+ */
+
+ /*
+
+3 4
+
+
+ */

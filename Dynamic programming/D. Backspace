@@ -1,0 +1,77 @@
+import java.util.Scanner;
+
+public class D_Backspace {
+    
+    static Scanner in = new Scanner(System.in);
+    
+    static int testCases, n, m;
+    
+    static char s[], t[];
+    
+    static void solve(){
+        
+        if(m > n){
+            
+            System.out.println("NO");
+            return;
+            
+        }
+        
+        int index_of_t = 0, possibility_to_delete_orginal = 0;
+        int valid_len_matched_with_s = 0;
+        int start = (n - m) & 1;
+        
+        for(int i = start; i < n; ++i){
+            
+            if(possibility_to_delete_orginal == 1){
+                
+                possibility_to_delete_orginal = 0;
+           
+            }else{
+                
+                if(index_of_t < m && s[i] == t[index_of_t] ){
+                    
+                    ++index_of_t;
+                    valid_len_matched_with_s++;
+                    
+                }else{
+                    
+                    ++possibility_to_delete_orginal;
+                    
+                }
+                
+            }
+            
+        }
+        
+        if(valid_len_matched_with_s == m ){
+            
+            System.out.println("YES");
+            
+        }else{
+            
+            System.out.println("NO");
+            
+        }
+        
+    }
+    
+    public static void main(String amit[]) {
+      
+      testCases = in.nextInt();
+      
+      for(int runtime = 0; runtime < testCases; ++runtime){
+          
+          s = in.next().toCharArray();
+          t = in.next().toCharArray();
+          
+          n = s.length;
+          m = t.length;
+          
+          solve();
+          
+      }
+      
+    }
+
+}

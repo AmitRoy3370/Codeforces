@@ -1,0 +1,74 @@
+import java.util.Scanner;
+
+public class Main {
+    
+    static Scanner in = new Scanner(System.in);
+    
+    static int n, k;
+    
+    static int a[], t[];
+    
+    static void solve() {
+        
+        long prefix[] = new long[n];
+       
+        long overAll = 0;
+        
+        for(int i = 0; i < n; ++i) {
+            
+            if(i > 0) {
+            
+              prefix[i] += prefix[i - 1];
+            
+            }
+            
+            if(t[i] == 0 ) {
+                
+                prefix[i] += a[i];
+                
+            }else {
+                
+                overAll += a[i];
+                
+            }
+            
+        }
+        
+        long add = 0;
+        
+        for(int i = k - 1; i < n; ++i) {
+            
+            add = Math.max(add,prefix[i] - (i >=k ? prefix[i - k] : 0 ) );
+            
+        }
+        
+        add += overAll;
+        
+        System.out.print(add);
+        
+    }
+    
+    public static void main(String amit[]) {
+     
+     n = in.nextInt();
+     k = in.nextInt();
+     
+     a = new int[n];
+     t = new int[n];
+     
+     for(int i = 0; i < n; ++i) {
+         
+        a[i] = in.nextInt();
+         
+     }
+     
+     for(int i = 0; i < n; ++i) {
+        
+        t[i] = in.nextInt(); 
+         
+     }
+     
+     solve();
+     
+    }
+}

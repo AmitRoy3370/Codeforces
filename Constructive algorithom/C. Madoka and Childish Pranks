@@ -1,0 +1,104 @@
+import java.util.Scanner;
+import java.util.List;
+import java.util.ArrayList;
+
+public class C_Madoka_and_Childish_Pranks {
+    
+    static Scanner in = new Scanner(System.in);
+    
+    static int testCases, n, m;
+    
+    static char a[][];
+    
+    static StringBuilder ans = new StringBuilder();
+    
+    static void solve() {
+        
+        if(a[0][0] - '0' == 1 ) {
+            
+            ans.append(-1).append("\n");
+            return;
+            
+        }
+        
+        List<element> list = new ArrayList<>();
+        
+        for (int j = m - 1; j >= 0; --j) {
+        
+            for (int i = n - 1; i >= 0; --i) {
+              
+              if (a[i][j] - '0' == 1) {
+                
+                  if (i != 0) {
+                    
+                       list.add( new element(i, j + 1, i + 1, j + 1) );
+            
+                  } else {
+                    
+                       list.add( new element(i + 1, j, i + 1, j + 1) );
+                
+                  }
+            
+              }
+           
+            }
+    
+        }
+    
+        ans.append(list.size()).append("\n");
+        
+        for(element i : list) {
+            
+            ans.append(i.toString()).append("\n");
+            
+        }
+        
+    }
+    
+    public static void main(String priya[]) {
+      
+      testCases = in.nextInt();
+      
+      for(int t = 0; t < testCases; ++t) {
+          
+          n = in.nextInt();
+          m = in.nextInt();
+          
+          a = new char[n][m];
+          
+          for(int i = 0; i < n; ++i) {
+              
+              a[i] = in.next().toCharArray();
+              
+          }
+          
+          solve();
+          
+      }
+      
+      System.out.print(ans.toString());
+      
+    }
+    
+    static class element {
+        
+        int a, b, c, d;
+        
+        public element(int a, int b, int c, int d) {
+            
+            this.a = a;
+            this.b = b;
+            this.c = c;
+            this.d = d;
+            
+        }
+        
+        public String toString() {
+            
+            return this.a + " " + this.b + " " + this.c + " " + this.d;
+            
+        }
+        
+    }
+    
+}

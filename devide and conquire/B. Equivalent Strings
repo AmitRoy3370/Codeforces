@@ -1,0 +1,53 @@
+import java.util.Scanner;
+
+public class B_Equivalent_Strings {
+    
+    static Scanner in = new Scanner(System.in);
+    
+    static int n, m;
+    
+    static String a, b;
+    
+    static String solve(String a) {
+       
+       int len = a.length();
+       
+       if((len & 1) == 1 ) {
+           
+           return a;
+           
+       }
+        
+        String s1 = solve(a.substring(0, len / 2));    
+        String s2 = solve(a.substring(len / 2, len));
+        
+        if(s1.compareTo(s2) <= 0 ){
+            
+            return s1 + s2;
+            
+        } else {
+            
+            return s2 + s1;
+            
+        }
+        
+    }
+    
+    public static void main(String [] priya) {
+        
+      a = in.next();
+      b = in.next();
+        
+      if(solve(a).equals(solve(b)) ) {
+          
+          System.out.println("YES");
+          
+      } else {
+          
+          System.out.println("NO");
+          
+      }
+        
+    }
+    
+}

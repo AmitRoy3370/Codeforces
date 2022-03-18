@@ -1,0 +1,44 @@
+import java.util.Scanner;
+
+public class MyClass {
+    
+    static Scanner in = new Scanner(System.in);
+    
+    static int n, testCases;
+    
+    static char a[];
+    
+    static void solve() {
+        
+        for(int i = n - 1; i > 0; --i) {
+            
+            int summation = (a[i] - '0') + (a[i - 1] - '0');
+            
+            if(summation > 9 || i ==1 ) {
+                
+                System.out.println(new String(a).substring(0, i - 1) + summation + new String(a).substring(i + 1) );
+                
+                return;
+                
+            }
+            
+        }
+        
+    }
+    
+    public static void main(String args[]) {
+      
+      testCases = in.nextInt();
+      
+      for(int t = 0; t < testCases; ++t) {
+          
+          a = in.next().toCharArray();
+          
+          n = a.length;
+          
+          solve();
+          
+      }
+      
+    }
+}

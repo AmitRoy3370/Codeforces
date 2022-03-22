@@ -1,0 +1,64 @@
+import java.util.Scanner;
+import java.util.Set;
+import java.util.HashSet;
+
+public class MyClass {
+    
+    static Scanner in = new Scanner(System.in);
+    
+    static int n;
+    
+    static long a[];
+    
+    static void solve() {
+        
+        Set<Long> set = new HashSet<>();
+        
+        long sum = 0, ans = 0;
+        
+        set.add(sum);
+        
+        for(int i = 0; i < n; ++i) {
+            
+            sum += a[i];
+           
+            int size = set.size();
+           
+            set.add(sum);
+            
+            if(set.size() == size) {
+                
+                sum = a[i];
+                
+                ++ans;
+                
+                set = new HashSet<>();
+                
+                set.add((long)0);
+                set.add(a[i]);
+                
+            }
+            
+        }
+        
+        System.out.print(ans);
+        
+    }
+    
+    public static void main(String amit[]) {
+      
+      n = in.nextInt();
+      
+      a = new long[n];
+      
+      for(int i = 0; i < n; ++i) {
+          
+          a[i] = in.nextLong();
+          
+      }
+      
+      solve();
+      
+    }
+
+}

@@ -1,0 +1,49 @@
+import java.util.Scanner;
+
+public class MyClass {
+    
+    static Scanner in = new Scanner(System.in);
+    
+    public static void main(String args[]) {
+      
+      char a[] = in.next().toCharArray();
+      char b[] = in.next().toCharArray();
+      
+      int n = a.length;
+      
+      boolean bulls[] = new boolean[26];
+      
+      boolean cow[] = new boolean[26];
+      
+      int bull = 0, cows = 0;
+      
+      boolean presentA[] = new boolean[26];
+      
+      for(int i = 0; i < n; ++i) {
+          
+          if(a[i] == b[i]) {
+              
+              ++bull;
+              
+              bulls[a[i] - '0'] = true;
+              
+          }
+          
+          presentA[a[i] - '0'] = true;
+          
+      }
+      
+      for(int i = 0; i < n; ++i) {
+          
+          if(presentA[b[i] - '0'] && !bulls[b[i] - '0'] ) {
+              
+              ++cows;
+              
+          }
+          
+      }
+      
+      System.out.print(bull + " " + cows);
+      
+    }
+}

@@ -1,0 +1,110 @@
+import java.util.Scanner;
+import java.util.Map;
+import java.util.HashMap;
+
+public class MyClass {
+    
+    static Scanner in = new Scanner(System.in);
+    
+    static int testCases, n;
+    
+    static int a[], b[];
+    
+    static void solve() {
+        
+        Map<Integer, Integer> map = new HashMap<>();
+        
+        int next[] = new int[n];
+        
+        int count[] = new int[n];
+        
+        for(int i = 0; i < n; ++i) {
+            
+            next[i] = -1;
+            count[i] = 1;
+            
+        }
+        
+        for(int i = n - 1; i >= 0; --i) {
+            
+            if(map.containsKey(a[i])) {
+                
+                next[i] = map.get(a[i]);
+                
+            } else {
+                
+                next[i] = -1;
+                
+            }
+            
+            map.put(a[i], i);
+            
+        }
+        
+        int i = 0, j = 0;
+        
+        while (j < n) {
+            
+            if(a[i] == b[j]) {
+                
+                if(count[i] == 1) {
+                    
+                    ++i;
+                    
+                } else {
+                    
+                    --count[i];
+                    
+                }
+                
+                ++j;
+                
+            } else {
+                
+                if(next[i] == -1) {
+                    
+                    break;
+                    
+                }
+                
+                count[next[i]] += count[i];
+                
+                ++i;
+                
+            }
+            
+        }
+        
+        System.out.println(j == n ? "YES" : "NO");
+            
+    }
+    
+    public static void main(String priya[]) {
+      
+      testCases = in.nextInt();
+      
+      for(int t = 0; t < testCases; ++t) {
+          
+          n = in.nextInt();
+          
+          a = new int[n];
+          b = new int[n];
+          
+          for(int i = 0; i < n; ++i) {
+              
+              a[i] = in.nextInt();
+              
+          }
+          
+          for(int i = 0; i < n; ++i) {
+              
+              b[i] = in.nextInt();
+              
+          }
+          
+          solve();
+          
+      }
+      
+    }
+}

@@ -1,0 +1,119 @@
+import java.util.Scanner;
+
+/*
+
+#solve example and graphic view
+
+-
+
+-> a b a
+* First player got the palindrome so he will be
+  the winner
+
+-> a b c a
+
+* First player remove the character b from this
+  list
+  this updated String is : a c a
+* this is the palindrom string 
+* so second player got the palindrome string
+  so he will won the game
+
+-
+
+observations
+
+-
+
+*
+*
+* palindrome string's has same character to it's
+  both corner
+* even length palindrome has all the character
+  same number of times, as example abba
+* But if the palindrome is the odd length then
+  a or some number of character is present at the
+  middle. Other's corner is as like as the even
+  length palindrome. eg : abcba, so their is any
+  character that is odd number of time is present
+  1 number of time or less than this then this
+  is odd
+* But if the odd count number of character is
+  present in the string then it must be happen
+  at the odd number number of time
+* So any one is hapen at here, then the first
+  will win
+* Other wise second will be win  
+*
+*
+
+-
+
+*/
+
+public class MyClass {
+    
+    static Scanner in = new Scanner(System.in);
+    
+    static int n;
+    
+    static char a[];
+    
+    static void solve() {
+        
+        int mismatch = 0;
+        
+        int count[] = new int[26];
+        
+        for(int i = 0; i < n; ++i) {
+            
+           count[a[i] - 'a']++;
+            
+        }
+        
+        for(int i : count) {
+            
+            if(i % 2 == 1) {
+                
+                ++mismatch;
+                
+            }
+            
+        }
+        
+        if(mismatch <= 1) {
+            
+            System.out.print("First");
+            
+        } else {
+            
+            if(mismatch % 2 == 1) {
+                
+                System.out.print("First");
+                
+            } else {
+                
+                System.out.print("Second");
+                
+            }
+            
+        }
+        
+    }
+    
+    public static void main(String args[]) {
+     
+     a = in.next().toCharArray();
+     
+     n = a.length;
+     
+     solve();
+     
+    }
+}
+
+/*
+
+desktciwoidfuswycratvovutcgjrcyzmilsmadzaegseetexygedzxdmorxzxgiqhcuppshcsjcozkopebegfmxzxxagzwoymlghgjexcgfojychyt
+
+*/

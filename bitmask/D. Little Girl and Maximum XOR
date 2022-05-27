@@ -1,0 +1,74 @@
+import java.util.Scanner;
+
+public class MyClass {
+    
+    static Scanner in = new Scanner(System.in);
+    
+    public static void main(String priya[]) {
+      
+      long x = 1L;
+      long y = 62;
+      long z = x << y;
+      
+      long l = in.nextLong(), r = in.nextLong();
+      
+      if(l == r) {
+          
+          System.out.println(l ^ r);
+          return;
+          
+      }
+      
+      //System.out.println(z);
+      
+      while(z > 0 && (z & l) == (z & r) ) {
+          
+          z >>= 1L;
+          
+          //System.out.println(z);
+          
+      }
+      
+      String ans = (sum(String.valueOf(z), String.valueOf(z - 1L)));
+      
+      System.out.println(ans);
+      
+    }
+    
+     static String sum(String str1, String str2) {
+ 
+        if (str1.length() > str2.length()) {
+            String t = str1;
+            str1 = str2;
+            str2 = t;
+        }
+ 
+        String str = "";
+ 
+        int n1 = str1.length(), n2 = str2.length();
+        int diff = n2 - n1;
+ 
+        int carry = 0;
+ 
+        for (int i = n1 - 1; i >= 0; i--) {
+ 
+            int sum = ((int) (str1.charAt(i) - '0')
+                    + (int) (str2.charAt(i + diff) - '0') + carry);
+            str += (char) (sum % 10 + '0');
+            carry = sum / 10;
+        }
+ 
+        for (int i = n2 - n1 - 1; i >= 0; i--) {
+            int sum = ((int) (str2.charAt(i) - '0') + carry);
+            str += (char) (sum % 10 + '0');
+            carry = sum / 10;
+        }
+ 
+        if (carry > 0) {
+            str += (char) (carry + '0');
+        }
+ 
+        return new StringBuilder(str).reverse().toString();
+    }
+ 
+}

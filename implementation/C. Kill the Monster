@@ -1,0 +1,52 @@
+import java.util.Scanner;
+
+public class MyClass {
+    
+    static Scanner in = new Scanner(System.in);
+    
+    static int testCases, k;
+    
+    static long hc, dc, hm, dm, w, a;
+    
+    static void solve() {
+        
+        for(int i = 0; i <= k; ++i) {
+            
+            long increase_health = i * a + hc;
+            long increase_attack = Math.abs(k - i) * w + dc;
+            
+            //System.out.println((hm / increase_attack) + " " + (increase_health / dm));
+            
+            if((long)Math.ceil((double)((double)increase_health / (double)dm)) >= (long)Math.ceil((double)((double)hm / (double)increase_attack))) {
+                
+                System.out.println("YES");
+                return;
+                
+            }
+            
+        }
+        
+        System.out.println("NO");
+        
+    }
+    
+    public static void main(String args[]) {
+      
+      testCases = in.nextInt();
+      
+      for(int t = 0; t < testCases; ++t) {
+          
+          hc = in.nextLong();
+          dc = in.nextLong();
+          hm = in.nextLong();
+          dm = in.nextLong();
+          k = in.nextInt();
+          w = in.nextLong();
+          a = in.nextLong();
+          
+          solve();
+          
+      } 
+      
+    }
+}

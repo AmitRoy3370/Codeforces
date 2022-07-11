@@ -8,7 +8,11 @@ public class B_Uniqueness {
 	
 	static int n;
 	
+	static int total_duplicates = 0;
+		
 	static long a[];
+	
+	static Map<Long, Integer> count = new HashMap<>();
 	
 	static void solve() {
 		
@@ -39,6 +43,45 @@ public class B_Uniqueness {
 			
 		}
 		
+		for(int i = 0; i < n; ++i) {
+			
+			newMap.put(a[i], newMap.getOrDefault(a[i], 0) + 1);
+			
+			if(newMap.get(a[i]) > 1 && first_duplicate == -1) {
+				
+				first_duplicate = i;
+				break;
+				
+			}
+			
+		}
+		
+		if(first_duplicate == -1) {
+			
+			System.out.print(0);
+			return;
+			
+		}
+		
+		have_to_delete = 1;
+		
+		for(int i = first_duplicate + 1; i < n; ++i) {
+			
+			newMap.put(a[i], newMap.getOrDefault(a[i], 0) + 1);
+			
+			if(newMap.get(a[i]) > 1 || (map.get(a[i]) > 1 && position.get(a[i]) > i)) {
+				
+				newMap.put(a[i], newMap.get(a[i]) - 1);
+				map.put(a[i], map.get(a[i]) - 1);
+				
+				have_to_delete = i - first_duplicate + 1;
+				
+				//++i;
+				
+			}
+			
+		}
+		
 		int have_to_delete_back = 0;
 		
 		Map<Long, Integer> back = new HashMap<>();
@@ -65,50 +108,6 @@ public class B_Uniqueness {
 			
 		}
 		
-		for(int i = 0; i < n; ++i) {
-			
-			newMap.put(a[i], newMap.getOrDefault(a[i], 0) + 1);
-			
-			if(newMap.get(a[i]) > 1 && first_duplicate == -1) {
-				
-				first_duplicate = i;
-				break;
-				
-			}
-			
-		}
-		
-		if(first_duplicate == -1) {
-			
-			System.out.print(0);
-			return;
-			
-		}
-		
-		first_duplicate = Math.min(first_duplicate, first_duplicate1);
-		
-		newMap.put(a[first_duplicate], newMap.get(a[first_duplicate]) -1);
-		map.put(a[first_duplicate], map.get(a[first_duplicate]) - 1);
-		
-		have_to_delete = 1;
-		
-		for(int i = first_duplicate + 1; i < n; ++i) {
-			
-			newMap.put(a[i], newMap.getOrDefault(a[i], 0) + 1);
-			
-			if(newMap.get(a[i]) > 1 || (map.get(a[i]) > 1 && position.get(a[i]) > i)) {
-				
-				newMap.put(a[i], newMap.get(a[i]) - 1);
-				map.put(a[i], map.get(a[i]) - 1);
-				
-				have_to_delete = Math.max(i - first_duplicate + 1, have_to_delete);
-				
-				//++i;
-				
-			}
-			
-		}
-		
 		have_to_delete_back = 1;
 		
 		back.put(a[first_duplicate1], back.get(a[first_duplicate1]) - 1);
@@ -120,11 +119,56 @@ public class B_Uniqueness {
 			if(back.get(a[i]) > 1) {
 				
 				back.put(a[i], back.get(a[i]) - 1);
-				have_to_delete_back = first_duplicate - i + 1;
+				have_to_delete_back = first_duplicate1 - i + 1;
 				
 			}
 			
 		}
+		
+		map = new HashMap<>();
+		
+		int min = Math.min(first_duplicate, first_duplicate1);
+		
+		for(int i = 0; i <= min; ++i) {
+			
+			map.put(a[i], map.getOrDefault(a[i], 0) + 1);
+			
+		}
+		
+		int have_to_delete_middle = 0;
+		
+		map.put(a[min], map.get(a[min]) - 1);
+		
+		have_to_delete_middle = 1;
+		
+		for(int i = min + 1; i < n; ++i) {
+			
+			map.put(a[i], map.getOrDefault(a[i], 0) + 1);
+			
+			if(map.get(a[i]) > 1) {
+				
+				map.put(a[i], map.get(a[i]) - 1);
+				
+				have_to_delete_middle = Math.max(i - min + 1, have_to_delete_middle);
+				
+			}  
+			
+			if(position.get(a[i]) > i) {
+				
+				int pos = position.get(a[i]);
+				
+				if(pos - min + 1 > have_to_delete_middle) {
+					
+					have_to_delete_middle = pos - min + 1;
+					i = pos;
+					
+				}
+				
+			}
+			
+		}
+		
+		have_to_delete_back = Math.min(have_to_delete_back, have_to_delete_middle);
 		
 		System.out.print(Math.min(have_to_delete, have_to_delete_back));
 		
@@ -132,52 +176,61 @@ public class B_Uniqueness {
 	
 	static void solve(int t) {
 		
-		Map<Long, Integer> map = new HashMap<>();
+		for(long i : a) {
+			
+			count.put(i, 0);
+			
+		}
+		
+		int total_duplicates = 0;
+		
+		Counter counter = new Counter();
+		
+		for(long i : a) {
+			
+			total_duplicates = counter.count(i);
+			
+		}
+		
+		if(total_duplicates <= 1) {
+			
+			System.out.print(total_duplicates);
+			return;
+			
+		}
+		
+		int L = n, R = n, current_duplicates = total_duplicates;
 		
 		int ans = n;
 		
-		for(int i = 0; i < n; ++i) {
+		for(;;) {
 			
-			boolean valid = true;
-			
-			for(int j = 0; j < i; ++j) {
+			if(current_duplicates > 0) {
 				
-				if(map.containsKey(a[j])) {
+				if(L == 0) {
 					
-					valid = false;
 					break;
 					
 				}
 				
-				map.put(a[j], j);
+				current_duplicates = counter.uncount(a[--L]);
+				continue;
 				
 			}
 			
-			int end = n;
-			
-			for(int j = n - 1; j >= i; --j) {
+			if(ans > R - L) {
 				
-				if(map.containsKey(a[j])) {
+				ans = R - L;
+				
+				if(ans == total_duplicates) {
 					
 					break;
 					
-				} else {
-					
-					end = j;
-					
 				}
 				
-				map.put(a[j], j);
-				
 			}
 			
-			if(valid) {
-				
-				ans = Math.min(ans, end - i);
-				
-			}
-			
-			map = new HashMap<>();
+			current_duplicates = counter.count(a[--R]);
 			
 		}
 		
@@ -185,7 +238,7 @@ public class B_Uniqueness {
 		
 	}
 	
-	public static void main(String [] priya) {
+	public static void main(String [] amit) {
 		
 		n = in.nextInt();
 		
@@ -198,6 +251,38 @@ public class B_Uniqueness {
 		}
 		
 		solve(1);
+		
+	}
+	
+	static class Counter {
+		
+		int count(long value) {
+			
+			count.put(value, count.getOrDefault(value, 0) + 1);
+			
+			if(count.get(value) > 1) {
+				
+				++total_duplicates;
+				
+			}
+			
+			return total_duplicates;
+			
+		}
+		
+		int uncount(long value) {
+			
+			if(count.get(value) > 1) {
+				
+				--total_duplicates;
+				
+			}
+			
+			count.put(value, count.getOrDefault(value, 0) - 1);
+			
+			return total_duplicates;
+			
+		}
 		
 	}
 	

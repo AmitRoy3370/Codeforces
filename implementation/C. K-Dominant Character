@@ -1,0 +1,50 @@
+import java.util.Scanner;
+
+public class Main {
+	
+	static Scanner in = new Scanner(System.in);
+	
+	static int n;
+	
+	static char a[];
+	
+	static void solve() {
+		
+		int min = Integer.MAX_VALUE;
+			
+		for (char c = 'a'; c <= 'z'; c++) {
+			
+			int cMax = Integer.MIN_VALUE;
+			
+			int p = -1;
+			
+			for (int i = 0; i < a.length; i++) {
+				
+				if (a[i] == c) {
+					
+					cMax = Math.max(cMax, i - p);
+					p = i;
+				
+				}
+			
+			}
+			
+			cMax = Math.max(cMax, a.length - p);
+			
+			min = Math.min(min, cMax);
+			
+		}
+			
+		System.out.print(min);
+		
+	}
+	
+	public static void main(String [] amit) {
+		
+		a = in.next().toCharArray();
+		
+		solve();
+		
+	}
+	
+}

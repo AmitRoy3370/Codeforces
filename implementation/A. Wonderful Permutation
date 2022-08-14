@@ -1,0 +1,73 @@
+import java.util.Scanner;
+import java.util.Arrays;
+
+public class MyClass {
+    
+    static Scanner in = new Scanner(System.in);
+    
+    static int testCases, n, k;
+    
+    static long a[];
+    
+    static void solve() {
+        
+        if(n == k) {
+            
+            System.out.println(0);
+            return;
+            
+        }
+        
+        long copy[] = new long[n];
+        
+        for(int i = 0; i < n; ++i) {
+            
+            copy[i] = a[i];
+            
+        }
+        
+        Arrays.sort(copy);
+        
+        boolean present[] = new boolean[n + 1];
+        
+        for(int i = 0; i < k; ++i) present[(int)copy[i]] = true;
+        
+        int swap = 0;
+        
+        for(int i = 0; i < k; ++i) {
+            
+            if(!present[(int)a[i]]) {
+                
+                ++swap;
+                
+            }
+            
+        }
+        
+        System.out.println(swap);
+        
+    }
+    
+    public static void main(String args[]) {
+     
+     testCases = in.nextInt();
+     
+     for(int t = 0; t < testCases; ++t) {
+         
+         n = in.nextInt();
+         k = in.nextInt();
+         
+         a = new long[n];
+         
+         for(int i = 0; i < n; ++i) {
+             
+             a[i] = in.nextLong();
+             
+         }
+         
+         solve();
+         
+     }
+     
+    }
+}

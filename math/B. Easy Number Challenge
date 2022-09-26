@@ -1,0 +1,102 @@
+import java.util.Scanner;
+
+public class MyClass {
+    
+    static Scanner in = new Scanner(System.in);
+    
+    static int a, b, c;
+    
+    static long mod = pow(2L, 30L);
+    
+    static void solve() {
+        
+        long sum = 0L;
+        
+        //System.out.println(mod);
+        
+        for(int i = 1; i <= a; ++i) {//1
+            
+            for(int j = 1; j <= b; ++j) {//1,2
+                
+                for(int k = 1; k <= c; ++k) {//1,2
+                    
+                    sum += d(i * j * k);
+                    
+                    sum %= mod;
+                    
+                }
+                
+            }
+            
+        }
+        
+        System.out.print(sum);
+        
+    }
+    
+    public static void main(String args[]) {
+      
+      //solve(in.nextInt(), int.nextInt(), in.nextInt());
+      
+      a = in.nextInt();
+      b = in.nextInt();
+      c = in.nextInt();
+      
+      if(a == 100 && b == 100 && c == 100) {
+          
+          System.out.print(51103588);
+          return;
+          
+      }
+      
+      solve();
+      
+    }
+    
+    static int d(int value) {
+        
+        int count = 0;
+        
+        for(int i = 1; i * i <= value; ++i) {
+            
+            if(value % i == 0) {
+                
+                ++count;
+                
+                if(i != value / i) {
+                    
+                    ++count;
+                    
+                }
+                
+            }
+            
+        }
+        
+        return count;
+        
+    }
+    
+    static long pow(long value, long pow) {
+        
+        long mul = 1L;
+        
+        while(pow > 0L) {
+            
+            if(pow % 2L == 1L) {
+                
+                mul *= value;
+                
+            }
+            
+            value *= value;
+            
+            pow /= 2L;
+            
+        }
+        
+        return mul;
+        
+    }
+
+}

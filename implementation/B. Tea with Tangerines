@@ -1,0 +1,62 @@
+import java.util.Scanner;
+
+public class MyClass {
+    
+    static Scanner in = new Scanner(System.in);
+    
+    static int testCases, n;
+    
+    static long numbers;
+    
+    static int a[];
+    
+    static void A() {
+        
+        long ans = numbers / 3;
+        --ans;
+        --ans;
+        
+        System.out.println(ans);
+        
+    }
+    
+    static void B() {
+        
+        int ans = 0;
+        
+        for(int i = 0; i < n; ++i) {
+            
+            ans += (a[i] - 1) / (2 * a[0] - 1);
+            
+        }
+        
+        System.out.println(ans);
+        
+    }
+    
+    public static void main(String args[]) {
+      
+      testCases = in.nextInt();
+      
+      for(int t = 0; t < testCases; ++t) {
+          
+          //numbers = in.nextLong();
+          
+          //A();
+          
+          n = in.nextInt();
+          
+          a = new int[n];
+          
+          for(int i = 0; i < n; ++i) {
+              
+              a[i] = in.nextInt();
+              
+          }
+          
+          B();
+          
+      }
+      
+    }
+}

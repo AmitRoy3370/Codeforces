@@ -1,0 +1,36 @@
+import java.util.Scanner;
+
+public class MyClass {
+    
+    static Scanner in = new Scanner(System.in);
+    
+    static int testCases, n;
+    
+    static long numbers;
+    
+    static int a[];
+    
+    static void A() {
+        
+        long ans = numbers / 3;
+        --ans;
+        --ans;
+        
+        System.out.println(ans);
+        
+    }
+    
+    public static void main(String args[]) {
+      
+      testCases = in.nextInt();
+      
+      for(int t = 0; t < testCases; ++t) {
+          
+          numbers = in.nextLong();
+          
+          A();
+          
+      }
+      
+    }
+}

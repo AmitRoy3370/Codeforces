@@ -1,0 +1,305 @@
+import java.util.Scanner;
+import java.util.List;
+import java.util.ArrayList;
+import java.util.Collections;
+
+public class MyClass {
+    
+    static Scanner in = new Scanner(System.in);
+    
+    static int testCases, n;
+	
+	static char s[];
+    
+    static long a, b, c, mod = 998244353L;
+    
+	static long x[], y[];
+	
+    static void solve() {
+		
+		long x = 1L, y = 0L, mid = 2L;
+		
+		for(int i = 4; i <= (int)a; i += 2) {
+			
+			mid = (mid * 2 * (i - 1)) / (i / 2);
+			
+			x = (mid / 2L) + y;
+			y = mid - x - 1L;
+			
+		}
+		
+		System.out.println(x % mod + " " + y % mod + " 1");
+		
+    }
+    
+	static char ch[] = {'-', 'a', 'b', 'c', 'd', 
+	'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 
+	'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 
+	'w', 'x', 'y', 'z'};
+	
+	static void B() {
+		
+		int zero = 0;
+		
+		for(char i : s) {
+			
+			if((i - '0') == 0 ) {
+				
+				++zero;
+				
+			}
+			
+		}
+		
+		StringBuilder ans = new StringBuilder();
+		
+		if(zero == 0) {
+			
+			for(char i : s) {
+				
+				ans.append(ch[i - '0']);
+				
+			}
+			
+			System.out.println(ans.toString());
+			return;
+			
+		} else {
+			
+			int i = n - 1;
+			
+			while(i >= 0) {
+				
+				if(s[i] != '0') {
+					
+					ans.append(ch[s[i] - '0']);
+					--i;
+					
+				} else {
+					
+					String t = Integer.parseInt(((s[i - 2] - '0') + "") + ((s[i - 1] - '0') + "") )  + "";
+					
+					ans.append(ch[Integer.parseInt(t)]);
+					
+					i -= 3;
+					
+				}
+				
+			}
+			
+		}
+		
+		ans.reverse();
+		
+		System.out.println(ans.toString());
+		
+	}
+	
+	static void C() {
+		
+		/*
+		
+		1	2	3	4	5 -> index
+		l	o	g	i	c -> elements
+		
+		l	i	g	c -> letter visit sequence
+		
+		1	4	3	5 -> jumping index
+		
+		total jump = 4
+		
+		cost = (l - i) + (i - g) + (g - c)
+		     = |12 - 9| + |9 - 7| + |7 - 3|
+			 =	3		+	2	  +		4
+			 = 			9
+			 
+        all character have to in range of the first
+        and the last character of the serise		
+		
+		*/
+		
+		List<Integer> list = new ArrayList<>();
+		
+		int cost = 0;
+		
+		for(int i = 1; i < n - 1; ++i) {
+			
+			if(s[i] >= s[0] && s[i] <= s[n - 1]) {
+				
+				list.add(i);
+				
+			} else if(s[0] >= s[i] && s[n - 1] <= s[i]) {
+				
+				list.add(i);
+				
+			}
+			
+		}
+		
+		int moves = list.size() + 2;
+		
+		cost = Math.abs(s[0] - s[n - 1]);
+		
+		System.out.println(cost + " " + moves);
+		
+		if(s[0] < s[n - 1]) {
+			
+			Collections.sort(list, (x, y) -> s[x] - s[y]);
+			
+		} else {
+			
+			Collections.sort(list, (x, y) -> s[y] - s[x]);
+			
+		}
+		
+		System.out.print(1 + " ");
+		
+		for(int i : list) {
+			
+			System.out.print((i + 1) + " ");
+			
+		}
+		
+		System.out.print(n);
+		
+		System.out.println();
+		
+	}
+	
+	static void D() {
+		
+		/*
+		
+		they order the metal of the x(i) burls
+		but they have y(i) burls.
+		
+		solve an example:
+		
+		      1	2	3	4	5	6	
+		a :-> 8	3	9	2	4	5 -> they order
+		b :-> 5	3	1	4	5	10 -> has
+			  -	-		-	-	-
+              3	0	8	-2	-1	-5
+			  
+		(1, 6) -> order = 13 have = 15
+		(2, 4, 5) -> order = 9 have = 12
+		
+		sort the list according to the diff of the
+		list's have money and the need money in 
+		desending order. then count that two pair 
+		is until their summation in negative.
+		
+		*/
+		
+		tour t[] = new tour[n];
+		
+		for(int i = 0; i < n; ++i) {
+			
+			t[i] = new tour(y[i], x[i]);
+			
+		}
+		
+		List<tour> list = new ArrayList<>();
+		
+		for(tour i : t) {
+			
+			list.add(i);
+			
+		}
+		
+		Collections.sort(list);
+		
+		int index = 0;
+		
+		for(tour i : list) {
+			
+			t[index++] = i;
+			
+		}
+		
+		int j = n - 1, team = 0;
+		
+		for(int i = 0; i < n; ++i) {
+			
+			while(j > i && t[i].diff + t[j].diff < 0) {
+				
+				--j;
+				
+			}
+			
+			if(i >= j) {
+				
+				break;
+				
+			}
+			
+			team++;
+			
+			j--;
+			
+		}
+		
+		System.out.println(team);
+		
+	}
+	
+    public static void main(String args[]) {
+        
+        testCases = in.nextInt();
+        
+        for(int t = 0; t < testCases; ++t) {
+            
+            n = in.nextInt();
+			
+			x = new long[n];
+			y = new long[n];
+			
+			for(int i = 0; i < n; ++i) {
+				
+				x[i] = in.nextLong();
+				
+			}
+			
+			for(int i = 0; i < n; ++i) {
+				
+				y[i] = in.nextLong();
+				
+			}
+			
+            D();
+            
+        }
+      
+    }
+	
+	static class tour implements Comparable<tour> {
+		
+		long have, need, diff;
+		
+		public tour(long have, long need) {
+			
+			this.have = have;
+			this.need = need;
+			this.diff = this.have - this.need;
+			
+		}
+		
+		public int compareTo(tour t) {
+			
+			if(this.diff > t.diff) {
+				
+				return -1;
+				
+			} else if(this.diff < t.diff) {
+				
+				return 1;
+				
+			}
+			
+			return 0;
+			
+		}
+		
+	}
+
+}

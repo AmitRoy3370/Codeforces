@@ -1,0 +1,42 @@
+import java.util.Scanner;
+
+public class MyClass {
+    
+    static Scanner in = new Scanner(System.in);
+    
+    static int testCases;
+    
+    static long a, b, c, mod = 998244353L;
+    
+    static void solve() {
+		
+		long x = 1L, y = 0L, mid = 2L;
+		
+		for(int i = 4; i <= (int)a; i += 2) {
+			
+			mid = (mid * 2 * (i - 1)) / (i / 2);
+			
+			x = (mid / 2L) + y;
+			y = mid - x - 1L;
+			
+		}
+		
+		System.out.println(x % mod + " " + y % mod + " 1");
+		
+    }
+    
+    public static void main(String args[]) {
+        
+        testCases = in.nextInt();
+        
+        for(int t = 0; t < testCases; ++t) {
+            
+            a = in.nextLong();
+            
+            solve();
+            
+        }
+      
+    }
+
+}

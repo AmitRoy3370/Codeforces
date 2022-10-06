@@ -1,0 +1,109 @@
+import java.util.Scanner;
+
+public class MyClass {
+    
+    static Scanner in = new Scanner(System.in);
+    
+    static int testCases, n;
+	
+	static char s[];
+    
+    static long a, b, c, mod = 998244353L;
+    
+    static void solve() {
+		
+		long x = 1L, y = 0L, mid = 2L;
+		
+		for(int i = 4; i <= (int)a; i += 2) {
+			
+			mid = (mid * 2 * (i - 1)) / (i / 2);
+			
+			x = (mid / 2L) + y;
+			y = mid - x - 1L;
+			
+		}
+		
+		System.out.println(x % mod + " " + y % mod + " 1");
+		
+    }
+    
+	static char ch[] = {'-', 'a', 'b', 'c', 'd', 
+	'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 
+	'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 
+	'w', 'x', 'y', 'z'};
+	
+	static void B() {
+		
+		int zero = 0;
+		
+		for(char i : s) {
+			
+			if((i - '0') == 0 ) {
+				
+				++zero;
+				
+			}
+			
+		}
+		
+		StringBuilder ans = new StringBuilder();
+		
+		if(zero == 0) {
+			
+			for(char i : s) {
+				
+				ans.append(ch[i - '0']);
+				
+			}
+			
+			System.out.println(ans.toString());
+			return;
+			
+		} else {
+			
+			int i = n - 1;
+			
+			while(i >= 0) {
+				
+				if(s[i] != '0') {
+					
+					ans.append(ch[s[i] - '0']);
+					--i;
+					
+				} else {
+					
+					String t = Integer.parseInt(((s[i - 2] - '0') + "") + ((s[i - 1] - '0') + "") )  + "";
+					
+					ans.append(ch[Integer.parseInt(t)]);
+					
+					i -= 3;
+					
+				}
+				
+			}
+			
+		}
+		
+		ans.reverse();
+		
+		System.out.println(ans.toString());
+		
+	}
+	
+    public static void main(String args[]) {
+        
+        testCases = in.nextInt();
+        
+        for(int t = 0; t < testCases; ++t) {
+            
+            n = in.nextInt();
+			
+			s = in.next().toCharArray();
+            
+            B();
+            
+        }
+      
+    }
+
+}

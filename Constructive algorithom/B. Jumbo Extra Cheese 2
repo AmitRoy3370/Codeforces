@@ -1,0 +1,78 @@
+import java.util.Scanner;
+
+public class MyClass {
+    
+    static Scanner in = new Scanner(System.in);
+    
+    static int testCases, n;
+    
+    static long a[], b[];
+    
+    static long number;
+    
+    static void solveB() {
+        
+        long max = Long.MIN_VALUE;
+        long min = Long.MIN_VALUE;
+        long sum = 0L;
+        
+        for(int i = 0; i < n; ++i) {
+            
+            max = Math.max(max, Math.max(a[i], b[i]));
+            
+            sum += Math.min(a[i], b[i]);
+            
+        }
+        
+        sum += max;
+        
+        sum *= 2L;
+        
+        System.out.println(sum);
+        
+    }
+    
+    static void solveA() {
+        
+        if(number % 2L == 1L) {
+            
+            System.out.println(3);
+            
+        } else {
+            
+            System.out.println(7);
+            
+        }
+        
+    }
+    
+    public static void main(String args[]) {
+      
+      testCases = in.nextInt();
+      
+      for(int t = 0; t < testCases; ++t) {
+          
+          /*number = in.nextLong();
+          
+          solveA();*/
+          
+          n = in.nextInt();
+          
+          a = new long[n];
+          b = new long[n];
+          
+          for(int i = 0; i < n; ++i) {
+              
+              a[i] = in.nextLong();
+              b[i] = in.nextLong();
+              
+          }
+          
+          solveB();
+          
+      }
+      
+    }
+    
+}
+    

@@ -1,0 +1,40 @@
+import java.util.Scanner;
+
+public class MyClass {
+    
+    static Scanner in = new Scanner(System.in);
+    
+    static int testCases;
+    
+    static long number;
+    
+    static void solveA() {
+        
+        if(number % 2L == 1L) {
+            
+            System.out.println(3);
+            
+        } else {
+            
+            System.out.println(7);
+            
+        }
+        
+    }
+    
+    public static void main(String args[]) {
+      
+      testCases = in.nextInt();
+      
+      for(int t = 0; t < testCases; ++t) {
+          
+          number = in.nextLong();
+          
+          solveA();
+          
+      }
+      
+    }
+    
+}
+    

@@ -1,0 +1,292 @@
+import java.util.Scanner;
+import java.util.PriorityQueue;
+
+public class MyClass {
+    
+    static Scanner in = new Scanner(System.in);
+    
+    static int testCases, n, m, k;
+    
+    static long a[], b[];
+    
+    static long number;
+    
+    static void solveD() {
+		
+		PriorityQueue<Long> pq = new PriorityQueue<>((x, y) -> (int)(y - x));
+		
+		int highest = k, limit = (n * m) - 3;
+		
+		for(int i = 0; i < k; ++i) {
+			
+			pq.offer(a[i]);
+			
+			if(pq.size() > limit) {
+				
+				System.out.println("TIDAK");
+				return;
+				
+			}
+			
+			while(!pq.isEmpty() && pq.peek() == highest) {
+				
+				pq.poll();
+				--highest;
+				
+			}
+			
+		}
+		
+		System.out.println("YA");
+		
+	}
+	
+    static void solveC() {
+        
+        /*
+        
+        1
+14
+5 5 4 2 2 2 4 5 5 3 5 5 5 1
+
+5 5 5 5 5 5 5
+1
+4 2 2 2 3
+
+(5 - 1) + (5 - 4) = 4 + 1 = 5
+        
+        */
+        
+        long max = a[0], min = a[0];
+        
+        for(long i : a) {
+            
+            max = Math.max(max, i);
+            min = Math.min(min, i);
+            
+        }
+        
+        long diff1 = Math.abs(max - min);
+        
+        int min_index = -1, max_index = -1;
+        
+        for(int i = 0; i < n; ++i) {
+            
+            if(a[i] == max) {
+                
+                max_index = i;
+                
+            }
+            
+            if(a[i] == min) {
+                
+                min_index = i;
+                
+            }
+            
+        }
+        
+        if(max_index == min_index) {
+            
+            System.out.println(0);
+            return;
+            
+        }
+        
+        long value = 0;
+        
+        sort(a, 0, n - 1);
+        
+        for(int i = 0; i < n; ++i) {
+            
+            if(i + 1 < n) {
+                
+                value = Math.max(a[i + 1] - a[i] + a[n - 1] - a[i], value);
+                
+            } 
+            
+            if(i - 1 >= 0) {
+                
+                value = Math.max(a[i] - a[i - 1] + a[i] - a[0], value);
+                
+            }
+            
+        }
+        
+        System.out.println(value);
+        
+    }
+    
+    static void solveB() {
+        
+        long max = Long.MIN_VALUE;
+        long min = Long.MIN_VALUE;
+        long sum = 0L;
+        
+        for(int i = 0; i < n; ++i) {
+            
+            max = Math.max(max, Math.max(a[i], b[i]));
+            
+            sum += Math.min(a[i], b[i]);
+            
+        }
+        
+        sum += max;
+        
+        sum *= 2L;
+        
+        System.out.println(sum);
+        
+    }
+    
+    static void solveA() {
+        
+        if(number % 2L == 1L) {
+            
+            System.out.println(3);
+            
+        } else {
+            
+            System.out.println(7);
+            
+        }
+        
+    }
+    
+    public static void main(String args[]) {
+      
+      testCases = in.nextInt();
+      
+      for(int t = 0; t < testCases; ++t) {
+          
+          /*number = in.nextLong();
+          
+          solveA();*/
+          
+          /*n = in.nextInt();
+          
+          a = new long[n];
+          b = new long[n];
+          
+          for(int i = 0; i < n; ++i) {
+              
+              a[i] = in.nextLong();
+              b[i] = in.nextLong();
+              
+          }
+          
+          solveB();*/
+          
+          /*n = in.nextInt();
+          
+          a = new long[n];
+          
+          for(int i = 0; i < n; ++i) {
+              
+              a[i] = in.nextLong();
+              
+          }
+          
+          solveC();*/
+          
+          n = in.nextInt();
+          m = in.nextInt();
+          k = in.nextInt();
+          
+          a = new long[k];
+          
+          for(int i = 0; i < k; ++i) {
+              
+              a[i] = in.nextLong();
+              
+          }
+          
+          solveD();
+          
+      }
+      
+    }
+    
+    static void merge(long a[], int left, int right, int mid) {
+ 
+        int n1 = mid - left + 1, n2 = right - mid;
+ 
+        long L[] = new long[n1];
+ 
+        long R[] = new long[n2];
+ 
+        for (int i = 0; i < n1; i++) {
+ 
+            L[i] = a[left + i];
+ 
+        }
+ 
+        for (int i = 0; i < n2; i++) {
+ 
+            R[i] = a[mid + 1 + i];
+ 
+        }
+ 
+        int i = 0, j = 0, k1 = left;
+ 
+        while (i < n1 && j < n2) {
+ 
+            if (L[i] <= R[j]) {
+ 
+                a[k1] = L[i];
+ 
+                i++;
+ 
+            } else {
+ 
+                a[k1] = R[j];
+ 
+                j++;
+ 
+            }
+ 
+            k1++;
+ 
+        }
+ 
+        while (i < n1) {
+ 
+            a[k1] = L[i];
+ 
+            i++;
+ 
+            k1++;
+ 
+        }
+ 
+        while (j < n2) {
+ 
+            a[k1] = R[j];
+ 
+            j++;
+            k1++;
+ 
+        }
+ 
+    }
+ 
+    static void sort(long a[], int left, int right) {
+ 
+        if (left >= right) {
+ 
+            return;
+ 
+        }
+ 
+        int mid = (left + right) / 2;
+ 
+        sort(a, left, mid);
+ 
+        sort(a, mid + 1, right);
+ 
+        merge(a, left, right, mid);
+ 
+    }
+ 
+}
+    

@@ -1,0 +1,107 @@
+import java.util.Scanner;
+
+public class CodeTON_Round_3_Div_1_Div_2_Rated_Prizes {
+    
+    static Scanner in = new Scanner(System.in);
+    
+    static int testCases, n;
+    static int a[];
+    static char s[];
+    
+    static void B_Maximum_Substring(int t) {
+        
+        long total_zero = 0, total_one = 0;
+        
+        long one = 0, zero = 0;
+        long substring_one = 0, substring_zero = 0;
+        
+        for(char i : s) {
+            
+            if(i == '0') {
+                
+                ++zero;
+                
+                ++total_zero;
+                
+                substring_zero = Math.max(substring_zero, one);
+                
+                one = 0;
+                
+            } else {
+                
+                ++one;
+                
+                substring_one = Math.max(substring_one, zero);
+                
+                zero = 0;
+                
+                ++total_one;
+                
+            }
+            
+        }
+        
+        substring_zero = Math.max(zero, substring_zero);
+        substring_one = Math.max(one, substring_one);
+        
+        long ans = Math.max(total_one * total_zero, Math.max(substring_one * substring_one, substring_zero * substring_zero));
+        
+        System.out.print(ans);
+        
+        if(t != testCases) {
+            
+            System.out.println();
+            
+        }
+        
+    }
+    
+    static void A_Indirect_Sort(int t) {
+        
+        if(a[0] == 1) {
+            
+            System.out.print("YES");
+            
+        } else {
+            
+            System.out.print("NO");
+            
+        }
+        
+        if(t != testCases) {
+            
+            System.out.println();
+            
+        }
+        
+    }
+    
+    public static void main(String priya[]) {
+      
+      testCases = in.nextInt();
+      
+      for(int t = 0; t < testCases; ++t) {
+          
+          /*n = in.nextInt();
+          
+          a = new int[n];
+          
+          for(int i = 0; i < n; ++i) {
+              
+              a[i] = in.nextInt();
+              
+          }
+          
+          A_Indirect_Sort(t + 1);*/
+          
+          n = in.nextInt();
+          
+          s = in.next().toCharArray();
+          
+          B_Maximum_Substring(t + 1);
+          
+      }
+      
+    }
+
+}

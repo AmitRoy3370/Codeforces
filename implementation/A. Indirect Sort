@@ -1,0 +1,53 @@
+import java.util.Scanner;
+
+public class CodeTON_Round_3_Div_1_Div_2_Rated_Prizes {
+    
+    static Scanner in = new Scanner(System.in);
+    
+    static int testCases, n;
+    static int a[];
+    static char s[];
+    
+    static void A_Indirect_Sort(int t) {
+        
+        if(a[0] == 1) {
+            
+            System.out.print("YES");
+            
+        } else {
+            
+            System.out.print("NO");
+            
+        }
+        
+        if(t != testCases) {
+            
+            System.out.println();
+            
+        }
+        
+    }
+    
+    public static void main(String priya[]) {
+      
+      testCases = in.nextInt();
+      
+      for(int t = 0; t < testCases; ++t) {
+          
+          n = in.nextInt();
+          
+          a = new int[n];
+          
+          for(int i = 0; i < n; ++i) {
+              
+              a[i] = in.nextInt();
+              
+          }
+          
+          A_Indirect_Sort(t + 1);
+          
+      }
+      
+    }
+
+}

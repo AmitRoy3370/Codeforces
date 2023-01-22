@@ -1,0 +1,58 @@
+import java.util.Scanner;
+
+public class MyClass {
+    
+    static Scanner in = new Scanner(System.in);
+    
+    static int testCases, n;
+    
+    static long a[], dp[];
+    
+    static long mod = 1000000007L;
+    
+    static void solve() {
+        
+        long last_two = (long)n * (long)(n - 1);
+        
+        last_two %= mod;
+        
+        long ans = dp[n] * last_two;
+        
+        ans %= mod;
+        
+        System.out.println(ans);
+        
+    }
+    
+    public static void main(String args[]) {
+      
+      buildDp();
+      
+      testCases = in.nextInt();
+      
+      for(int t = 0; t < testCases; ++t) {
+          
+          n = in.nextInt();
+          
+          solve();
+          
+      }
+      
+    }
+    
+    static void buildDp() {
+        
+        dp = new long[(int)Math.pow(10, 5) + 7];
+        
+        dp[0] = 1L;
+        
+        for(int i = 1; i < dp.length; ++i) {
+            
+            dp[i] = dp[i - 1] * i;
+            dp[i] %= mod;
+            
+        }
+        
+    }
+    
+}

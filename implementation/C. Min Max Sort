@@ -1,0 +1,100 @@
+import java.util.Scanner;
+
+public class C_Min_Max_Sort {
+
+    static Scanner in = new Scanner(System.in);
+
+    static int testCases, n;
+
+    static int a[];
+
+    static void solve() {
+
+        int element_index[] = new int[n + 1];
+
+        for (int i = 1; i <= n; ++i) {
+
+            element_index[--a[i]] = i;
+
+        }
+
+        // check the best case
+        boolean already = true;
+
+        for (int i = 1; i <= n; ++i) {
+
+            if (element_index[i] != i) {
+
+                already = false;
+
+                break;
+
+            }
+
+        }
+
+        if (already) {
+
+            System.out.println(0);
+            return;
+
+        }
+
+        int mid = n / 2, j = n / 2 + 1;
+
+        while (mid > 0) {
+
+            if (element_index[mid] > element_index[mid - 1] && element_index[n - mid] > element_index[n - mid - 1]) {
+
+                --mid;
+
+            } else {
+
+                break;
+
+            }
+
+        }
+
+        System.out.println(mid);
+
+    }
+
+    public static void main(String[] priya) {
+
+        testCases = in.nextInt();
+
+        for (int t = 0; t < testCases; ++t) {
+
+            n = in.nextInt();
+
+            a = new int[n + 1];
+
+            for (int i = 1; i <= n; ++i) {
+
+                a[i] = in.nextInt();
+
+            }
+
+            solve();
+
+        }
+
+    }
+
+}
+/*
+
+1
+6
+5 2 4 1 6 3
+
+ */
+
+ /*
+
+1
+4
+2 1 4 3
+
+ */

@@ -1,0 +1,54 @@
+import java.util.Scanner;
+
+public class MyClass {
+    
+    static Scanner in = new Scanner(System.in);
+    
+    static char a[];
+    
+    static int n, testCases;
+    
+    static void solve() {
+        
+        char pi[] = "314159265358979323846264338327".toCharArray();
+        
+        int m = pi.length;
+        
+        int i = 0, j = 0, rem = 0;
+        
+        while(i < n && j < m) {
+            
+            if(a[i] == pi[j]) {
+                
+                ++rem;
+                
+            } else {
+                
+                break;
+                
+            }
+            
+            ++i;
+            ++j;
+            
+        }
+        
+        System.out.println(rem);
+        
+    }
+    
+    public static void main(String args[]) {
+        
+        testCases = in.nextInt();
+        
+        for(int t = 0; t < testCases; ++t) {
+            
+            a = in.next().toCharArray();
+            n = a.length;
+            
+            solve();
+            
+        }
+      
+    }
+}

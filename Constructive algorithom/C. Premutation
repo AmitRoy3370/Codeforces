@@ -1,0 +1,89 @@
+import java.util.Scanner;
+
+public class MyClass {
+    
+    static Scanner in = new Scanner(System.in);
+    
+    static long a[][];
+    
+    static int n, testCases, s, r;
+    
+    static void solve() {
+        
+        int i1 = -1, j1 = -1;
+        
+        StringBuilder sb = new StringBuilder();
+        
+        int second_last = n - 1 - 1 - 1;
+        int last = n - 1 - 1;
+        
+        for(int i = 0; i < n; ++i) {
+            
+            boolean find = false;
+            
+            for(int j = 0; j < n; ++j) {
+                
+                if(i == j) {
+                    
+                    continue;
+                    
+                }
+                
+                if(a[i][1] == a[j][0]) {
+                    
+                    i1 = i;
+                    j1 = j;
+                    
+                    find = true;
+                    break;
+                    
+                }
+                
+            }
+            
+            if(find) {
+                
+                break;
+                
+            }
+            
+        }
+        
+        sb.append(a[i1][0]).append(" ");
+        
+        for(int i = 0; i < n - 1; ++i) {
+            
+            sb.append(a[j1][i]).append(" ");
+            
+        }
+        
+        System.out.println(sb.toString().trim());
+        
+    }
+    
+    public static void main(String args[]) {
+        
+        testCases = in.nextInt();
+        
+        for(int t = 0; t < testCases; ++t) {
+            
+            n = in.nextInt();
+           
+            a = new long[n][n - 1];
+            
+            for(int i = 0; i < n; ++i) {
+                
+                for(int j = 0; j < n - 1; ++j) {
+                    
+                    a[i][j] = in.nextLong();
+                    
+                } 
+                
+            }
+           
+            solve();
+            
+        }
+      
+    }
+}

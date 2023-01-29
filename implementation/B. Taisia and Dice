@@ -1,0 +1,70 @@
+import java.util.Scanner;
+
+public class MyClass {
+    
+    static Scanner in = new Scanner(System.in);
+    
+    static int a[];
+    
+    static int n, testCases, s, r;
+    
+    static void solve() {
+        
+        int comparator = s - r;
+        
+        r -= (n - 1);
+        
+        a = new int[n];
+        
+        for(int i = 0; i < n - 1; ++i) {
+            
+            a[i] = 1;
+            
+        }
+        
+        a[n - 1] = comparator;
+        
+        int i = 0;
+        
+        while(i < n && r != 0) {
+            
+            if(a[i] < comparator) {
+                
+                a[i]++;
+                
+                --r;
+                
+            } else {
+                
+                ++i;
+                
+            }
+            
+        }
+        
+        for(int i1 : a) {
+            
+            System.out.print(i1 + " ");
+            
+        }
+        
+        System.out.println();
+        
+    }
+    
+    public static void main(String args[]) {
+        
+        testCases = in.nextInt();
+        
+        for(int t = 0; t < testCases; ++t) {
+            
+            n = in.nextInt();
+            s = in.nextInt();
+            r = in.nextInt();
+           
+            solve();
+            
+        }
+      
+    }
+}

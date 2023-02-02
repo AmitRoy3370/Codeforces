@@ -1,0 +1,103 @@
+import java.util.Scanner;
+
+public class MyClass {
+    
+    static Scanner in = new Scanner(System.in);
+    
+    static int testCases, n;
+    
+    static int a[];
+    
+    static void solve() {
+        
+        int pos = 0;
+        
+        for(long i : a) {
+            
+            if(i > 0) {
+                
+                ++pos;
+                
+            }
+            
+        }
+        
+        long sum = 0L;
+        
+        if(pos == n) {
+            
+            a[0] = -1 * a[0];
+            a[1] = -1 * a[1];
+            
+        } else {
+            
+            boolean find = false;
+            
+            for(int i = 0; i < n - 1; ++i) {
+                
+                if(a[i] == a[i + 1] && a[i] == -1L) {
+                    
+                    a[i] = -1 * a[i];
+                    a[i + 1] = -1 * a[i + 1];
+                    
+                    find = true;
+                    break;
+                    
+                }
+                
+            }
+            
+            if(find) {
+                
+                
+            } else {
+                
+                for(int i = 0; i < n - 1; ++i) {
+                    
+                    if(a[i] != a[i + 1]) {
+                        
+                        a[i] = -1 * a[i];
+                        a[i + 1] = -1 * a[i + 1];
+                        
+                        break;
+                        
+                    }
+                    
+                }
+                
+            }
+            
+        }
+        
+        for(int i : a) {
+            
+            sum += i;
+            
+        }
+        
+        System.out.println(sum);
+        
+    }
+    
+    public static void main(String amit[]) {
+     
+     testCases = in.nextInt();
+     
+     for(int t = 0; t < testCases; ++t) {
+         
+         n = in.nextInt();
+         
+         a = new int[n];
+         
+         for(int i = 0; i < n; ++i) {
+             
+             a[i] = in.nextInt();
+             
+         }
+         
+         solve();
+         
+     }
+     
+    }
+}

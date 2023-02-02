@@ -1,0 +1,91 @@
+import java.util.Scanner;
+import java.util.Map;
+import java.util.HashMap;
+
+public class MyClass {
+    
+    static Scanner in = new Scanner(System.in);
+    
+    static int testCases, n, m, d;
+    
+    static long p[], a[];
+    
+    static void solve() {
+        
+        Map<Long, Integer> map = new HashMap<>();
+        
+        for(int i = 0; i < n; ++i) {
+            
+            map.put(p[i], i + 1);
+            
+        }
+        
+        int op = Integer.MAX_VALUE;
+        
+        for(int i = 0; i < m - 1; ++i) {
+            
+            if(map.get(a[i]) >= map.get(a[i + 1])) {
+                
+                System.out.println(0);
+                return;
+                
+            }
+            
+            if(map.get(a[i + 1]) > map.get(a[i]) + d) {
+                
+                System.out.println(0);
+                return;
+                
+            }
+            
+            int posi = map.get(a[i]);
+            int posi_1 = map.get(a[i + 1]);
+            
+            op = Math.min(op, posi_1 - posi);
+            
+            if(d + 1 - (posi_1 - posi) <= n - posi_1 + posi - 1) {
+                
+                op = Math.min(op, d + 1 - (posi_1 - posi));
+                
+            }
+            
+        }
+        
+        System.out.println(op);
+        
+    }
+    
+    public static void main(String amit[]) {
+     
+     testCases = in.nextInt();
+     
+     for(int t = 0; t < testCases; ++t) {
+         
+         n = in.nextInt();
+         
+         m = in.nextInt();
+         
+         d = in.nextInt();
+         
+         p = new long[n];
+         
+         for(int i = 0; i < n; ++i) {
+             
+             p[i] = in.nextInt();
+             
+         }
+         
+         a = new long[m];
+         
+         for(int i = 0; i < m; ++i) {
+             
+             a[i] = in.nextLong();
+             
+         }
+         
+         solve();
+         
+     }
+     
+    }
+}

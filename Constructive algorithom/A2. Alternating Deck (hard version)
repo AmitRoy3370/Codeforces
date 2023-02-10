@@ -1,0 +1,71 @@
+import java.util.Scanner;
+
+public class MyClass {
+    
+    static Scanner in = new Scanner(System.in);
+    
+    static int testCases;
+    static long n;
+    
+    static long a[];
+    
+    static void solve() {
+        
+        long wa = 0L, ba = 0L, wb = 0L, bb = 0L;
+        
+        for(long i = 0; ++i > 0; ) {
+            
+            if(n < i) {
+                
+                if(i % 4L < 2L) {
+                    
+                    ba += n / 2L;
+                    wa += n - n / 2L;
+                    
+                } else {
+                    
+                    wb += n / 2L;
+                    bb += n - n / 2L;
+                    
+                }
+                
+                i = -1;
+                
+            } else {
+                
+                if(i % 4L < 2L) {
+                    
+                    ba += i / 2L;
+                    wa += i - i / 2L;
+                    
+                } else {
+                    
+                    wb += i / 2L;
+                    bb += i - i / 2L;
+                    
+                }
+                
+                n -= i;
+                
+            }
+            
+        }
+        
+        System.out.println(wa + " " + ba + " " + wb + " " + bb);
+        
+    }
+    
+    public static void main(String args[]) {
+        
+        testCases = in.nextInt();
+        
+        for(int t = 0; t < testCases; ++t) {
+            
+            n = in.nextLong();
+           
+            solve();
+            
+        }
+        
+    }
+}

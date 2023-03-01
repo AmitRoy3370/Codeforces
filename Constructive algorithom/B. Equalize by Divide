@@ -1,0 +1,190 @@
+import java.util.Scanner;
+import java.util.List;
+import java.util.ArrayList;
+
+public class MyClass {
+    
+    static Scanner in = new Scanner(System.in);
+    
+    static int testCases, n, k;
+    
+    static long a[];
+    
+    static long cold[], hot[];
+   
+    static void solve() {
+        
+        if(n == 1) {
+            
+            System.out.println(0);
+            return;
+            
+        }
+        
+        if(equal(a)) {
+            
+            System.out.println(0);
+            return;
+            
+        }
+        
+        for(long i : a) {
+            
+            if(i == 1L) {
+                
+                System.out.println(-1);
+                return;
+                
+            }
+            
+        }
+        
+        long b[] = new long[n];
+        
+        copy(a, b);
+        
+        List<String> list = new ArrayList<>();
+        
+        while(!equal(a)) {
+            
+            int min_index = min_index(a);
+            
+            long min_value = a[min_index];
+            
+            for(int i = 0; i < n; ++i) {
+                
+                if(a[i] == min_value) {
+                    
+                    continue;
+                    
+                }
+                
+                long val = (long)Math.ceil((double)a[i] / (double)min_value);
+                
+                a[i] = val;
+                
+                list.add((i + 1) + " " + (min_index + 1));
+                
+            }
+            
+            if(equal(a, b)) {
+                
+                System.out.println("NO");
+                return;
+                
+            }
+            
+            copy(a, b);
+            
+        }
+        
+        System.out.println(list.size());
+        
+        for(String i : list) {
+            
+            System.out.println(i);
+            
+        }
+        
+    }
+    
+    public static void main(String args[]) {
+        
+        testCases = in.nextInt();
+        
+        for(int t = 0; t < testCases; ++t) {
+            
+            n = in.nextInt();
+           
+            a = new long[n];
+            
+            for(int i = 0; i < n; ++i) {
+                
+                a[i] = in.nextLong();
+                
+            }
+          
+            solve();
+            
+        }
+     
+    }
+    
+    static void fill(long dp[][]) {
+        
+        for(int i = 0; i < n; ++i) {
+            
+            for(int j = 0; j <= k; ++j) {
+                
+                dp[i][j] = -1L;
+                
+            }
+            
+        }
+        
+    }
+    
+    static void copy(long a[], long b[]) {
+        
+        for(int i = 0; i < n; ++i) {
+            
+            b[i] = a[i];
+            
+        }
+        
+    }
+    
+    static int min_index(long a[]) {
+        
+        long min = a[0];
+        
+        int min_index = 0;
+        
+        for(int i = 0; i < n; ++i) {
+            
+            if(a[i] < min) {
+                
+                min = a[i];
+                min_index = i;
+                
+            }
+            
+        }
+        
+        return min_index;
+        
+    }
+    
+    static boolean equal(long a[]) {
+        
+        for(int i = 0; i < n - 1; ++i) {
+            
+            if(a[i] != a[i + 1]) {
+                
+                return false;
+                
+            }
+            
+        }
+        
+        return true;
+        
+    }
+    
+    static boolean equal(long a[], long b[]) {
+        
+        for(int i = 0; i < n; ++i) {
+            
+            if(a[i] == b[i]) {
+                
+                return false;
+                
+            }
+            
+        }
+        
+        return true;
+        
+    }
+    
+}

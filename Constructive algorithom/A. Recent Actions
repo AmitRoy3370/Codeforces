@@ -1,0 +1,75 @@
+import java.util.Scanner;
+
+public class MyClass {
+    
+    static Scanner in = new Scanner(System.in);
+    
+    static int testCases, n, k;
+    
+    static long a[];
+    
+    static void solve() {
+        
+        long ans[] = new long[n];
+        
+        for(int i = 0; i < n; ++i) {
+            
+            ans[i] = -1L;
+            
+        }
+        
+        boolean take[] = new boolean[n + k + 1];
+        
+        for(int i = 0; i < k; ++i) {
+            
+            if(take[(int)a[i]]) {
+                
+                continue;
+                
+            }
+            
+            if(n - 1 >= 0) {
+            
+              ans[--n] = i + 1;
+            
+            }
+            
+            take[(int)a[i]] = true;
+            
+        }
+        
+        for(long i : ans) {
+            
+            System.out.print(i + " ");
+            
+        }
+        
+        System.out.println();
+        
+    }
+    
+    public static void main(String args[]) {
+      
+      testCases = in.nextInt();
+      
+      for(int t = 0; t < testCases; ++t) {
+          
+          n = in.nextInt();
+          
+          k = in.nextInt();
+          
+          a = new long[k];
+          
+          for(int i = 0; i < k; ++i) {
+              
+              a[i] = in.nextLong();
+              
+          }
+          
+          solve();
+          
+      }
+      
+    }
+    
+}

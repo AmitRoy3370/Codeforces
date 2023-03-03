@@ -1,0 +1,84 @@
+import java.util.Scanner;
+import java.util.PriorityQueue;
+
+public class MyClass {
+    
+    static Scanner in = new Scanner(System.in);
+    
+    static int testCases, n, k;
+    
+    static long a[];
+    
+    static void solve() {
+        
+        PriorityQueue<element> pq = new PriorityQueue<>();
+        
+        long sum = 0L;
+        
+        for(long i : a) {
+            
+            pq.add(new element(i));
+            
+            if(i == 0L) {
+                
+                sum += pq.poll().element;
+                
+            }
+            
+        }
+        
+        System.out.println(sum);
+        
+    }
+    
+    public static void main(String args[]) {
+        
+        testCases = in.nextInt();
+        
+        for(int t = 0; t < testCases; ++t) {
+            
+            n = in.nextInt();
+           
+            a = new long[n];
+            
+            for(int i = 0; i < n; ++i) {
+                
+                a[i] = in.nextLong();
+                
+            }
+    
+            solve();
+            
+        }
+      
+    }
+    
+    static class element implements Comparable<element> {
+        
+        long element;
+        
+        public element(long element) {
+            
+            this.element = element;
+            
+        }
+        
+        public int compareTo(element e) {
+           
+           if(this.element > e.element) {
+               
+               return -1;
+               
+           } else if(this.element < e.element) {
+               
+               return 1;
+               
+           }
+           
+           return 0; 
+           
+        }
+        
+    }
+    
+}

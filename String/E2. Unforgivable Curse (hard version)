@@ -1,0 +1,76 @@
+import java.util.Scanner;
+
+public class MyClass {
+    
+    static Scanner in = new Scanner(System.in);
+    
+    static int testCases, n, k;
+    
+    static char a[], b[];
+    
+    static void solve() {
+        
+        int A[] = new int[26];
+        int B[] = new int[26];
+        
+        for(char i : a) {
+            
+            A[i - 'a']++;
+            
+        }
+        
+        for(char i : b) {
+            
+            B[i - 'a']++;
+            
+        }
+        
+        for(int i = 0; i < 26; ++i) {
+            
+            if(A[i] != B[i]) {
+                
+                System.out.println("NO");
+                return;
+                
+            }
+            
+        }
+        
+        for(int i = 0; i < Math.min(n, k); ++i) {
+            
+            if(n - 1 - i < k) {
+                
+                if(a[i] != b[i]) {
+                    
+                    System.out.println("NO");
+                    return;
+                    
+                }
+                
+            }
+            
+        }
+        
+        System.out.println("YES");
+        
+    }
+    
+    public static void main(String args[]) {
+        
+        testCases = in.nextInt();
+        
+        for(int t = 0; t < testCases; ++t) {
+            
+            n = in.nextInt();
+            k = in.nextInt();
+            
+            a = in.next().toCharArray();
+            b = in.next().toCharArray();
+            
+            solve();
+            
+        }
+      
+    }
+    
+}

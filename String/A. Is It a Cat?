@@ -1,0 +1,112 @@
+import java.util.Scanner;
+
+public class MyClass {
+    
+    static Scanner in = new Scanner(System.in);
+    
+    static int testCases, n, k;
+    
+    static char a[], b[];
+    
+    static void solve() {
+        
+        int i = 0;
+        
+        boolean m = false, e = false, o = false, w = false;
+        
+        if(a[0] != 'm') {
+            
+            System.out.println("NO");
+            return;
+            
+        }
+        
+        while(i < n && a[i] == 'm') {
+            
+            m = true;
+            
+            ++i;
+            
+        }
+        
+        if(!m) {
+            
+            System.out.println("NO");
+            return;
+            
+        }
+        
+        while(i < n && a[i] == 'e') {
+            
+            e = true;
+            
+            ++i;
+            
+        }
+        
+        if(!e) {
+            
+            System.out.println("NO");
+            return;
+            
+        }
+        
+        while(i < n && a[i] == 'o') {
+            
+            o = true;
+            
+            ++i;
+            
+        }
+        
+        if(!o) {
+            
+            System.out.println("NO");
+            return;
+            
+        }
+        
+        while(i < n && a[i] == 'w') {
+            
+            w = true;
+            
+            ++i;
+            
+        }
+        
+        if(!w) {
+            
+            System.out.println("NO");
+            return;
+            
+        }
+        
+        if(m && e && o && w && i == n) {
+            
+            System.out.println("YES");
+            
+        } else {
+            
+            System.out.println("NO");
+            
+        }
+        
+    }
+    
+    public static void main(String args[]) {
+        
+        testCases = in.nextInt();
+        
+        for(int t = 0; t < testCases; ++t) {
+            
+            n = in.nextInt();
+           
+            a = in.next().toLowerCase().toCharArray();
+           
+            solve();
+            
+        }
+      
+    }
+    
+}

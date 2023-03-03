@@ -1,0 +1,45 @@
+import java.util.Scanner;
+
+public class MyClass {
+    
+    static Scanner in = new Scanner(System.in);
+    
+    static int testCases, n, k;
+    
+    static char a[], b[];
+    
+    static void solve() {
+        
+        int ans = n - 1;
+        
+        for(int i = 1; i < n - 1; ++i) {
+            
+            if(a[i - 1] == a[i + 1]) {
+                
+                --ans;
+                
+            }
+            
+        }
+        
+        System.out.println(ans);
+        
+    }
+    
+    public static void main(String args[]) {
+        
+        testCases = in.nextInt();
+        
+        for(int t = 0; t < testCases; ++t) {
+            
+            n = in.nextInt();
+           
+            a = in.next().toCharArray();
+           
+            solve();
+            
+        }
+      
+    }
+    
+}

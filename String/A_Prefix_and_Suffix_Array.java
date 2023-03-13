@@ -22,17 +22,31 @@ public class A_Prefix_and_Suffix_Array {
 			
 		}
 		
-		String s1 = list.get(1);
-		
-		s1 = new StringBuilder(s1).reverse().toString();
-		
-		if(list.size() >= 2 && list.get(0).equals(s1)) {
+		if(list.size() != 2) {
 			
-			System.out.println("YES");
+			System.out.println("NO");
 			
 		} else {
 			
-			System.out.println("NO");
+			String s = list.get(0);
+			
+			list.popFront();
+			
+			StringBuilder sb = new StringBuilder();
+			
+			sb.append(list.get(0));
+			
+			sb.reverse();
+			
+			if(sb.toString().equalsIgnoreCase(s)) {
+				
+				System.out.println("YES");
+				
+			} else {
+				
+				System.out.println("NO");
+				
+			}
 			
 		}
 		

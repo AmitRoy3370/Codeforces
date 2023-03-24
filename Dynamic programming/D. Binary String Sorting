@@ -1,0 +1,83 @@
+import java.util.Scanner;
+
+public class MyClass {
+    
+    static int testCases, n;
+    
+    static char x[];
+    
+    static Scanner in = new Scanner(System.in);
+    
+    static void solve() {
+        
+        long one = 0L, zero = 0L;
+        
+        long swap_cost = (long)Math.pow(10, 12);
+        
+        long removal_cost = swap_cost + 1;
+        
+        for(char i : x) {
+            
+            if(i == '1') {
+                
+                ++one;
+                
+            } else {
+                
+                ++zero;
+                
+            }
+            
+        }
+        
+        long current_one = 0L, current_zero = 0L;
+        
+        long cost = Math.min(one, zero) * removal_cost;
+        
+        for(int i = 0; i < n - 1; ++i) {
+            
+            if(x[i] == '1') {
+                
+                ++current_one;
+                --one;
+                
+            } else {
+                
+                ++current_zero;
+                --zero;
+                
+            }
+            
+            long partial_cost = (current_one + zero) * removal_cost;
+            
+            if(x[i] == '1' && x[i + 1] == '0') {
+                
+                partial_cost -= (removal_cost + 1);
+                
+            }
+            
+            cost = Math.min(partial_cost, cost);
+            
+        }
+        
+        System.out.println(cost);
+        
+    }
+    
+    public static void main(String args[]) {
+        
+        testCases = in.nextInt();
+        
+        for(int t = 0; t < testCases; ++t) {
+            
+            x = in.next().toCharArray();
+            
+            n = x.length;
+            
+            solve();
+            
+        }
+     
+    }
+    
+}

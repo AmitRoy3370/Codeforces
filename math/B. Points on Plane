@@ -1,0 +1,59 @@
+import java.util.Scanner;
+import java.math.BigInteger;
+
+public class Main {
+    
+    static Scanner in = new Scanner(System.in);
+    
+    static int testCases;
+    
+    static long n;
+    
+    static void solve() {
+      
+      BigInteger big = new BigInteger(String.valueOf(n));
+        
+      big = big.subtract(new BigInteger("1"));
+      
+      long ans = big.sqrt().longValue();
+      
+      System.out.println(ans);
+        
+    }
+    
+    public static void main(String [] priya) {
+        
+        testCases = in.nextInt();
+        
+        for(int t = 0; t < testCases; ++t) {
+            
+            n = in.nextLong();
+            
+            solve();
+            
+        }
+        
+    }
+   public static double sqrt(long N) {
+    double low = 0;
+    double high = N;
+    double mid = (low + high) / 2.0;
+    double diff = Math.abs(high - low);
+    double eps = 0.0001; // threshold for stopping the search
+    while (diff > eps) {
+        if (mid * mid == N) {
+            return mid;
+        } else if (mid * mid < N) {
+            low = mid;
+        } else {
+            high = mid;
+        }
+        mid = (low + high) / 2.0;
+        diff = Math.abs(high - low);
+    }
+    return mid;
+}
+
+
+    
+}

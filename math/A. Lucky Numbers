@@ -1,0 +1,70 @@
+import java.util.Scanner;
+
+public class A_Lucky_Numbers {
+	
+	static Scanner in = new Scanner(System.in);
+	
+	static long L, R;
+	
+	static int testCases;
+	
+	static void solve() {
+		
+		long point = lucky_point(L);
+		
+		long luckiest = L;
+		
+		R = Math.min(L + 100L, R);
+		
+		while(L <= R) {
+		    
+		    long temp = lucky_point(L);
+		    
+		    if(temp >= point) {
+		        
+		        point = temp;
+		        luckiest = L;
+		        
+		    }
+		    
+		    ++L;
+		    
+		}
+		
+		System.out.println(luckiest);
+		
+	}
+	
+	public static void main(String [] priya) {
+		
+		testCases = in.nextInt();
+		
+		for(int t = 0; t < testCases; ++t) {
+			
+			L = in.nextLong();
+			R = in.nextLong();
+			
+			solve();
+			
+		}
+		
+	}
+	
+	static long lucky_point(long x) {
+		
+		long max = 0L, min = 10L;
+		
+		while(x > 0L) {
+			
+			max = Math.max(max, x % 10L);
+			min = Math.min(min, x % 10L);
+			
+			x /= 10L;
+			
+		}
+		
+		return max - min;
+		
+	}
+	
+}

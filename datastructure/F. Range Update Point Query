@@ -1,0 +1,162 @@
+import java.util.Scanner;
+
+public class F_Range_Update_Point_Query {
+	
+	static Scanner in = new Scanner(System.in);
+	
+	static int testCases, n, query, type, index, L, R;
+	
+	static long a[];
+	
+	static Binary_Index_Tree bit;
+	
+	static StringBuilder sb = new StringBuilder();
+	
+	static void solve(int type) {
+		
+		if(type == 1) {
+			
+			for(int i = L; i <= R; i = bit.get(i + 1)) {
+			    
+			    long new_val = sum(a[i]);
+			    
+			    bit.add(i, new_val - a[i]);
+			    
+			    bit.index[i] = (new_val == a[i]) ? i + 1 : i;
+			    
+			    a[i] = new_val;
+			    
+			}
+			
+		} else {
+			
+			long value = bit.query(index) - bit.query(index - 1);
+			
+			sb.append(value).append("\n");
+			
+		}
+		
+	}
+	
+	public static void main(String [] priya) {
+		
+		testCases = in.nextInt();
+		
+		for(int t = 0; t < testCases; ++t) {
+			
+			n = in.nextInt();
+			query = in.nextInt();
+			
+			a = new long[n + 1];
+			
+			bit = new Binary_Index_Tree(n);
+			
+			for(int i = 1; i <= n; ++i) {
+				
+				a[i] = in.nextLong();
+				
+				bit.add(i, a[i]);
+				bit.index[i] = i;
+				
+			}
+			
+			bit.index[n + 1] = n + 1;
+			
+			for(int i = 0; i < query; ++i) {
+				
+				type = in.nextInt();
+				
+				if(type == 1) {
+					
+					L = in.nextInt();
+					R = in.nextInt();
+					
+				} else {
+					
+					index = in.nextInt();
+					
+				}
+				
+				solve(type);
+				
+			}
+			
+		}
+		
+		
+		System.out.print(sb.toString());
+		
+	}
+	
+	static long sum(long a) {
+		
+		long sum = 0L;
+		
+		while(a > 0L) {
+			
+			sum += a % 10L;
+			
+			a /= 10L;
+			
+		}
+		
+		return sum;
+		
+	}
+	
+	static class Binary_Index_Tree {
+		
+		int len;
+		
+		long element[];
+		
+		int index[];
+		
+		public Binary_Index_Tree(int len) {
+			
+			this.len = len;
+			
+			this.element = new long[len + 1];
+			this.index = new int[len + 2];
+			
+		}
+	
+		void add(int index, long value) {
+		    
+		    for(; index <= len; index += (index & -index)) {
+		        
+		        element[index] += value;
+		        
+		    }
+		    
+		}
+		
+		int get(int index) {
+		    
+		    if(index == this.index[index]) {
+		        
+		        return index;
+		        
+		    }
+		    
+		    return this.index[index] = get(this.index[index]);
+		    
+		}
+		
+		long query(int index) {
+		    
+		    long sum = 0L;
+		    
+		    for(; index > 0; index -= (index & -index)) {
+		        
+		        sum += element[index];
+		        
+		    }
+		    
+		    return sum;
+		    
+		}
+		
+	}
+	
+}

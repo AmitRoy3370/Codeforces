@@ -1,4 +1,3 @@
-
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
@@ -32,6 +31,48 @@ public class Codeforces_Round_863_Div_3 {
     static char ch[] = {'a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z'};
 
     static void E(int t) {
+        
+        ArrayList1<Long> list = new ArrayList1<>();
+        
+        while(K > 0L) {
+            
+            long digit = K % 9L;
+            
+            list.inserFirst(digit);
+            
+            K /= 9L;
+            
+        }
+        
+        long num = 0L;
+        
+        while(!list.isEmpty()) {
+            
+            num = num * 10 + list.get(0);
+            
+            list.popFront();
+            
+        }
+        
+        x = String.valueOf(num).toCharArray();
+        
+        StringBuilder sb = new StringBuilder();
+        
+        for(char i : x) {
+            
+            int digit = i - '0';
+            
+            if(digit > 3) {
+                
+                ++digit;
+                
+            }
+            
+            sb.append(digit);
+            
+        }
+        
+        ans.append(sb);
         
         if (t != testCases) {
 

@@ -1,0 +1,87 @@
+/*4 33
+54 71 69 96  -> duration
+42 24 99 1   ->  satisfaction label
+
+total time :-      33 ->        32              31     30
+
+visiting video :-  1(54)       2(71)          69      96
+
+
+satisfaction label :- 42       24              99      1
+
+our answer is -1
+
+*/
+
+import java.util.Scanner;
+
+public class Main {
+
+static int testCases, n;
+
+static long k;//total lanuch time
+
+static long a[], b[];
+
+static Scanner in = new Scanner(System.in);
+
+static void solve() {
+
+int index = -1;
+
+long satisfy = Long.MIN_VALUE;
+
+for(int i = 1; i <= n && k > 0L; ++i, --k) {
+
+if(a[i] <= k) {
+
+if(satisfy < b[i]) {
+
+satisfy = b[i];
+index = i;
+
+}
+
+}
+
+}
+
+System.out.println(index);
+
+}
+
+public static void main(String [] args) {
+
+testCases = in.nextInt();
+
+for(int t = 0; t < testCases; ++t) {
+
+n = in.nextInt();
+
+k = in.nextLong();
+
+a = new long[n + 1];
+
+for(int i = 1; i <= n; ++i) {
+
+a[i] = in.nextLong();
+
+}
+
+b = new long[n + 1];
+
+for(int i = 1; i <= n; ++i) {
+
+b[i] = in.nextLong();
+
+}
+
+solve();
+
+}
+
+}
+
+}
+
+ 

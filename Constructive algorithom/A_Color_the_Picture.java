@@ -14,39 +14,37 @@ public class A_Color_the_Picture {
 		
 		long raws = 0L, coloumns = 0L;
 		
-		long maximum_raw_distributions = Long.MIN_VALUE;
+		long maximum_covered_raws = Long.MIN_VALUE;
 		
-		long maximum_coloumn_distributions = Long.MIN_VALUE;
+		long maximum_covered_coloumns = Long.MIN_VALUE;
 		
 		for(int i = 0; i < k; ++i) {
 			
-			long raw_distributions = a[i] / m;
+			long raws_coverage = a[i] / m;
+			long coloumns_coverage = a[i] / n;
 			
-			long coloumn_distributions = a[i] / n;
-			
-			if(raw_distributions >= 2L) {
+			if(raws_coverage >= 2L) {
 				
-				raws += raw_distributions;
+				raws += raws_coverage;
 				
-				maximum_raw_distributions = Math.max(maximum_raw_distributions, raw_distributions);
+				maximum_covered_raws = Math.max(maximum_covered_raws, raws_coverage);
 				
 			}
 			
-			if(coloumn_distributions >= 2L) {
+			if(coloumns_coverage >= 2L) {
 				
-				coloumns += coloumn_distributions;
+				coloumns += coloumns_coverage;
 				
-				maximum_coloumn_distributions = Math.max(maximum_coloumn_distributions, coloumn_distributions);
+				maximum_covered_coloumns = Math.max(maximum_covered_coloumns, coloumns_coverage);
 				
 			}
 			
 		}
 		
-		boolean raws_ok = raws >= n && (n % 2L == 0L || maximum_raw_distributions >= 3L);
+		boolean raw_ok = raws >= n && (n % 2L == 0L || maximum_covered_raws >= 3L);
+		boolean coloumn_ok = coloumns >= m && (m % 2L == 0L || maximum_covered_coloumns >= 3L);
 		
-		boolean coloumns_ok = coloumns >= m && (m % 2L == 0L || maximum_coloumn_distributions >= 3L);
-		
-		if(raws_ok || coloumns_ok) {
+		if(raw_ok || coloumn_ok) {
 			
 			System.out.println("YES");
 			

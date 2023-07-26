@@ -1,0 +1,620 @@
+import java.util.Scanner;
+
+public class B_Parity_Sort {
+    
+    static Scanner in = new Scanner(System.in);
+    
+    static int testCases, n, m, k;
+    
+    static long H;
+    
+    static long a[];
+    
+    static void solve() {
+        
+        ArrayList1<Long> even = new ArrayList1<>();
+        
+        ArrayList1<Long> odd = new ArrayList1<>();
+        
+        for(long i : a) {
+            
+            if(i % 2 == 0) {
+                
+                even.add(i);
+                
+            } else {
+                
+                odd.add(i);
+                
+            }
+            
+        }
+        
+        if(even.size() == 0 || odd.size() == 0) {
+            
+            System.out.println("YES");
+            return;
+            
+        }
+        
+        long Even[] = new long[even.size()];
+        
+        long Odd[] = new long[odd.size()];
+        
+        int index = 0;
+        
+        while(!even.isEmpty()) {
+            
+            Even[index++] = even.get(0);
+            
+            even.popFront();
+            
+        }
+        
+        index = 0;
+        
+        while(!odd.isEmpty()) {
+            
+            Odd[index++] = odd.get(0);
+            
+            odd.popFront();
+            
+        }
+        
+        sort(Even, 0, Even.length - 1);
+        
+        sort(Odd, 0, Odd.length - 1);
+        
+        long a_[] = new long[n];
+        
+        int even_index = 0, odd_index = 0;
+        
+        for(int i = 0; i < n; ++i) {
+            
+            if(a[i] % 2L == 0L) {
+                
+                a_[i] = Even[even_index++];
+                
+            } else {
+                
+                a_[i] = Odd[odd_index++];
+                
+            }
+            
+        }
+        
+        for(int i = 1; i < n; ++i) {
+            
+            if(a_[i - 1] > a_[i]) {
+                
+                System.out.println("NO");
+                return;
+                
+            }
+            
+        }
+        
+        System.out.println("YES");
+        
+    }
+    
+    public static void main(String [] amit) {
+        
+        testCases = in.nextInt();
+        
+        for(int t = 0; t < testCases; ++t) {
+            
+            input();
+            solve();
+            
+        }
+        
+    }
+    
+    private static void input() {
+        
+        n = in.nextInt();
+       
+        a = new long[n];
+        
+        for(int i = 0; i < n; ++i) {
+            
+            a[i] = in.nextLong();
+            
+        }
+        
+    }
+     
+    static class Node<T> {
+
+        T data;
+
+        Node<T> next;
+
+        public Node() {
+
+            this.next = null;
+
+        }
+
+        public Node(T data) {
+
+            this.data = data;
+
+            this.next = null;
+
+        }
+
+        public T getData() {
+            return data;
+        }
+
+        public void setData(T data) {
+            this.data = data;
+        }
+
+        public Node<T> getNext() {
+            return next;
+        }
+
+        public void setNext(Node<T> next) {
+            this.next = next;
+        }
+
+        @Override
+        public String toString() {
+
+            return this.getData().toString() + "  ";
+
+        }
+
+    }
+
+    static class ArrayList1<T> {
+
+        Node<T> head, tail;
+
+        int len;
+
+        public ArrayList1() {
+
+            this.head = null;
+
+            this.tail = null;
+
+            this.len = 0;
+
+        }
+
+        int size() {
+
+            return len;
+
+        }
+
+        boolean isEmpty() {
+
+            return len == 0 || head == null || tail == null;
+
+        }
+
+        int indexOf(T data) {
+
+            if (isEmpty()) {
+
+                throw new ArrayIndexOutOfBoundsException();
+
+            }
+
+            Node<T> temp = head;
+
+            int index = -1, i = 0;
+
+            while (temp != null) {
+
+                if (temp.getData() == data) {
+
+                    index = i;
+
+                }
+
+                i++;
+
+                temp = temp.getNext();
+
+            }
+
+            return index;
+
+        }
+
+        void add(T data) {
+
+            Node<T> newNode = new Node<>(data);
+
+            if (isEmpty()) {
+
+                head = newNode;
+
+                tail = newNode;
+
+                len++;
+
+            } else {
+
+                tail.setNext(newNode);
+
+                tail = newNode;
+
+                len++;
+
+            }
+
+        }
+
+        void see() {
+
+            if (isEmpty()) {
+
+                throw new ArrayIndexOutOfBoundsException();
+
+            }
+
+            Node<T> temp = head;
+
+            while (temp != null) {
+
+                System.out.print(temp.getData().toString() + " ");
+                //out.flush();
+
+                temp = temp.getNext();
+
+            }
+
+            System.out.println();
+            //out.flush();
+
+        }
+
+        void insertFirst(T data) {
+
+            Node<T> newNode = new Node<>(data);
+
+            Node<T> temp = head;
+
+            if (isEmpty()) {
+
+                head = newNode;
+                tail = newNode;
+
+                len++;
+
+            } else {
+
+                newNode.setNext(temp);
+
+                head = newNode;
+
+                len++;
+
+            }
+
+        }
+
+        T get(int index) {
+
+            if (isEmpty() || index >= len) {
+
+                throw new ArrayIndexOutOfBoundsException();
+
+            }
+
+            if (index == 0) {
+
+                return head.getData();
+
+            }
+
+            Node<T> temp = head;
+
+            int i = 0;
+
+            T data = null;
+
+            while (temp != null) {
+
+                if (i == index) {
+
+                    data = temp.getData();
+
+                }
+
+                i++;
+
+                temp = temp.getNext();
+
+            }
+
+            return data;
+
+        }
+
+        void addAt(T data, int index) {
+
+            if (index >= len) {
+
+                throw new ArrayIndexOutOfBoundsException();
+
+            }
+
+            Node<T> newNode = new Node<>(data);
+
+            int i = 0;
+
+            Node<T> temp = head;
+
+            while (temp.next != null) {
+
+                if (i == index) {
+
+                    newNode.setNext(temp.next);
+
+                    temp.next = newNode;
+
+                }
+
+                i++;
+
+                temp = temp.getNext();
+
+            }
+
+            //    temp.setNext(temp);
+            len++;
+
+        }
+
+        void popFront() {
+
+            if (isEmpty()) {
+
+                //return;
+                throw new ArrayIndexOutOfBoundsException();
+
+            }
+
+            if (head == tail) {
+
+                head = null;
+                tail = null;
+
+            } else {
+
+                head = head.getNext();
+
+            }
+
+            len--;
+
+        }
+
+        void removeAt(int index) {
+
+            if (index >= len) {
+
+                throw new ArrayIndexOutOfBoundsException();
+
+            }
+
+            if (index == 0) {
+
+                this.popFront();
+
+                return;
+
+            }
+
+            Node<T> temp = head;
+
+            int i = 0;
+
+            Node<T> n = new Node<>();
+
+            while (temp != null) {
+
+                if (i == index) {
+
+                    n.next = temp.next;
+
+                    temp.next = n;
+
+                    break;
+
+                }
+
+                i++;
+
+                n = temp;
+
+                temp = temp.getNext();
+
+            }
+
+            tail = n;
+
+            --len;
+
+        }
+
+        void clearAll() {
+
+            this.head = null;
+            this.tail = null;
+
+        }
+
+    }
+
+    static void merge(long a[], int left, int right, int mid) {
+
+        int n1 = mid - left + 1, n2 = right - mid;
+
+        long L[] = new long[n1];
+
+        long R[] = new long[n2];
+
+        for (int i = 0; i < n1; i++) {
+
+            L[i] = a[left + i];
+
+        }
+
+        for (int i = 0; i < n2; i++) {
+
+            R[i] = a[mid + 1 + i];
+
+        }
+
+        int i = 0, j = 0, k1 = left;
+
+        while (i < n1 && j < n2) {
+
+            if (L[i] <= R[j]) {
+
+                a[k1] = L[i];
+
+                i++;
+
+            } else {
+
+                a[k1] = R[j];
+
+                j++;
+
+            }
+
+            k1++;
+
+        }
+
+        while (i < n1) {
+
+            a[k1] = L[i];
+
+            i++;
+
+            k1++;
+
+        }
+
+        while (j < n2) {
+
+            a[k1] = R[j];
+
+            j++;
+            k1++;
+
+        }
+
+    }
+
+    static void sort(long a[], int left, int right) {
+
+        if (left >= right) {
+
+            return;
+
+        }
+
+        int mid = (left + right) / 2;
+
+        sort(a, left, mid);
+
+        sort(a, mid + 1, right);
+
+        merge(a, left, right, mid);
+
+    }
+
+    static void merge(double a[], int left, int right, int mid) {
+
+        int n1 = mid - left + 1, n2 = right - mid;
+
+        double L[] = new double[n1];
+
+        double R[] = new double[n2];
+
+        for (int i = 0; i < n1; i++) {
+
+            L[i] = a[left + i];
+
+        }
+
+        for (int i = 0; i < n2; i++) {
+
+            R[i] = a[mid + 1 + i];
+
+        }
+
+        int i = 0, j = 0, k1 = left;
+
+        while (i < n1 && j < n2) {
+
+            if (L[i] <= R[j]) {
+
+                a[k1] = L[i];
+
+                i++;
+
+            } else {
+
+                a[k1] = R[j];
+
+                j++;
+
+            }
+
+            k1++;
+
+        }
+
+        while (i < n1) {
+
+            a[k1] = L[i];
+
+            i++;
+
+            k1++;
+
+        }
+
+        while (j < n2) {
+
+            a[k1] = R[j];
+
+            j++;
+            k1++;
+
+        }
+
+    }
+
+    static void sort(double a[], int left, int right) {
+
+        if (left >= right) {
+
+            return;
+
+        }
+
+        int mid = (left + right) / 2;
+
+        sort(a, left, mid);
+
+        sort(a, mid + 1, right);
+
+        merge(a, left, right, mid);
+
+    }
+    
+}

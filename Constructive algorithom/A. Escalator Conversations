@@ -1,0 +1,70 @@
+import java.util.Scanner;
+
+public class A_Escalator_Conversations {
+    
+    static Scanner in = new Scanner(System.in);
+    
+    static int testCases, n, m, k;
+    
+    static long H;
+    
+    static long a[];
+    
+    static void solve() {
+        
+        int friends = 0;
+        
+        for(long i : a) {
+            
+            long difference = Math.abs(i - H);
+            
+            if(difference % k == 0 && difference != 0) {
+                
+                if(difference / k < m) {
+                    
+                    ++friends;
+                    
+                }
+                
+            }
+            
+        }
+        
+        System.out.println(friends);
+        
+    }
+    
+    public static void main(String [] amit) {
+        
+        testCases = in.nextInt();
+        
+        for(int t = 0; t < testCases; ++t) {
+            
+            input();
+            solve();
+            
+        }
+        
+    }
+    
+    private static void input() {
+        
+        n = in.nextInt();
+        
+        m = in.nextInt();
+        
+        k = in.nextInt();
+        
+        H = in.nextLong();
+        
+        a = new long[n];
+        
+        for(int i = 0; i < n; ++i) {
+            
+            a[i] = in.nextLong();
+            
+        }
+        
+    }
+    
+}

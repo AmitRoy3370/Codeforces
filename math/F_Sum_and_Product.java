@@ -16,54 +16,59 @@ public class F_Sum_and_Product {
 
 	static void solve(int t) {
 
-		Map<Long, Long> count = new HashMap<>();
+		StringBuilder sb = new StringBuilder();
+
+		Map<Long, Long> map = new HashMap<>();
 
 		for(long i : a) {
 
-			count.put(i, count.getOrDefault(i, 0L) + 1L);
+			map.put(i, map.getOrDefault(i, 0L) + 1L);
 
 		}
 
-		StringBuilder sb = new StringBuilder();
-
 		for(int i = 0; i < q; ++i) {
 
-			long b = x[i];
-			long c = y[i];
+			long b = x[i], c = y[i];
 
-			long delta = b * b - 4L * c;
+			long determinator = b * b - 4L * c;
 
-			if(!perfect_square(delta)) {
+			//System.out.println(determinator);
 
-				sb.append("0 ");
-				//System.out.println("First");
+			if(!perfect_square(determinator)) {
+
+				sb.append(0).append(" ");
 				continue;
 
 			}
 
-			long D = (long)Math.sqrt(delta);
+			determinator = (long)Math.sqrt(determinator);
 
-			long first_root = (b + D) / 2L, second_root = (b - D) / 2L;
+			long first_root = (b + determinator) / 2L;
+
+			long second_root = (b - determinator) / 2L;
 
 			if(first_root + second_root != b || first_root * second_root != c) {
 
-				sb.append("0 ");
-				//System.out.println("Second");
+				//System.out.println("at here " + first_root + " " + second_root);
+
+				sb.append(0).append(" ");
 				continue;
 
 			}
 
 			if(first_root == second_root) {
 
-				Long way = (Long)((Long)count.getOrDefault(first_root, 0L) * (Long)(count.getOrDefault(first_root, 0L) - 1L));
+				long way = map.getOrDefault(first_root, 0L) * (map.getOrDefault(first_root, 0L) - 1L);
 
 				way /= 2L;
+
+				//System.out.println("I came from here");
 
 				sb.append(way).append(" ");
 
 			} else {
 
-				Long way = (Long)((Long)count.getOrDefault(first_root, 0L) * (Long)count.getOrDefault(second_root, 0L));
+				long way = map.getOrDefault(first_root, 0L) * map.getOrDefault(second_root, 0L);
 
 				sb.append(way).append(" ");
 
@@ -127,8 +132,10 @@ public class F_Sum_and_Product {
 
 		long y = (long)Math.sqrt(x);
 
-		return y * y == x;
+		//System.out.println(y * y + " " + x);
+
+		return (x == y * y);
 		
 	}
-	
+
 }

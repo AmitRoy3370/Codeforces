@@ -1,0 +1,59 @@
+import java.util.Scanner;
+
+public class A_Sum_of_Three {
+
+    static Scanner in = new Scanner(System.in);
+
+    static int testCases;
+
+    static long n;
+
+    static StringBuilder ans = new StringBuilder();
+
+    static void solve() {
+
+        if (n < 7L || n == 9L) {
+
+            ans.append("NO").append("\n");
+            return;
+
+        }
+
+        if (n % 3L != 0) {
+
+            ans.append("YES").append("\n");
+
+            ans.append(1).append(" ").append(2).append(" ").append(n - 3).append("\n");
+
+        } else {
+
+            ans.append("YES").append("\n");
+
+            ans.append(1).append(" ").append(4).append(" ").append(n - 5).append("\n");
+
+        }
+
+    }
+
+    public static void main(String[] args) {
+
+        testCases = in.nextInt();
+
+        for (int t = 0; t < testCases; ++t) {
+
+            input();
+            solve();
+
+        }
+
+        System.out.print(ans.toString());
+
+    }
+
+    private static void input() {
+
+        n = in.nextLong();
+
+    }
+
+}

@@ -1,0 +1,94 @@
+import java.util.Scanner;
+
+public class B_Fear_of_the_Dark {
+
+    static Scanner in = new Scanner(System.in);
+
+    static int testCases;
+
+    static double px, py, ax, ay, bx, by;
+
+    static void solve() {
+
+        point A = new point(ax, ay);
+
+        point P = new point(px, py);
+
+        point B = new point(bx, by);
+
+        point O = new point(0.0, 0.0);
+
+        double AB = A.distance(B);
+
+        double PA = P.distance(A);
+
+        double PB = P.distance(B);
+
+        double OA = O.distance(A);
+
+        double OB = O.distance(B);
+
+        double taken_radious = Math.max(Math.min(OA, OB), Math.min(PA, PB));
+
+        if (Math.min(PA, PB) == PA) {
+
+        } else if (Math.min(OA, OB) == OB) {
+
+        } else {
+
+            if (AB > 2.0 * taken_radious) {
+
+                taken_radious = AB / 2.0;
+
+            }
+
+        }
+
+        System.out.println(String.format("%.10f", taken_radious));
+
+    }
+
+    public static void main(String[] args) {
+
+        testCases = in.nextInt();
+
+        for (int t = 0; t < testCases; ++t) {
+
+            input();
+            solve();
+
+        }
+
+    }
+
+    private static void input() {
+
+        px = in.nextDouble();
+        py = in.nextDouble();
+
+        ax = in.nextDouble();
+        ay = in.nextDouble();
+
+        bx = in.nextDouble();
+        by = in.nextDouble();
+
+    }
+
+    static class point {
+
+        double x, y;
+
+        public point(double x, double y) {
+            this.x = x;
+            this.y = y;
+        }
+
+        private double distance(point b) {
+
+            return Math.sqrt(Math.pow(this.x - b.x, 2) + Math.pow(this.y - b.y, 2));
+
+        }
+
+    }
+
+}

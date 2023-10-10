@@ -1,0 +1,121 @@
+import java.util.ArrayList;
+import java.util.Scanner;
+import java.util.Stack;
+import java.util.List;
+
+public class C_Decreasing_String {
+    
+    static Scanner in = new Scanner(System.in);
+    
+    static int testCases, n;
+    
+    static long pos;
+    
+    static char x[];
+    
+    static void solve() {
+        
+        int c = n, ix = 0;
+        
+        while (true) {
+            
+            if (pos > c) {
+                
+                pos -= c;
+                --c;
+                ++ix;
+                
+            } else {
+                
+                break;
+                
+            }
+            
+        }
+        
+        Stack<Integer> stack = new Stack<>();
+        
+        long dp[] = new long[n + 2];
+        
+        for (int i = 0; i <= n; ++i) {
+            
+            dp[i] = -1L;
+            
+        }
+        
+        long chooses = 0;
+        
+        for (int i = 0; i < n; ++i) {
+            
+            while (!stack.isEmpty()) {
+                
+                int index = stack.peek();
+                
+                if ((x[index] - 'a') > (x[i] - 'a')) {
+                    
+                    dp[index] = chooses++;
+                    
+                    stack.pop();
+                    
+                } else {
+                    
+                    break;
+                    
+                }
+                
+            }
+            
+            stack.push(i);
+            
+        }
+        
+        for (int i = n - 1; i >= 0; --i) {
+            
+            if (dp[i] == -1) {
+                
+                dp[i] = chooses++;
+                
+            }
+            
+        }
+        
+        List<Character> list = new ArrayList<>();
+        
+        for (int i = 0; i < n; ++i) {
+            
+            if (dp[i] >= ix) {
+                
+                list.add(x[i]);
+                
+            }
+            
+        }
+        
+        System.out.print(list.get((int) (pos - 1)));
+        
+    }
+    
+    public static void main(String[] args) {
+        
+        testCases = in.nextInt();
+        
+        for (int t = 0; t < testCases; ++t) {
+            
+            input();
+            solve();
+            
+        }
+        
+    }
+    
+    private static void input() {
+        
+        x = in.next().toCharArray();
+        
+        pos = in.nextLong();
+        
+        n = x.length;
+        
+    }
+    
+}

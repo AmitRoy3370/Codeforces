@@ -1,0 +1,89 @@
+import java.util.Scanner;
+
+public class L_LOL_Lovers {
+
+    static Scanner in = new Scanner(System.in);
+
+    static int testCases, n;
+
+    static char x[];
+
+    static void solve() {
+
+        int countL[] = new int[n];
+        int countO[] = new int[n];
+
+        for (int i = 0; i != n; ++i) {
+
+            if (i - 1 >= 0) {
+
+                countL[i] = countL[i - 1];
+                countO[i] = countO[i - 1];
+
+            }
+
+            if (x[i] == 'L') {
+
+                countL[i]++;
+
+            } else if (x[i] == 'O') {
+
+                countO[i]++;
+
+            }
+
+        }
+
+        int my_loaf = 0, my_onion = 0, taken = 0;
+
+        for(int i = 0; i != n; ++i) {
+
+            int remaining_loaf = countL[n - 1] - countL[i];
+            int remaining_onion = countO[n - 1] - countO[i];
+
+            if(x[i] == 'L') {
+
+                ++my_loaf;
+               
+            } else if(x[i] == 'O') {
+
+                ++my_onion;
+               
+            }
+
+            ++taken;
+
+            if(my_loaf != remaining_loaf && my_onion != remaining_onion) {
+
+                break;
+
+            }
+
+        }
+
+        if(taken == n) {
+
+            taken = -1;
+            
+        }
+
+        System.out.print(taken);
+
+    }
+
+    public static void main(String[] priya) {
+
+        input();
+        solve();
+
+    }
+
+    private static void input() {
+
+        n = in.nextInt();
+
+        x = in.next().toCharArray();
+
+    }
+
+}

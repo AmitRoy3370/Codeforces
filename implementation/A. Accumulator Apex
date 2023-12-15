@@ -1,0 +1,129 @@
+import java.util.Scanner;
+import java.util.List;
+import java.util.ArrayList;
+import java.util.Collections;
+
+public class A_Accumulator_Apex {
+
+    static Scanner in = new Scanner(System.in);
+
+    static int testCases, n;
+
+    static long x;
+
+    static List<Long> list[];
+
+    static void solve() {
+
+        long max_x = x;
+
+        List<Element> a = new ArrayList<>();
+
+        long sum = 0L, last = 0L, min = 0L;
+
+        for (int i = 0; i != n; ++i) {
+
+            sum = 0L;
+            last = 0L;
+            min = 0L;
+
+            for (long j : list[i]) {
+
+                sum += j;
+
+                min = Math.max(min, -sum);
+
+                if (sum > last) {
+
+                    a.add(new Element(min, sum - last));
+                    last = sum;
+
+                }
+
+            }
+
+        }
+
+        Collections.sort(a);
+
+        for (Element i : a) {
+
+            if (max_x >= i.min) {
+
+                max_x += i.sum;
+
+            }
+
+        }
+
+        System.out.println(max_x);
+
+    }
+
+    public static void main(String[] priya) {
+
+        input();
+        solve();
+
+    }
+
+    private static void input() {
+
+        x = in.nextLong();
+
+        n = in.nextInt();
+
+        list = new ArrayList[n];
+
+        for (int i = 0; i != n; ++i) {
+
+            list[i] = new ArrayList<>();
+
+        }
+
+        for (int i = 0; i != n; ++i) {
+
+            int size = in.nextInt();
+
+            for (int j = 0; j != size; ++j) {
+
+                list[i].add(in.nextLong());
+
+            }
+
+        }
+
+    }
+
+    private static class Element implements Comparable<Element> {
+
+        long min, sum;
+
+        public Element(long min, long sum) {
+
+            this.min = min;
+            this.sum = sum;
+
+        }
+
+        @Override
+        public int compareTo(A_Accumulator_Apex.Element o) {
+            // TODO Auto-generated method stub
+
+            if (this.min > o.min) {
+
+                return 1;
+
+            } else if (this.min == o.min) {
+
+                return 0;
+
+            }
+
+            return -1;
+
+        }
+
+    }
+
+}

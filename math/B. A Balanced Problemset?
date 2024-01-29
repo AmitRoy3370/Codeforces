@@ -1,0 +1,67 @@
+// Problem: B. A Balanced Problemset?
+// Contest: Codeforces - Codeforces Round 921 (Div. 2)
+// URL: https://codeforces.com/contest/1925/problem/B
+// Memory Limit: 256 MB
+// Time Limit: 1500 ms
+// 
+// Powered by CP Editor (https://cpeditor.org)
+
+import java.util.Scanner;
+
+public class B_A_Balanced_Problemset {
+	
+	static Scanner in = new Scanner(System.in);
+	
+	static int testCases;
+	
+	static long N, X;
+	
+	static void solve() {
+		
+		long ans = 0L;
+		
+		for(long i = 1; i * i <= N; ++i) {
+			
+			if(N % i == 0L) {
+				
+				if((N / i) >= X) {
+					
+					ans = Math.max(ans, i);
+					
+				}
+				
+				if(i >= X) {
+					
+					ans = Math.max((N / i), ans);
+					
+				}
+				
+			}
+			
+		}
+		
+		System.out.println(ans);
+		
+	}
+	
+	public static void main(String [] amit) {
+		
+		testCases = in.nextInt();
+		
+		for(int t = 0; t < testCases; ++t) {
+			
+			input();
+			solve();
+			
+		}
+		
+	}
+	
+	private static void input() {
+		
+		N = in.nextLong();
+		X = in.nextLong();
+		
+	}
+	
+}

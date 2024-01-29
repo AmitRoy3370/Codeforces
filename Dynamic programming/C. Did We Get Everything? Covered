@@ -1,0 +1,106 @@
+// Problem: C. Did We Get Everything Covered?
+// Contest: Codeforces - Codeforces Round 921 (Div. 2)
+// URL: https://codeforces.com/contest/1925/problem/C
+// Memory Limit: 256 MB
+// Time Limit: 2000 ms
+// 
+// Powered by CP Editor (https://cpeditor.org)
+
+import java.util.Scanner;
+
+public class C_Did_We_Get_Everything_Covered {
+	
+	static Scanner in = new Scanner(System.in);
+	
+	static int testCases, n, m, k;
+	
+	static char x[];
+	
+	static char ch[] = new char[]{'a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z'};
+	
+	static void solve() {
+		
+		int kMatch = 1, matchCount = 0, matches = 0;
+		
+		StringBuilder sb = new StringBuilder();
+		
+		int visit[] = new int[k];
+		
+		for(char i : x) {
+			
+			int charIndex = (i - 'a');
+			
+			if(visit[charIndex] != kMatch) {
+				
+				++matchCount;
+				
+			}
+			
+			visit[charIndex] = kMatch;
+			
+			if(matchCount == k) {
+				
+				sb.append(i);
+				
+				matchCount = 0;
+				++kMatch;
+				++matches;
+				
+			}
+			
+		}
+		
+		if(n <= matches) {
+			
+			System.out.println("YES");
+			return;
+			
+		}
+		
+		System.out.println("NO");
+		
+		for(int i = 0; i < k; ++i) {
+			
+			if(visit[i] != kMatch) {
+				
+				sb.append(ch[i]);
+				break;
+				
+			}
+			
+		}
+		
+		for(int i = 0; i < n - matches - 1; ++i) {
+			
+			sb.append(ch[0]);
+			
+		}
+		
+		System.out.println(sb.toString());
+		
+	}
+	
+	public static void main(String [] amit) {
+		
+		testCases = in.nextInt();
+		
+		for(int t = 0; t < testCases; ++t) {
+			
+			input();
+			solve();
+			
+		}
+		
+	}
+	
+	private static void input() {
+		
+		n = in.nextInt();
+		k = in.nextInt();
+		m = in.nextInt();
+		
+		x = in.next().toCharArray();
+		
+	}
+	
+}

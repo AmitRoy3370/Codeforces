@@ -1,0 +1,68 @@
+import java.util.Scanner;
+
+public class MyClass {
+    
+    static Scanner in = new Scanner(System.in);
+    
+    static int n;
+    
+    static long a[], b[], c[];
+    
+    static void solve() {
+        
+        long A = sum(a);
+        long B = sum(b);
+        long C = sum(c);
+        
+        if(A == 0L && B == 0L && C == 0L) {
+            
+            System.out.println("YES");
+            
+        } else {
+            
+            System.out.println("NO");
+            
+        }
+        
+    }
+    
+    public static void main(String args[]) {
+      
+      input();
+      solve();
+      
+    }
+    
+    private static void input() {
+        
+        n = in.nextInt();
+        
+        a = new long[n];
+        b = new long[n];
+        c = new long[n];
+        
+        for(int i = 0; i != n; ++i) {
+            
+            a[i] = in.nextLong();
+            b[i] = in.nextLong();
+            c[i] = in.nextLong();
+            
+        }
+        
+    }
+    
+    static long sum(long a[]) {
+        
+        long sum = 0L;
+        
+        for(long i : a) {
+            
+            sum += i;
+            
+        }
+        
+        return sum;
+        
+    }
+    
+}

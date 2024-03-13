@@ -1,0 +1,67 @@
+import java.util.Scanner;
+
+public class MyClass {
+    
+    static Scanner in = new Scanner(System.in);
+    
+    static int n;
+    
+    static String s;
+    
+    static void solve() {
+        
+        //char x[] = s.toCharArray();
+        
+        if(s.endsWith("ch") || s.endsWith("x") || s.endsWith("s") || s.endsWith("o")) { 
+            
+            s +=  "es";
+            
+        } else if(s.endsWith("f")) {
+            
+            //char x[] = s.toCharArray();
+            
+            //x[x.length - 1] = 'v';
+            
+            s = s.substring(0, s.length() - 1) + "ves";
+            
+        } else if(s.endsWith("fe")) {
+            
+            //char x[] = s.toCharArray();
+            
+            //x[x.length - 1] = 'e';
+            //x[x.length - 2] = 'v';
+            
+            s = s.substring(0, s.length() - 2) + "ves";
+            
+        } else if(s.endsWith("y")) {
+            
+            //char x[] = s.toCharArray();
+            
+            //x[x.length - 1] = 'i';
+            
+            s = s.substring(0, s.length() - 1) + "ies";
+            
+        } else {
+            
+            s += "s";
+            
+        }
+        
+        System.out.println(s);
+        
+    }
+    
+    public static void main(String args[]) {
+        
+        n = in.nextInt();
+        
+        for(int i = 0; i < n; ++i) {
+            
+            s =  in.next();
+            solve();
+            
+        }
+      
+    }
+    
+}

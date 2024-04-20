@@ -1,0 +1,55 @@
+import java.util.Scanner;
+
+public class MyClass {
+    
+    static Scanner in = new Scanner(System.in);
+    
+    public static void main(String args[]) {
+        
+        String s  = in.next();
+        
+        if(s.endsWith("@odoo.com")) {
+            
+            String t[] = s.split("@");
+            
+            if(t.length != 2) {
+                
+                System.out.print("NO");
+                
+            } else {
+                
+                char x[] = t[0].toCharArray();
+                
+                if(x.length == 2 || x.length == 3 || x.length == 4) {
+                    
+                  for(char i : x) {
+                    
+                      if(Character.isUpperCase(i)) {
+                        
+                        System.out.print("NO");
+                        return;
+                        
+                      }
+                    
+                   }
+                
+                   System.out.print("YES");
+                
+                } else {
+                    
+                    System.out.print("NO");
+                    
+                }
+                
+            }
+            
+        } else {
+            
+            System.out.print("NO");
+            
+        }
+     
+     
+    }
+    
+}

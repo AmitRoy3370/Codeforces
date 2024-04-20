@@ -1,0 +1,52 @@
+import java.util.Scanner;
+
+public class Main {
+    
+    static Scanner in = new Scanner(System.in);
+    
+    static int testCases, n;
+    
+    static char x[];
+    
+    //static int n;
+    
+    static void solve() {
+        
+        int operations = Integer.MAX_VALUE;
+        
+        for(int i = 0; i + 3 != n; ++i) {
+            
+            int op = ( (x[i] != 'O' ? 1 : 0) + (x[i + 1] != 'D' ? 1 : 0) + (x[i + 2] != 'O' ? 1 : 0) + (x[i + 3] != 'O' ? 1 : 0) );
+            
+            op += n - 4;
+            
+            operations = Math.min(operations, op);
+            
+        }
+        
+        System.out.println(operations);
+        
+    }
+    
+    public static void main(String [] amit) {
+        
+        testCases = in.nextInt();
+        
+        for(int t = 0; t != testCases; ++t) {
+            
+            input();
+            solve();
+            
+        }
+        
+    }
+    
+    private static void input() {
+        
+        x = in.next().toCharArray();
+        
+        n = x.length;
+        
+    }
+    
+}

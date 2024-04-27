@@ -1,0 +1,63 @@
+import java.util.Scanner;
+
+public class MyClass {
+    
+    static Scanner in = new Scanner(System.in);
+    
+    static int n, m;
+    
+    static char x[][];
+    
+    static void solve() {
+       
+        int maxNum = 0, r = -1, c = -1;
+        
+        for(int i = 0; i != n; ++i) {
+            
+            for(int j = 0; j != m; ++j) {
+                
+                if(x[i][j] == '.') {
+                    
+                    continue;
+                    
+                }
+                
+                if((x[i][j] - '0') > maxNum) {
+                    
+                    r = i + 1;
+                    c = j + 1;
+                    maxNum = x[i][j] - '0';
+                    
+                }
+                
+            }
+            
+        }
+        
+        System.out.println(r + " "  + c);
+        
+    }
+    
+    public static void main(String args[]) {
+        
+        input();
+        solve();
+      
+    }
+    
+    private static void input() {
+        
+        n = in.nextInt();
+        m = in.nextInt();
+        
+        x = new char[n][m];
+        
+        for(int i = 0; i != n; ++i) {
+            
+            x[i] = in.next().toCharArray();
+            
+        }
+        
+    }
+    
+}

@@ -1,0 +1,80 @@
+import java.util.Scanner;
+
+public class MyClass {
+    
+    static Scanner in = new Scanner(System.in);
+    
+    static int testCases, n, m;
+    
+    static long a[];
+    
+    static char x[][];
+    
+    static void solve() {
+       
+        for(int t = 0; t != testCases; ++t) {
+            
+            int i = in.nextInt() - 1;
+            int j = in.nextInt() - 1;
+            
+            boolean visible = true;
+            
+            long max = Math.max(a[i], a[j]);
+            
+            if(j > i) {
+                
+                for(int k = i + 1; k != j; ++k) {
+                    
+                    if(a[k] >= max) {
+                        
+                        visible = false;
+                        break;
+                        
+                    }
+                    
+                }
+                
+            } else {
+                
+                for(int k = i - 1; k > j; --k) {
+                    
+                    if(a[k] >= max) {
+                        
+                        visible = false;
+                        break;
+                        
+                    }
+                    
+                }
+                
+            }
+            
+            System.out.println(visible ? "YES" : "NO");
+            
+        }
+        
+    }
+    
+    public static void main(String args[]) {
+        
+        input();
+        solve();
+      
+    }
+    
+    private static void input() {
+        
+        n = in.nextInt();
+        testCases = in.nextInt();
+        
+        a = new long[n + 10];
+        
+        for(int i = 0; i != n; ++i) {
+            
+            a[i] = in.nextLong();
+            
+        }
+        
+    }
+    
+}

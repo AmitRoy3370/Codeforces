@@ -1,0 +1,59 @@
+import java.util.Scanner;
+
+public class MyClass {
+    
+    static Scanner in = new Scanner(System.in);
+    
+    static int n, k, testCases, m;
+    
+    static char x[];
+    
+    static void solve() {
+        
+        int totalSlice = 8 * n;
+        
+        if(totalSlice % m != 0) {
+            
+            System.out.println("FALSE");
+            return;
+            
+        }
+        
+        int perPerson = (int)Math.ceil((double)totalSlice / (double)m);
+        
+        if(perPerson >= k) {
+            
+            System.out.println("TRUE");
+            
+        } else {
+            
+            System.out.println("FALSE");
+            
+        }
+    
+    }
+    
+    public static void main(String args[]) {
+        
+        testCases = 1;
+        
+        for(int t = 0; t != testCases; ++t) {
+            
+            input();
+            solve();
+            
+        }
+      
+    }
+    
+    private static void input() {
+        
+        n = in.nextInt();
+        
+        m = in.nextInt();
+        
+        k = in.nextInt();
+        
+    }
+    
+}

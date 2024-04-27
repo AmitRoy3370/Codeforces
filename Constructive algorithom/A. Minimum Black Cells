@@ -1,0 +1,54 @@
+import java.util.Scanner;
+
+public class MyClass {
+    
+    static Scanner in = new Scanner(System.in);
+    
+    static int n, k, testCases;
+    
+    static void solve() {
+        
+        int colorBlack = 0, coloredCell = 1;
+        
+        boolean top = false;
+        
+        while(k > 0) {
+            
+            colorBlack += coloredCell;
+            
+            if(top) {
+                
+                ++coloredCell;
+                
+            }
+            
+            top = !top;
+            --k;
+            
+        }
+        
+        System.out.println(colorBlack);
+        
+    }
+    
+    public static void main(String args[]) {
+        
+        testCases = in.nextInt();
+        
+        for(int t = 0; t != testCases; ++t) {
+            
+            input();
+            solve();
+            
+        }
+      
+    }
+    
+    private static void input() {
+        
+        n = in.nextInt();
+        k = in.nextInt();
+        
+    }
+    
+}

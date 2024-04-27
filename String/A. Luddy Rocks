@@ -1,0 +1,67 @@
+import java.util.Scanner;
+
+public class MyClass {
+    
+    static Scanner in = new Scanner(System.in);
+    
+    static int n, k, testCases;
+    
+    static char x[];
+    
+    static void solve() {
+        
+        int count[] = new int[26];
+        
+        for(char i : x) {
+            
+            count[i - 'A']++;
+            
+        }
+        
+        char y[] = "LUDDYROCKS".toCharArray();
+        
+        int count1[] = new int[26];
+        
+        for(char i : y) {
+            
+            count1[i - 'A']++;
+            
+        }
+        
+        for(int i = 0; i != 26; ++i) {
+            
+            if(count1[i] > 0 && count1[i] > count[i]) {
+                
+                System.out.println("NO");
+                return;
+                
+            }
+            
+        }
+        
+        System.out.println("YES");
+        
+    }
+    
+    public static void main(String args[]) {
+        
+        testCases = in.nextInt();
+        
+        for(int t = 0; t != testCases; ++t) {
+            
+            input();
+            solve();
+            
+        }
+      
+    }
+    
+    private static void input() {
+        
+        n = in.nextInt();
+        
+        x = in.next().toCharArray();
+        
+    }
+    
+}

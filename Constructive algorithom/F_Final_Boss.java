@@ -50,15 +50,15 @@ public class F_Final_Boss {
 
     private static boolean check(long move) {
     	
-    	sum = 0L;
+    	long damage = 0L;
     	
     	for(int i = 0; i != n; ++i) {
     		
-    		sum += ((move / c[i]) + 1) * a[i];
+    		damage += ((move / c[i]) + 1) * a[i];
     		
     	}
     	
-    	return sum >= K;
+    	return !isSmaller(damage + "", K + "");
     	
     }
     

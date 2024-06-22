@@ -1,0 +1,226 @@
+import java.util.Scanner;
+import java.util.List;
+import java.util.ArrayList;
+import java.util.Collections;
+
+public class A_Alyona_and_flowers {
+	
+	static Scanner in = new Scanner(System.in);
+	
+	static int n, testCases;
+	
+	static long a[];
+	
+	static Quries quries[];
+	
+	static void solve() {
+		
+		List<Quries> list = new ArrayList<>();
+		
+		//print();
+		
+		for(Quries q : quries) {
+			
+			list.add(q);
+			
+		}
+		
+		Collections.sort(list);
+		
+		for(int i = 0; i < testCases; ++i) {
+			
+			quries[i] = list.get(i);
+			
+		}
+		
+		//print();
+
+		Mo mo = new Mo(quries, a);
+		
+		long b[] = mo.querySum();
+		
+		long sum = 0L;
+		
+		for(long i : b) {
+			
+			if(i < 0) {
+				
+				continue;
+				
+			}
+			
+			sum += i;
+			
+		}
+		
+		System.out.println(sum);
+		
+		//print(b);
+		
+	}
+	
+	public static void main(String [] amit) {
+		
+		input();
+		solve();
+		
+	}
+	
+	private static void input() {
+		
+		n = in.nextInt();
+		testCases = in.nextInt();
+		
+		a = new long[n];
+		
+		for(int i = 0; i < n; ++i) {
+			
+			a[i] = in.nextLong();
+			
+		}
+		
+		quries = new Quries[testCases];
+		
+		for(int i = 0; i < testCases; ++i) {
+			
+			int l = in.nextInt() - 1;
+			int r = in.nextInt() - 1;
+			
+			//System.out.println("r :- " + r);
+			
+			quries[i] = new Quries(l, r, i);
+			quries[i].blockSize = (int)Math.sqrt(n);
+			
+			//System.out.println(quries[i]);
+		
+		}
+		
+	}
+	
+	static class Quries implements Comparable<Quries> {
+		
+		int l, r, blockSize;
+		int index;
+		
+		public Quries(int l, int r, int index) {
+			
+			this.l = l;
+			this.r = r;
+			this.index = index;
+			
+		}
+		
+		public int compareTo(Quries quries) {
+			
+			if(this.l / this.blockSize == quries.l / quries.blockSize) {
+				
+				return this.r < quries.r ? 1 : 0;
+				
+			}
+			
+			return ((this.l / this.blockSize) < (quries.l / quries.blockSize)) ? 1 : 0;
+			
+		}
+		
+		public String toString() {
+			
+			return this.l + " " + this.r;
+			
+		}
+		
+	}
+	
+	static class Mo {
+		
+		Quries quries[];
+		
+		long a[];
+		
+		long sum = 0L;
+		
+		int l = 0, r = -1;
+		
+		public Mo(Quries quries[], long a[]) {
+			
+			this.quries = quries;
+			this.a = a;
+			
+		}
+		
+		long[] querySum() {
+			
+			long res[] = new long[quries.length];
+			
+			for(int i = 0; i < quries.length; ++i) {
+				
+				while(this.r < quries[i].r) {
+					
+					add(++this.r);
+					
+				}
+				
+				while(this.l < quries[i].l) {
+					
+					remove(this.l++);
+					
+				}
+				
+				while(this.r > quries[i].r) {
+					
+					remove(this.r--);
+					
+				}
+				
+				while(this.l > quries[i].l) {
+					
+					add(--this.l);
+					
+				}
+				
+				res[quries[i].index] = sum;
+				
+			}
+			
+			return res;
+			
+		}
+		
+		void add(int index) {
+			
+			sum += a[index];
+			
+		}
+		
+		void remove(int index) {
+			
+			sum -= a[index];
+			
+		}
+		
+	}
+	
+	private static void print(long a[]) {
+		
+		for(long i : a) {
+			
+			System.out.print(i + " ");
+			
+		}
+		
+		System.out.println();
+		
+	}
+	
+	private static void print() {
+				
+		System.out.println("quries :- ");
+		
+		for(Quries i : quries) {
+			
+			System.out.println(i);
+			
+		}
+		
+	}
+	
+}

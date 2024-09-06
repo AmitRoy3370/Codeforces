@@ -1,0 +1,44 @@
+
+ import java.util.Scanner;
+
+public class B_Three_Brothers {
+
+    static Scanner in = new Scanner(System.in);
+
+    static int a, b;
+
+    static void solve() {
+
+        boolean visited[] = new boolean[4];
+
+        visited[a] = true;
+        visited[b] = true;
+
+        for(int i = 1; i <= 3; ++i) {
+
+            if(!visited[i]) {
+
+                System.out.println(i);
+                return;
+
+            }
+
+        }
+
+    }
+
+    public static void main(String[] args) {
+
+        input();
+        solve();
+        
+    }
+
+    private static void input() {
+
+        a = in.nextInt();
+        b = in.nextInt();
+
+    }
+    
+}

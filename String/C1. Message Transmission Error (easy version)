@@ -1,0 +1,55 @@
+package main.java.com.mycompany.codeforces;
+
+/**
+ * C1_Message_Transmission_Error_easy_version
+ */
+
+ import java.util.Scanner;
+
+public class C1_Message_Transmission_Error_easy_version {
+
+    static Scanner in = new Scanner(System.in);
+
+    static int n;
+
+    static char x[];
+
+    static void solve() {
+
+        for(int i = n / 2 + 1; i < n; ++i) {
+
+            boolean yes = true;
+            
+            yes = new String(x).substring(0, i).equals(new String(x).substring(n - i));
+
+            if(yes) {
+
+                System.out.println("YES");
+
+                System.out.print(new String(x).substring(0, i));
+                return;
+
+            }
+
+        }
+
+        System.out.print("NO");
+
+    }
+
+    public static void main(String[] args) {
+
+        input();
+        solve();
+        
+    }
+
+    private static void input() {
+
+        x = in.next().toCharArray();
+
+        n = x.length;
+
+    }
+
+}

@@ -1,0 +1,128 @@
+/*
+Welcome to JDoodle!
+
+You can execute code here in 88 languages. Right now you’re in the Java IDE.
+
+  1. Click the orange Execute button ▶ to execute the sample code below and see how it works.
+
+  2. Want help writing or debugging code? Type a query into JDroid on the right hand side ---------------->
+
+  3.Try the menu buttons on the left. Save your file, share code with friends and open saved projects.
+
+Want to change languages? Try the search bar up the top.
+*/
+
+import java.util.Scanner;
+import java.util.Arrays;
+
+public class C_Update_Queries {
+  
+  static Scanner in = new Scanner(System.in);
+  
+  static int testCases, n, m;
+  
+  static char x[], y[];
+  
+  static int ind[];
+  
+  static void solve() {
+      
+      Arrays.sort(y);
+      
+      Arrays.sort(ind);
+      
+      //print(y);
+      //print(ind);
+      
+      char z[] = new char[m];
+      
+      for(int i = 0; i < m; ++i) {
+          
+          z[i] = y[i];
+          
+      }
+      
+      for(int i = 0, k1 = 0,
+      j = m - 1, k = 0; i < m; ++i) {
+          
+          while(i + 1 < m && 
+          ind[i] == ind[i + 1]) {
+              
+              z[k++] = y[j--];
+              
+              ++i;
+              
+          }
+          
+          //System.out.print(i + " ");
+          
+          //print(z);
+          
+          z[k++] = y[k1++];
+          
+      }
+      
+      //print(ind);
+      //print(z);
+      
+      for(int i = 0; i < m; ++i) {
+          
+          x[ind[i]] = z[i];
+          
+      }
+      
+      System.out.println(new String(x));
+      
+  }
+  
+  public static void main(String args[]) {
+    
+    testCases = in.nextInt();
+    
+    for(int t = 0; t < testCases; ++t) {
+        
+        input();
+        solve();
+        
+    }
+    
+  }
+  
+  private static void input() {
+      
+      n = in.nextInt();
+      m = in.nextInt();
+      
+      x = in.next().toCharArray();
+      
+      ind = new int[m];
+      
+      for(int i = 0; i < m; ++i) {
+          
+          ind[i] = in.nextInt() - 1;
+          
+      }
+      
+      y = in.next().toCharArray();
+      
+  }
+  
+  private static void print(char x[]) {
+      
+      System.out.println(new String(x));
+      
+  }
+  
+  private static void print(int a[]) {
+      
+      for(int i : a) {
+          
+          System.out.print(i + " ");
+          
+      }
+      
+      System.out.println();
+      
+  }
+  
+}

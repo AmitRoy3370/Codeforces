@@ -1,0 +1,35 @@
+static void B(int t) {
+ 
+        StringBuilder sb = new StringBuilder();
+ 
+        sb.append("0".repeat(1));
+ 
+        n--;
+ 
+        if (n == 0) {
+ 
+        } else {
+ 
+            sb.append("1");
+ 
+            --n;
+ 
+            if (n == 0) {
+ 
+            } else {
+ 
+                sb.append("0".repeat(n));
+ 
+            }
+ 
+        }
+ 
+        ans.append(sb.toString());
+ 
+        if (t != testCases) {
+ 
+            ans.append("\n");
+ 
+        }
+ 
+    }

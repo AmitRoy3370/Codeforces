@@ -1,0 +1,57 @@
+ static void A(int t) {
+ 
+        if (n == 1) {
+ 
+            ans.append(0);
+ 
+            if (t != testCases) {
+ 
+                ans.append("\n");
+ 
+            }
+ 
+            return;
+ 
+        }
+ 
+        b = new long[n];
+        c = new long[n];
+ 
+        sort(a, 0, n - 1);
+ 
+        swap(a, 0, n - 1);
+ 
+        if (n > 2) {
+ 
+            swap(a, 1, n - 1);
+ 
+        }
+ 
+        long max = Long.MIN_VALUE;
+        long min = Long.MAX_VALUE;
+ 
+        sum = 0L;
+ 
+        for (int i = 0; i < n; ++i) {
+ 
+            min = Math.min(min, a[i]);
+            max = Math.max(max, a[i]);
+ 
+            b[i] = min;
+            c[i] = max;
+ 
+            sum += c[i] - b[i];
+ 
+        }
+ 
+        //print(b);
+        //print(c);
+        ans.append(sum);
+ 
+        if (t != testCases) {
+ 
+            ans.append("\n");
+ 
+        }
+ 
+    }

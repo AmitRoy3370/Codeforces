@@ -1,0 +1,86 @@
+static boolean C(int i, ArrayList1<Character> list, char prev) {
+ 
+        if (i >= n - 1) {
+ 
+            return false;
+ 
+        }
+ 
+        if (list.isEmpty()) {
+ 
+            return false;
+ 
+        }
+ 
+        if (x[i] == '1') {
+ 
+            if (list.get(0) == prev) {
+ 
+                return true;
+ 
+            }
+ 
+            if (Objects.equals(x[i + 1], list.get(0))) {
+ 
+                return true;
+ 
+            }
+ 
+        }
+ 
+        if (list.isEmpty()) {
+ 
+            return false;
+ 
+        }
+ 
+        prev = list.get(0);
+ 
+        list.popFront();
+ 
+        return C(i + 1, list, prev);
+ 
+    }
+ 
+    static void C(int t) {
+ 
+        boolean yes;
+ 
+        ArrayList1<Character> list = new ArrayList1<>();
+ 
+        for (char i : x) {
+ 
+            list.add(i);
+ 
+        }
+ 
+        char prev = list.get(0);
+ 
+        list.popFront();
+ 
+        yes = C(1, list, prev);
+ 
+        if (x[0] == '1' || x[n - 1] == '1') {
+ 
+            yes = true;
+ 
+        }
+ 
+        if (yes) {
+ 
+            ans.append("YES");
+ 
+        } else {
+ 
+            ans.append("NO");
+ 
+        }
+ 
+        if (t != testCases) {
+ 
+            ans.append("\n");
+ 
+        }
+ 
+    }
+ 

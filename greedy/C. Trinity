@@ -1,0 +1,163 @@
+ static boolean C(int i, boolean find, int mid) {
+        
+        if(i + mid - 1 >= n) {
+            
+            return find;
+            
+        }
+        
+        sum = a[i] + a[i + 1];
+        
+        if(isSmaller(a[i + mid - 1] + "", sum + "")) {
+            
+            return true;
+            
+        }
+        
+        return C(i + 1, find, mid);
+        
+    }
+    
+    static int C(int l, int r, int operations) {
+ 
+        if (isSmaller(r + "", l + "")) {
+ 
+            return operations;
+ 
+        }
+ 
+        int mid = (l + r) / 2;
+ 
+        boolean find = false;
+ 
+        if (equal((long)mid, 1L)) {
+ 
+            operations = Math.min(operations, n - 1);
+            l = mid + 1;
+            C(l, r, operations);
+ 
+        }
+ 
+        find = C(0, find, mid);
+ 
+        if (find) {
+ 
+            operations = Math.min(operations, Integer.parseInt(sub(n + "", mid + "")));
+            return C(mid + 1, r, operations);
+ 
+        } else {
+ 
+            return C(l, mid - 1, operations);
+ 
+        }
+ 
+    }
+ 
+    static void C(int t) {
+ 
+        sort(a, 0, n - 1);
+ 
+        int operations = n, left = 1, right = n;
+ 
+        operations = C(left, right, operations);
+       
+        ans.append(operations);
+ 
+        if (t <= testCases) {
+ 
+            ans.append("\n");
+ 
+        }
+ 
+    }
+  public static void main(String[] Amit) throws IOException {
+ 
+        testCases = in.nextInt();
+        //testCases = 1;
+ 
+        //b = new long[200004];
+        for (int t = 0; t < testCases; ++t) {
+ 
+            C_input();
+            C(t + 1);
+ 
+        }
+ 
+        out.print(ans.toString());
+        out.flush();
+ 
+    }
+
+    static boolean equal(long a, long b) {
+ 
+        return String.valueOf(a).equalsIgnoreCase(String.valueOf(b));
+ 
+    }
+ static boolean isSmaller(String str1, String str2) {
+ 
+        int n1 = str1.length(), n2 = str2.length();
+ 
+        if (n1 < n2) {
+            return true;
+        }
+        if (n2 < n1) {
+            return false;
+        }
+ 
+        for (int i = 0; i < n1; i++) {
+            if (str1.charAt(i) < str2.charAt(i)) {
+                return true;
+            } else if (str1.charAt(i) > str2.charAt(i)) {
+                return false;
+            }
+        }
+        return false;
+    }
+ 
+    static String sub(String str1, String str2) {
+ 
+        if (isSmaller(str1, str2)) {
+            String t = str1;
+            str1 = str2;
+            str2 = t;
+        }
+ 
+        String str = "";
+ 
+        int n1 = str1.length(), n2 = str2.length();
+        int diff = n1 - n2;
+ 
+        int carry = 0;
+ 
+        for (int i = n2 - 1; i >= 0; i--) {
+ 
+            int sub
+                    = (((int) str1.charAt(i + diff) - (int) '0')
+                    - ((int) str2.charAt(i) - (int) '0')
+                    - carry);
+            if (sub < 0) {
+                sub = sub + 10;
+                carry = 1;
+            } else {
+                carry = 0;
+            }
+ 
+            str += String.valueOf(sub);
+        }
+ 
+        for (int i = n1 - n2 - 1; i >= 0; i--) {
+            if (str1.charAt(i) == '0' && carry > 0) {
+                str += "9";
+                continue;
+            }
+            int sub = (((int) str1.charAt(i) - (int) '0')
+                    - carry);
+            if (i > 0 || sub > 0) {
+                str += String.valueOf(sub);
+            }
+            carry = 0;
+        }
+ 
+        return new StringBuilder(str).reverse().toString();
+    }
+ 

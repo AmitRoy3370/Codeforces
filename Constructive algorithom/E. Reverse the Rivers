@@ -1,0 +1,115 @@
+import java.util.Scanner;
+
+public class MyClass {
+    
+    static Scanner in = new Scanner(System.in);
+    
+    static int testCases, n, m, r, k;
+    
+    static long c, a[][];
+    
+    static char ch;
+    
+    static void solve() {
+        
+        for(int i = 1; i < n; ++i) {
+            
+            for(int j = 0; j < k; ++j) {
+                
+                a[i][j] |= a[i - 1][j];
+                
+            }
+            
+        }
+        
+        for(int t = 0; t < testCases; ++t) {
+            
+            m = in.nextInt();
+            
+            int max = n - 1, min = 0;
+            
+            boolean yes = true;
+            
+            for(int j = 0; j < m; ++j) {
+                
+                r = in.nextInt() - 1;
+                ch = in.next().charAt(0);
+                c = in.nextLong();
+                
+                if (ch == '>') {
+
+                    int temp = max;
+                    while (min <= temp) {
+                        int mid = (min + temp) / 2;
+                        if (a[mid][r] <= c) {
+                            min = mid + 1;
+                        } else {
+                            temp = mid - 1;
+                        }
+                    }
+
+                } else {
+
+                    int temp = min;
+                    while (temp <= max) {
+                        int mid = (temp + max) / 2;
+                        if (a[mid][r] >= c) {
+                            max = mid - 1;
+                        } else {
+                            temp = mid + 1;
+                        }
+                    }
+
+                }
+
+                if (min > max) {
+
+                    yes = false;
+                    //break;
+
+                }
+
+            }
+            
+            if(yes) {
+                
+                System.out.println((min + 1));
+                
+            } else {
+                
+                System.out.println(-1);
+                
+            }
+            
+        }
+        
+    }
+    
+  public static void main(String args[]) {
+    
+    input();
+    solve();
+    
+  }
+  
+  private static void input() {
+      
+      n = in.nextInt();
+      k = in.nextInt();
+      testCases = in.nextInt();
+      
+      a = new long[n][k];
+      
+      for(int i = 0; i < n; ++i) {
+          
+          for(int j = 0; j < k; ++j) {
+              
+              a[i][j] = in.nextLong();
+              
+          }
+          
+      }
+      
+  }
+  
+}

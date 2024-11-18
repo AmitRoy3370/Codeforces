@@ -1,0 +1,53 @@
+ static void B(int t) {
+
+        Arrays.sort(p);
+
+        ArrayList1<Integer> list = new ArrayList1<>();
+
+        for (int i = 1; i * i <= n - 2; i++) {
+
+            if ((n - 2) % i == 0) {
+
+                list.add(i);
+
+                if (i != (n - 2) / i) {
+
+                    list.add((n - 2) / i);
+
+                }
+
+            }
+
+        }
+
+        boolean yes = false;
+
+        while (!list.isEmpty()) {
+
+            m = (n - 2) / list.get(0);
+
+            if (Arrays.binarySearch(p, m) >= 0 && Arrays.binarySearch(p, list.get(0)) >= 0) {
+
+                ans.append(list.get(0)).append(" ").append(m);
+                yes = true;
+                break;
+
+            }
+
+            list.popFront();
+
+        }
+
+        if (!yes) {
+
+            ans.append("-1");
+
+        }
+
+        if (t != testCases) {
+
+            ans.append("\n");
+
+        }
+
+    }

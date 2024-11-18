@@ -1,0 +1,27 @@
+static void A(int t) {
+
+        p = new int[n + 1];
+
+        for (long i : a) {
+
+            p[(int) i]++;
+
+        }
+
+        sum = 0L;
+
+        for (int i : p) {
+
+            sum += i / 2;
+
+        }
+
+        ans.append(sum);
+
+        if (t != testCases) {
+
+            ans.append("\n");
+
+        }
+
+    }

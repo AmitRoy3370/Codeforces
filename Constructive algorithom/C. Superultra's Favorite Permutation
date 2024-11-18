@@ -1,0 +1,80 @@
+  static void C(int t) {
+
+        ArrayList1<Integer> list = new ArrayList1<>();
+
+        if (n <= 4) {
+
+            list.add(-1);
+
+        } else {
+
+            ArrayList1<Integer> even = new ArrayList1<>();
+
+            ArrayList1<Integer> odd = new ArrayList1<>();
+
+            for (int i = 1; i <= n; ++i) {
+
+                if (i % 2 == 1) {
+
+                    if (i == 5) {
+
+                        continue;
+
+                    }
+
+                    odd.add(i);
+
+                } else {
+
+                    if (i == 4) {
+
+                        continue;
+
+                    }
+
+                    even.add(i);
+
+                }
+
+            }
+
+            odd.add(5);
+            even.inserFirst(4);
+
+            while (!odd.isEmpty()) {
+
+                list.add(odd.get(0));
+
+                odd.popFront();
+
+            }
+
+            while (!even.isEmpty()) {
+
+                list.add(even.get(0));
+
+                even.popFront();
+
+            }
+
+        }
+
+        StringBuilder sb = new StringBuilder();
+
+        while (!list.isEmpty()) {
+
+            sb.append(list.get(0)).append(" ");
+
+            list.popFront();
+
+        }
+
+        ans.append(sb.toString().trim());
+
+        if (t != testCases) {
+
+            ans.append("\n");
+
+        }
+
+    }

@@ -1,0 +1,93 @@
+static long C1(long Y, long G) {
+ 
+        if (Y > Z) {
+ 
+            return G;
+ 
+        }
+ 
+        K = X ^ Y;
+ 
+        if (K == 0) {
+ 
+        } else {
+ 
+            if (mod(X + "", K) == 0 || mod(Y + "", K) == 0) {
+ 
+                ++G;
+ 
+            }
+ 
+        }
+ 
+        return C1(Y + 1, G);
+ 
+    }
+ 
+    static void C1(int t) {
+ 
+        G = 0L;
+ 
+        Z = Long.parseLong(mul("5", X + ""));
+ 
+        if (isSmaller(M + "", Z + "")) {
+ 
+            Z = M;
+ 
+        }
+ 
+        ArrayList1<Long> list = new ArrayList1<>();
+        
+        //G = C1(1L, G);
+        for (Y = 1L; Y <= Z; ++Y) {
+ 
+            K = X ^ Y;
+ 
+            if (K == 0) {
+ 
+            } else {
+ 
+                if(X % K == 0 || Y % K == 0) {
+                    
+                    ++G;
+                    list.add(G);
+                    
+                }
+                
+            }
+ 
+        }
+ 
+        ans.append(list.size());
+ 
+        if (t != testCases) {
+ 
+            ans.append("\n");
+ 
+        }
+ 
+    }
+ public static void main(String[] Amit) throws IOException {
+ 
+        testCases = in.nextInt();
+        //testCases = 1;
+ 
+        //b = new long[200004];
+        for (int t = 0; t < testCases; ++t) {
+ 
+            C1_input();
+            C1(t + 1);
+ 
+        }
+ 
+        out.print(ans.toString());
+        out.flush();
+ 
+    }
+
+private static void C1_input() throws IOException {
+ 
+        X = in.nextLong();
+        M = in.nextLong();
+ 
+    }

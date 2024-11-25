@@ -1,0 +1,93 @@
+ static void D() {
+        
+        dp = new long[(int)N];
+        
+        for(int i = 2; i < N; ++i) {
+            
+            if(dp[i] == 0) {
+                
+                for(int j = 1; i * j < N; ++j) {
+                    
+                    dp[i * j] = dp[j] + 1;
+                    
+                } 
+                
+            }
+            
+        }
+        
+    }
+    
+    static void D(int t) {
+        
+        for(int i = 1; i <= m; ++i) {
+            
+            if(dp[i] >= n) {
+                
+                ans.append("-1");
+                
+                if(t != testCases) {
+                    
+                    ans.append("\n");
+                    
+                }
+                
+                return;
+                
+            }
+            
+        }
+        
+        sort(a, 0, n - 1);
+        
+        StringBuilder sb = new StringBuilder();
+        
+        for(int i = 1; i <= m; ++i) {
+            
+            sb.append(a[n - (int)dp[i] - 1]).append(" ");
+            
+        }
+        
+        ans.append(sb.toString().trim());
+        
+        if(t != testCases) {
+            
+            ans.append("\n");
+            
+        }
+        
+    }
+
+public static void main(String[] Amit) throws IOException {
+ 
+        testCases = in.nextInt();
+        //testCases = 1;
+ 
+        D();
+        //b = new long[200004];
+        for (int t = 0; t < testCases; ++t) {
+ 
+            D_input();
+            D(t + 1);
+ 
+        }
+ 
+        out.print(ans.toString());
+        out.flush();
+ 
+    }
+
+private static void D_input() throws IOException {
+ 
+        m = in.nextInt();
+        n = in.nextInt();
+ 
+        a = new long[n];
+ 
+        for (int i = 0; i < n; ++i) {
+ 
+            a[i] = in.nextLong();
+ 
+        }
+ 
+    }

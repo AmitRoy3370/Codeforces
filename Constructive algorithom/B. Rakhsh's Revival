@@ -1,0 +1,56 @@
+ static void B(int t) {
+ 
+        int count[] = new int[2];
+ 
+        for (char i : x) {
+ 
+            count[i - '0']++;
+ 
+        }
+ 
+        if (true) {
+ 
+            sum = 0L;
+ 
+            int weak = 0;
+ 
+            for (int i = 0; i < n;) {
+ 
+                weak = 0;
+ 
+                while (i < n && x[i] == '0') {
+ 
+                    ++weak;
+ 
+                    ++i;
+ 
+                    if (weak == m) {
+ 
+                        ++sum;
+                        i += k - 1;
+                        break;
+ 
+                    }
+ 
+                }
+ 
+                if (weak < m) {
+ 
+                    ++i;
+ 
+                }
+ 
+            }
+ 
+            ans.append(sum);
+ 
+        }
+ 
+        if (t != testCases) {
+ 
+            ans.append("\n");
+ 
+        }
+ 
+    }
+ 

@@ -1,0 +1,13 @@
+static void A(int t) {
+ 
+        sum = (n * k) / gcd((long) n, (long) k);
+ 
+        ans.append(sum);
+ 
+        if (t != testCases) {
+ 
+            ans.append("\n");
+ 
+        }
+ 
+    }

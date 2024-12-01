@@ -1,0 +1,112 @@
+static void D(int t) {
+ 
+        ArrayList1<String> list = new ArrayList1<>();
+ 
+        TreeSet<Integer> zeros = new TreeSet<>();
+        TreeSet<Integer> ones = new TreeSet<>();
+        TreeSet<Integer> twos = new TreeSet<>();
+ 
+        for (int i = 0; i < n; ++i) {
+ 
+            switch ((int)a[i]) {
+                case 1 -> ones.add(i + 1);
+                case 0 -> zeros.add(i + 1);
+                default -> twos.add(i + 1);
+            }
+ 
+        }
+ 
+        if (zeros.isEmpty()) {
+ 
+            zeros.add(Integer.MIN_VALUE);
+ 
+        }
+ 
+        if (twos.isEmpty()) {
+ 
+            twos.add(Integer.MAX_VALUE);
+ 
+        }
+ 
+        while (!(zeros.last() < ones.first() && ones.last() < twos.first())) {
+ 
+            if (zeros.last() > ones.first()) {
+ 
+                int lastZerosPosition = zeros.last();
+                zeros.remove(lastZerosPosition);
+                int firstOnesPosition = ones.first();
+                ones.remove(firstOnesPosition);
+                ones.add(lastZerosPosition);
+                zeros.add(firstOnesPosition);
+ 
+                list.add(lastZerosPosition + " " + firstOnesPosition);
+                
+            }
+ 
+            if (ones.last() > twos.first()) {
+ 
+                int lastOnessPosition = ones.last();
+                ones.remove(lastOnessPosition);
+                int firstTwosPosition = twos.first();
+                twos.remove(firstTwosPosition);
+                twos.add(lastOnessPosition);
+                ones.add(firstTwosPosition);
+ 
+                list.add(lastOnessPosition + " " + firstTwosPosition);
+                
+            }
+            
+        }
+ 
+        StringBuilder sb = new StringBuilder();
+ 
+        sb.append(list.size()).append("\n");
+ 
+        while (!list.isEmpty()) {
+ 
+            sb.append(list.get(0)).append("\n");
+ 
+            list.popFront();
+ 
+        }
+ 
+        ans.append(sb.toString().trim());
+ 
+        if (t != testCases) {
+ 
+            ans.append("\n");
+ 
+        }
+ 
+    }
+public static void main(String[] Amit) throws IOException {
+ 
+        testCases = in.nextInt();
+        //testCases = 1;
+ 
+        //b = new long[200004];
+        for (int t = 0; t < testCases; ++t) {
+ 
+            D_input();
+            D(t + 1);
+ 
+        }
+ 
+        out.print(ans.toString());
+        out.flush();
+ 
+    }
+
+private static void D_input() throws IOException {
+ 
+        n = in.nextInt();
+ 
+        a = new long[n];
+ 
+        for (int i = 0; i < n; ++i) {
+ 
+            a[i] = in.nextLong();
+ 
+        }
+ 
+    }

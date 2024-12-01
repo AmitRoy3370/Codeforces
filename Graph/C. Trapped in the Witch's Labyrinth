@@ -1,0 +1,146 @@
+static void C(int t) {
+ 
+        int bad[][] = new int[n][m];
+ 
+        PriorityQueue<String> pq = new PriorityQueue<>();
+ 
+        for (int i = 0; i < n; ++i) {
+ 
+            if (s1[i].charAt(0) == 'L') {
+ 
+                bad[i][0] = 1;
+                pq.add(i + "_" + 0);
+ 
+            }
+ 
+            if (s1[i].charAt(m - 1) == 'R') {
+ 
+                bad[i][m - 1] = 1;
+                pq.add(i + "_" + (m - 1));
+ 
+            }
+ 
+        }
+ 
+        for (int i = 0; i < m; ++i) {
+ 
+            if (s1[0].charAt(i) == 'U') {
+ 
+                bad[0][i] = 1;
+                pq.add(0 + "_" + i);
+ 
+            }
+ 
+            if (s1[n - 1].charAt(i) == 'D') {
+ 
+                bad[n - 1][i] = 1;
+                pq.add((n - 1) + "_" + i);
+ 
+            }
+ 
+        }
+ 
+        while (!pq.isEmpty()) {
+ 
+            String s[] = pq.poll().split("_");
+ 
+            int indexX = Integer.parseInt(s[0]);
+            int indexY = Integer.parseInt(s[1]);
+ 
+            if (indexX > 0
+                    && bad[indexX - 1][indexY] == 0
+                    && s1[indexX - 1].charAt(indexY) == 'D') {
+ 
+                bad[indexX - 1][indexY] = 1;
+                pq.add((indexX - 1) + "_" + indexY);
+ 
+            }
+ 
+            if (indexX < n - 1
+                    && bad[indexX + 1][indexY] == 0
+                    && s1[indexX + 1].charAt(indexY) == 'U') {
+ 
+                bad[indexX + 1][indexY] = 1;
+                pq.add((indexX + 1) + "_" + indexY);
+ 
+            }
+ 
+            if (indexY > 0
+                    && bad[indexX][indexY - 1] == 0
+                    && s1[indexX].charAt(indexY - 1) == 'R') {
+ 
+                bad[indexX][indexY - 1] = 1;
+                pq.add((indexX) + "_" + (indexY - 1));
+ 
+            }
+ 
+            if (indexY < m - 1
+                    && bad[indexX][indexY + 1] == 0
+                    && s1[indexX].charAt(indexY + 1) == 'L') {
+ 
+                bad[indexX][indexY + 1] = 1;
+                pq.add(indexX + "_" + (indexY + 1));
+ 
+            }
+ 
+        }
+ 
+        sum = 0L;
+ 
+        for (int i = 0; i < n; ++i) {
+ 
+            for (int j = 0; j < m; ++j) {
+ 
+                if (bad[i][j] == 0 && s1[i].charAt(j) != '?') {
+ 
+                    ++sum;
+ 
+                } else if (bad[i][j] == 0) {
+ 
+                    int num = 1;
+ 
+                    if (i > 0) {
+ 
+                        num &= bad[i - 1][j];
+ 
+                    }
+ 
+                    if (j > 0) {
+ 
+                        num &= bad[i][j - 1];
+ 
+                    }
+ 
+                    if (i < n - 1) {
+ 
+                        num &= bad[i + 1][j];
+ 
+                    }
+ 
+                    if (j < m - 1) {
+ 
+                        num &= bad[i][j + 1];
+ 
+                    }
+ 
+                    if (num == 0) {
+ 
+                        ++sum;
+ 
+                    }
+ 
+                }
+ 
+            }
+ 
+        }
+ 
+        ans.append(sum);
+ 
+        if (t != testCases) {
+ 
+            ans.append("\n");
+ 
+        }
+ 
+    }

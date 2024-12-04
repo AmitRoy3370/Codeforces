@@ -1,0 +1,29 @@
+static void C(int t) {
+ 
+        sum = 0L;
+ 
+        for (int i = 0; i < n; ++i) {
+ 
+            sum += Math.max(a[i], b[i]);
+ 
+        }
+ 
+        long minMax = Math.min(a[0], b[0]);
+ 
+        for (int i = 0; i < n; ++i) {
+ 
+            minMax = Math.max(Math.min(a[i], b[i]), minMax);
+ 
+        }
+ 
+        sum += minMax;
+ 
+        ans.append(sum);
+ 
+        if (t != testCases) {
+ 
+            ans.append("\n");
+ 
+        }
+ 
+    }

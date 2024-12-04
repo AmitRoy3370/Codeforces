@@ -1,0 +1,25 @@
+ sum = 0L;
+
+        int perfectSquare = 0;
+
+        for (long i : a) {
+
+            sum += i;
+
+            if (sum % 2 == 0) {
+
+            } else {
+
+                long root = (long) (Math.sqrt(sum));
+
+                if (root * root == sum) {
+
+                    ++perfectSquare;
+
+                }
+
+            }
+
+        }
+
+        ans.append(perfectSquare);

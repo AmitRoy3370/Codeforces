@@ -1,0 +1,67 @@
+static int D(int i, int p[], boolean yes) {
+ 
+        if (!(i >= 1 && p[i] > p[i - 1] + 1 && (!isSmaller(p[i] + "", 0 + "") && !equal((long)p[i], 0L) ))) {
+ 
+            return i;
+ 
+        }
+ 
+        swap(p, i, i - 1);
+ 
+        p[i - 1] = p[i - 1] > 1 ? Integer.parseInt(sub(p[i - 1] + "", "1")) : p[i - 1] - 1;
+ 
+        if (i > 1) {
+ 
+            return D(i - 1, p, yes);
+ 
+        } else {
+ 
+            return i;
+ 
+        }
+ 
+    }
+ 
+    static void D(int i, int p[], char x[]) {
+ 
+        if (i >= n) {
+ 
+            return;
+ 
+        }
+ 
+        p[i] = x[i] - '0';
+ 
+        D(i + 1, p, x);
+ 
+    }
+ 
+    static void D(int t) {
+ 
+        p = new int[n];
+ 
+        D(0, p, x);
+ 
+        for (int i = 1; i < n; ++i) {
+ 
+            i = D(i, p, true);
+ 
+        }
+ 
+        StringBuilder sb = new StringBuilder();
+ 
+        for (int i : p) {
+ 
+            sb.append(i);
+ 
+        }
+ 
+        ans.append(sb.toString().trim());
+ 
+        if (t != testCases) {
+ 
+            ans.append("\n");
+ 
+        }
+ 
+    }

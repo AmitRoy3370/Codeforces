@@ -1,0 +1,65 @@
+static long[] B(int i, long sumOdd, long sumEven) {
+ 
+        if (i >= n) {
+ 
+            return new long[]{sumEven, sumOdd};
+ 
+        }
+ 
+        if ((i) % 2 == 1) {
+ 
+            sumOdd = Long.parseLong(sum(sumOdd + "", a[i] + ""));
+ 
+        } else {
+ 
+            sumEven = Long.parseLong(sum(sumEven + "", a[i] + ""));
+ 
+        }
+ 
+        return B(i + 1, sumOdd, sumEven);
+ 
+    }
+ 
+    static void B(int t) {
+ 
+        boolean yes;
+ 
+        long sumEven = 0L, sumOdd = 0L;
+ 
+        b = B(0, sumEven, sumOdd);
+ 
+        sumEven = b[0];
+        sumOdd = b[1];
+ 
+        long target = Long.parseLong(sum(sumEven + "", sumOdd + "")) / n;
+ 
+        if (mod(Long.valueOf(sum(sumEven + "", sumOdd + "")) + "", (long) n) != 0) {
+ 
+            yes = false;
+ 
+        } else {
+ 
+            long even = Long.parseLong(mul(((n + 1) / 2) + "", target + ""));
+            long odd = Long.parseLong(mul(((n) / 2) + "", target + ""));
+ 
+            yes = even == sumEven && odd == sumOdd;
+ 
+        }
+ 
+        if (yes) {
+ 
+            ans.append("YES");
+ 
+        } else {
+ 
+            ans.append("NO");
+ 
+        }
+ 
+        if (t != testCases) {
+ 
+            ans.append("\n");
+ 
+        }
+ 
+    }

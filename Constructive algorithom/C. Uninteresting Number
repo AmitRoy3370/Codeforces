@@ -1,0 +1,53 @@
+ static void C(int t) {
+ 
+        dp = new long[10];
+ 
+        dp[0] = 1L;
+ 
+        for (char i : x) {
+ 
+            p = new int[10];
+ 
+            for (int j = 0; j < 9; ++j) {
+ 
+                if (dp[j] == 0) {
+ 
+                    continue;
+ 
+                }
+ 
+                p[(j + (i - '0')) % 9] = 1;
+ 
+                if ((i - '0') * (i - '0') < 10) {
+ 
+                    p[(j + (i - '0') * (i - '0')) % 9] = 1;
+ 
+                }
+ 
+            }
+ 
+            for (int j = 0; j < 10; ++j) {
+ 
+                dp[j] = p[j];
+ 
+            }
+ 
+        }
+ 
+        if (dp[0] > 0) {
+ 
+            ans.append("YES");
+ 
+        } else {
+ 
+            ans.append("NO");
+ 
+        }
+ 
+        if (t != testCases) {
+ 
+            ans.append("\n");
+ 
+        }
+ 
+    }

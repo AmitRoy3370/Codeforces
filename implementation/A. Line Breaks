@@ -1,0 +1,44 @@
+ static void A(int t) {
+ 
+        sum = 0L;
+ 
+        int count = 0;
+ 
+        boolean find = true;
+ 
+        for (String i : s1) {
+ 
+            sum += i.length();
+ 
+            if (sum > m) {
+ 
+                break;
+ 
+            }
+ 
+            ++count;
+ 
+            if (sum == m) {
+ 
+                break;
+ 
+            }
+ 
+        }
+ 
+        if (!find) {
+ 
+            count = 0;
+ 
+        }
+ 
+        ans.append(count);
+ 
+        if (t != testCases) {
+ 
+            ans.append("\n");
+ 
+        }
+ 
+    }
+ 

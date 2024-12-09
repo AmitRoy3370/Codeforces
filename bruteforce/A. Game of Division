@@ -1,0 +1,49 @@
+static void A(int t) {
+
+        boolean yes = false;
+
+        for (int i = 0; i < n; ++i) {
+
+            yes = true;
+
+            for (int j = 0; j < n; ++j) {
+
+                if (i == j) {
+
+                    continue;
+
+                }
+
+                long difference = Math.abs(a[i] - a[j]);
+
+                yes = (difference % k != 0) & yes;
+
+            }
+
+            if (yes) {
+
+                m = i + 1;
+
+                break;
+
+            }
+
+        }
+
+        if (yes) {
+
+            ans.append("YES").append("\n").append(m);
+
+        } else {
+
+            ans.append("NO");
+
+        }
+
+        if (t != testCases) {
+
+            ans.append("\n");
+
+        }
+
+    }

@@ -1,0 +1,38 @@
+static long B(long operations, long value) {
+
+        if (value >= n) {
+
+            return operations;
+
+        }
+
+        ++operations;
+
+        return B(operations, Long.parseLong(mul(value + "", "2")) + 2L);
+
+    }
+
+    static void B(int t) {
+
+        switch (n) {
+            case 1, 2 ->
+                ans.append(n);
+            case 3 ->
+                ans.append(2);
+            default -> {
+                long operations = 1;
+                long value = 1L;
+
+                operations = B(operations, value);
+
+                ans.append(operations);
+            }
+        }
+
+        if (t != testCases) {
+
+            ans.append("\n");
+
+        }
+
+    }

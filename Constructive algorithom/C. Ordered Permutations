@@ -1,0 +1,150 @@
+static long C(int i, long dp[]) {
+
+        if (i <= 1) {
+
+            return 1L;
+
+        }
+
+        if ((i - 1) <= 40) {
+
+            return dp[i - 1];
+
+        }
+
+        return Long.MAX_VALUE;
+
+    }
+
+    static void C(int t) {
+
+        dp = new long[41];
+
+        dp[0] = 1;
+
+        for (int i = 1; i <= 40; ++i) {
+
+            dp[i] = 1;
+
+            dp[i] = Long.parseLong(mul(dp[i - 1] + "", "2"));
+
+        }
+
+        if (n == 1) {
+
+            if (K == 1) {
+
+                ans.append("1");
+
+            } else {
+
+                ans.append("-1");
+
+            }
+
+        } else {
+
+            long totalCount = C(n, dp);
+
+            if (K > totalCount) {
+
+                ans.append("-1");
+
+            } else {
+
+                b = new long[n];
+
+                ArrayList1<Element> list = new ArrayList1<>();
+
+                list.add(new Element(1L, (long) n, K));
+
+                int index = 0;
+
+                while (!list.isEmpty()) {
+
+                    Element element = list.get(0);
+
+                    list.popFront();
+
+                    if (element.first == 0 && element.first == element.second && element.third != 0) {
+
+                        b[index++] = element.third;
+
+                    } else {
+
+                        long left = element.first;
+                        long right = element.second;
+                        long value = element.third;
+
+                        while (true) {
+
+                            if (left == right) {
+
+                                b[index++] = left;
+
+                                break;
+
+                            }
+
+                            long length = right - left;
+
+                            long half = C((int) length, dp);
+
+                            if (half >= value) {
+
+                                b[index++] = left;
+
+                                ++left;
+
+                            } else {
+
+                                list.inserFirst(new Element(0L, 0L, left));
+                                
+                                ++left;
+
+                                value -= half;
+
+                                continue;
+
+                            }
+
+                            if (left > right) {
+
+                                break;
+
+                            }
+
+                            if (left == right) {
+
+                                b[index++] = left;
+                                break;
+
+                            }
+
+                        }
+
+                    }
+
+                }
+
+                StringBuilder sb = new StringBuilder();
+
+                for (long i : b) {
+
+                    sb.append(i).append(" ");
+
+                }
+
+                ans.append(sb.toString().trim());
+
+            }
+
+        }
+
+        if (t != testCases) {
+
+            ans.append("\n");
+
+        }
+
+    }

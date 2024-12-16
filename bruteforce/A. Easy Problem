@@ -1,0 +1,17 @@
+sum = 0L;
+
+        for (int i = 1; i <= n; ++i) { // check for a
+
+            for (int j = 1; j <= n; ++j) { // check for b
+
+                if (i + j == n) { // find a pair of a and b
+
+                    ++sum; // just increase our count.
+
+                }
+
+            }
+
+        }
+
+        ans.append(sum);

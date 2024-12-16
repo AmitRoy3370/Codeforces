@@ -1,0 +1,101 @@
+ static void D(int i, int index, TreeMap<Long, Integer> count, TreeMap<Long, Boolean> visited, long num, ArrayList1<Long> list) {
+ 
+        if (i >= n) {
+ 
+            return;
+ 
+        }
+ 
+        if (count.getOrDefault(a[i], 0) == 0) {
+ 
+            list.add(a[i]);
+ 
+            count.put(a[i], 1);
+ 
+        } else {
+ 
+            num = D(visited, num);
+ 
+            list.add(num);
+ 
+            visited.put(num, true);
+ 
+        }
+ 
+        D(i + 1, index, count, visited, num, list);
+ 
+    }
+ 
+    static long D(TreeMap<Long, Boolean> visited, long num) {
+ 
+        if (!visited.containsKey(num)) {
+ 
+            return num;
+ 
+        }
+ 
+        visited.put(num, true);
+ 
+        return D(visited, Long.parseLong(sum(num + "", "1")));
+ 
+    }
+ 
+    static void D(int i, TreeMap<Long, Boolean> visited) {
+ 
+        if (equal((long) i, (long) n)) {
+ 
+            return;
+ 
+        }
+ 
+        visited.put(a[i], true);
+ 
+        D(i + 1, visited);
+ 
+    }
+ 
+    static void D(int t) {
+ 
+        b = new long[n];
+ 
+        TreeMap<Long, Integer> count = new TreeMap<>();
+        TreeMap<Long, Boolean> visited = new TreeMap<>();
+ 
+        D(0, visited);
+ 
+        int index = 0;
+ 
+        long num = 1L;
+ 
+        ArrayList1<Long> list = new ArrayList1<>();
+ 
+        D(0, index, count, visited, num, list);
+ 
+        StringBuilder sb = new StringBuilder();
+ 
+        index = 0;
+ 
+        while (!list.isEmpty()) {
+ 
+            b[index++] = list.get(0);
+ 
+            list.popFront();
+ 
+        }
+ 
+        for (long i : b) {
+ 
+            sb.append(i).append(" ");
+ 
+        }
+ 
+        ans.append(sb.toString().trim());
+ 
+        if (t != testCases) {
+ 
+            ans.append("\n");
+ 
+        }
+ 
+    }
+ 

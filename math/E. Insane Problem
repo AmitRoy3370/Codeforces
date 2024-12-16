@@ -1,0 +1,44 @@
+ static long E(long left, long right, long K) {
+ 
+        if (isSmaller(a[n - 1] + "", K + "")) {
+ 
+            return sum;
+ 
+        }
+ 
+        left = Math.max(a[1], (a[3] + K - 1) / K);
+        right = Math.min(a[2], a[n - 1] / K);
+ 
+        if (!isSmaller(right + "", left + "")) {
+ 
+            sum += (right - left + 1);
+ 
+        }
+ 
+        if (isSmaller((a[n - 1] / a[0]) + "", K + "")) {
+ 
+            return sum;
+ 
+        }
+ 
+        return E(left, right, Long.parseLong(mul(K + "", a[0] + "")));
+ 
+    }
+ 
+    static void E(int t) {
+ 
+        sum = 0L;
+ 
+        K = 1L;
+ 
+        E(0L, 0L, K);
+ 
+        ans.append(sum);
+ 
+        if (t != testCases) {
+ 
+            ans.append("\n");
+ 
+        }
+ 
+    }

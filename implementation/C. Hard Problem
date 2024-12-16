@@ -1,0 +1,13 @@
+ long totalSeats;
+
+        long firstSit = Math.min(a[0], a[1]);
+
+        long secondSit = Math.min(a[0], a[2]);
+
+        totalSeats = Long.parseLong(sum(firstSit + "", secondSit + ""));
+
+        totalSeats += Math.min(a[3],
+                Long.parseLong(sum((a[0] - firstSit) + "",
+                        (a[0] - secondSit) + "")));
+
+        ans.append(totalSeats);

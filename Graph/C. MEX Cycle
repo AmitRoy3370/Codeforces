@@ -1,0 +1,140 @@
+static void C(int i, List<Integer> list, ArrayList1<Integer> pq, List<Integer> _list[]) {
+
+        if (i >= list.size()) {
+
+            return;
+
+        }
+
+        int v = list.get(i);
+
+        if (a[v - 1] == -1) {
+
+            Set<Long> set = new HashSet<>();
+
+            for (int neighbour : _list[v]) {
+
+                if (a[neighbour - 1] != -1) {
+
+                    set.add(a[neighbour - 1]);
+
+                }
+
+            }
+
+            long mex = C(0L, set);
+
+            a[v - 1] = mex;
+
+            pq.add(v);
+
+        }
+
+        C(i + 1, list, pq, _list);
+
+    }
+
+    static long C(long mex, Set<Long> set) {
+
+        while (set.contains(mex)) {
+
+            ++mex;
+
+        }
+
+        return mex;
+
+    }
+
+    static void C(ArrayList1<Integer> pq, long a[], List<Integer> list[]) {
+
+        if (pq.isEmpty()) {
+
+            return;
+
+        }
+
+        int u = pq.get(0);
+        pq.popFront();
+
+        C(0, list[u], pq, list);
+        
+        C(pq, a, list);
+
+    }
+
+    static void C(int i, List<Integer> list[]) {
+
+        if (i > n) {
+
+            return;
+
+        }
+
+        list[i].add(i == 1 ? n : i - 1);
+        list[i].add(i == n ? 1 : i + 1);
+
+        C(i + 1, list);
+
+    }
+
+    static void C(int t) {
+
+        a = new long[n];
+
+        for (int i = 0; i < n; ++i) {
+
+            a[i] = -1;
+
+        }
+
+        List<Integer> list[] = new ArrayList[n + 1];
+
+        for (int i = 0; i <= n; ++i) {
+
+            list[i] = new ArrayList<>();
+
+        }
+
+        C(1, list);
+
+        list[m].add(k);
+        list[k].add(m);
+
+        a[k - 1] = 1;
+        a[m - 1] = 0;
+
+        ArrayList1<Integer> pq = new ArrayList1<>();
+
+        pq.add(m);
+        pq.add(k);
+
+        C(pq, a, list);
+       
+        for (int i = 0; i < n; ++i) {
+
+            if (a[i] == -1) {
+
+                a[i] = 0;
+
+            }
+
+        }
+
+        StringBuilder sb = new StringBuilder();
+
+        for (long i : a) {
+
+            sb.append(i).append(" ");
+
+        }
+
+        ans.append(sb.toString().trim());
+
+        if (t != testCases) {
+
+            ans.append("\n");
+
+        }
+
+    }

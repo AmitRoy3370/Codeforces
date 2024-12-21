@@ -1,0 +1,48 @@
+static void D(int t) {
+    
+        long currentCost[] = new long[m];
+        long previousCost[] = new long[m];
+        
+        for(int i = 0; i < m; ++i) {
+            
+            currentCost[i] = Long.MAX_VALUE;
+            
+        }
+        
+        currentCost[0] = 0L;
+        
+        for(long raw[] : A) {
+            
+            for(int i = 0; i < m; ++i) {
+                
+                previousCost[i] = currentCost[i];
+                currentCost[i] = Long.MAX_VALUE;
+                
+            }
+            
+            for(int operation = 0; operation < m; ++operation) {
+                
+                long shiftCost = operation * K;
+                
+                sum = Long.MAX_VALUE; // brown cost
+                
+                for(int i = 0; i < m; ++i) { // present raw value
+                    
+                    sum = Math.min(sum, previousCost[i]) + (raw[(i + operation) % m]);
+                    currentCost[i] = Math.min(currentCost[i], shiftCost + sum);
+                    
+                }
+                
+            }
+            
+        }
+        
+        ans.append(currentCost[m - 1]);
+        
+        if(t != testCases) {
+            
+            ans.append("\n");
+            
+        }
+        
+    }

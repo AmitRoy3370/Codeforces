@@ -1,0 +1,68 @@
+
+    static void C(int i, TreeMap<Long, Boolean> map, StringBuilder sb) {
+
+        if (i >= m) {
+
+            return;
+
+        }
+
+        if (map.containsKey(a[i])) {
+
+            sb.append("0");
+
+        } else {
+
+            sb.append("1");
+
+        }
+
+        C(i + 1, map, sb);
+
+    }
+
+    static void C(int i, TreeMap<Long, Boolean> map) {
+
+        if (i >= k) {
+
+            return;
+
+        }
+
+        map.put(b[i], true);
+
+        C(i + 1, map);
+
+    }
+
+    static void C(int t) {
+
+        TreeMap<Long, Boolean> map = new TreeMap<>();
+
+        C(0, map);
+
+        StringBuilder sb = new StringBuilder();
+
+        if (isSmaller(k + "", (n - 1) + "")) {
+
+            sb.append("0".repeat(m));
+
+        } else if (!equal((long) k, (long) (n - 1))) {
+
+            sb.append("1".repeat(m));
+
+        } else {
+
+            C(0, map, sb);
+
+        }
+
+        ans.append(sb.toString().trim());
+
+        if (t != testCases) {
+
+            ans.append("\n");
+
+        }
+
+    }

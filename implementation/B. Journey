@@ -1,0 +1,49 @@
+static long B(int i, long remaining, long days) {
+
+        if (remaining <= 0) {
+
+            return days;
+
+        }
+
+        if (a[i % n] >= remaining) {
+
+            remaining -= a[i % n];
+
+        } else {
+
+            remaining = Long.parseLong(sub(remaining + "", a[i % n] + ""));
+
+        }
+
+        return B(i + 1, remaining, days + 1);
+
+    }
+
+    static void B(int t) {
+
+        n = 3;
+
+        a = new long[n];
+
+        a[0] = X;
+        a[1] = Y;
+        a[2] = Z;
+
+        sum = sum(a, 0, 0L);
+
+        long remaining = mod(N + "", sum);
+
+        long days = Long.parseLong(mul("3", (N / sum) + ""));
+
+        days = B(0, remaining, days);
+
+        ans.append(days);
+
+        if (t != testCases) {
+
+            ans.append("\n");
+
+        }
+
+    }

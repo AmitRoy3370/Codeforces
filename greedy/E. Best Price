@@ -1,0 +1,64 @@
+static void E(int t) {
+
+        List<Long> list = new ArrayList<>();
+
+        List<Long> listA = new ArrayList<>();
+        List<Long> listB = new ArrayList<>();
+
+        for (long i : a) {
+
+            list.add(i);
+            list.add(i - 1);
+            list.add(i + 1);
+            listA.add(i);
+
+        }
+
+        for (long i : b) {
+
+            list.add(i);
+            list.add(i - 1);
+            list.add(i + 1);
+            listB.add(i);
+
+        }
+
+        Collections.sort(list, Collections.reverseOrder());
+        Collections.sort(listA, Collections.reverseOrder());
+        Collections.sort(listB, Collections.reverseOrder());
+
+        sum = 0L;
+
+        int indexA = 0, indexB = 0;
+
+        for (long i : list) {
+
+            while (indexA < n && listA.get(indexA) >= i) {
+
+                ++indexA;
+
+            }
+
+            while (indexB < n && listB.get(indexB) >= i) {
+
+                ++indexB;
+
+            }
+
+            if (indexB - indexA <= k) {
+
+                sum = Math.max(sum, i * indexB);
+
+            }
+
+        }
+
+        ans.append(sum);
+
+        if (t != testCases) {
+
+            ans.append("\n");
+
+        }
+
+    }

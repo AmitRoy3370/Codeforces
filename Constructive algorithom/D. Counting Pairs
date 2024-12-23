@@ -1,0 +1,91 @@
+
+    static long[] D(long present, long X, long Y) {
+
+        long differenceX = present - X;
+        long differenceY = 0L;
+
+        if (present > Y) {
+
+            differenceY = present - Y;
+
+        }
+
+        int left = upper_bound(a, n, differenceY - 1);
+        int right = upper_bound(a, n, differenceX);
+
+        return new long[]{left, right};
+
+    }
+
+    static void D(int i, long finalAns, ArrayList1<Long> list) {
+
+        if (i >= n) {
+
+            return;
+
+        }
+
+        long present = sum - a[i];
+
+        if (X > present) {
+
+            D(i + 1, finalAns, list);
+
+        } else {
+
+            c = D(present, X, Y);
+
+            int left = (int) c[0];
+            int right = (int) c[1];
+
+            --right;
+
+            if (left > right) {
+
+                D(i + 1, finalAns, list);
+
+            } else {
+
+                if (i >= left && i <= right) {
+
+                    --finalAns;
+
+                }
+
+                finalAns += (right - left + 1);
+
+                list.inserFirst(finalAns);
+
+                D(i + 1, finalAns, list);
+
+            }
+
+        }
+
+    }
+
+    static void D(int t) {
+
+        sum = sum(a, 0, 0L);
+
+        sort(a, 0, n - 1);
+
+        long finalAns = 0L;
+
+        ArrayList1<Long> list = new ArrayList1<>();
+
+        list.add(finalAns);
+
+        D(0, finalAns, list);
+
+        finalAns = list.get(0);
+
+        ans.append(finalAns / 2L);
+
+        if (t != testCases) {
+
+            ans.append("\n");
+
+        }
+
+    }

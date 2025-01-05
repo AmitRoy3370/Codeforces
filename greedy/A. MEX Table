@@ -1,0 +1,15 @@
+static void A(int t) {
+ 
+        sum = isSmaller(M + "", N + "") ? N : M;
+ 
+        sum = Long.parseLong(sum(sum + "", "1"));
+ 
+        ans.append(sum);
+ 
+        if (t != testCases) {
+ 
+            ans.append("\n");
+ 
+        }
+ 
+    }

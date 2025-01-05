@@ -1,0 +1,82 @@
+static int B(int index, long b[], int count) {
+ 
+        if (index >= b.length || (k > 0 && isSmaller(k + "", b[index] + "")) || b[index] > k) {
+ 
+            return count;
+ 
+        }
+ 
+        k -= b[index];
+ 
+        --count;
+ 
+        return B(index + 1, b, count);
+ 
+    }
+ 
+    static void B(int i, TreeMap<Long, Long> map) {
+ 
+        if (i >= n) {
+ 
+            return;
+ 
+        }
+ 
+        if (a[i] == a[i - 1]) {
+ 
+            map.put(a[i], map.getOrDefault(a[i], 0L) + 1);
+            
+        } else {
+ 
+            map.put(a[i], map.getOrDefault(a[i], 0L) + 1);
+ 
+        }
+ 
+        B(i + 1, map);
+ 
+    }
+ 
+    static void B(int t) {
+ 
+        if (n == 1) {
+ 
+            ans.append("1");
+ 
+        } else {
+ 
+            TreeMap<Long, Long> map = new TreeMap<>();
+ 
+            map.put(a[0], 1L);
+ 
+            B(1, map);
+ 
+            b = new long[map.size()];
+ 
+            int index = 0;
+ 
+            for (long i : map.keySet()) {
+ 
+                b[index++] = map.get(i);
+ 
+            }
+ 
+            sort(b, 0, b.length - 1);
+ 
+            index = 0;
+ 
+            int count = b.length;
+ 
+            count = B(index, b, count);
+ 
+            ans.append(Math.max(count, 1));
+ 
+        }
+ 
+        if (t != testCases) {
+ 
+            ans.append("\n");
+ 
+        }
+ 
+    }
+ 

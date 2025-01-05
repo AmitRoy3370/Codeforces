@@ -1,0 +1,84 @@
+static String C(int power, long sum) {
+ 
+        if (power < 0) {
+ 
+            return sum + "_" + power;
+ 
+        }
+ 
+        long powValue = pow(2L, power - 1);
+ 
+        if ((L[0] & powValue) == (R[0] & powValue)) {
+ 
+            if ((L[0] & powValue) > 0) {
+ 
+                sum = Long.parseLong(sum(sum + "", powValue + ""));
+ 
+            }
+ 
+            return C(power - 1, sum);
+ 
+        } else {
+ 
+            return sum + "_" + power;
+ 
+        }
+ 
+    }
+ 
+    static void C(int t) {
+ 
+        int power = 30;
+ 
+        sum = 0L;
+ 
+        String result[] = C(power, sum).split("_");
+ 
+        sum = Long.parseLong(result[0]);
+        power = Integer.parseInt(result[1]);
+ 
+        long powValue = pow(2L, power - 1);
+ 
+        long value = Long.parseLong(sum(sum + "", powValue + ""));
+ 
+        if (R[0] > value) {
+ 
+            ans.append((value - 1)).append(" ").append(value).append(" ").append((value + 1));
+ 
+        } else {
+ 
+            ans.append((value - 2)).append(" ").append((value - 1)).append(" ").append(value);
+ 
+        }
+ 
+        if (t != testCases) {
+ 
+            ans.append("\n");
+ 
+        }
+ 
+    }
+ static long pow(long value, long power) {
+ 
+        long pow_value = 1L;
+ 
+        while (power > 0L) {
+ 
+            if (power % 2L == 1L) {
+ 
+                pow_value *= value;
+ 
+                pow_value %= mod;
+ 
+            }
+ 
+            value *= value;
+ 
+            value %= mod;
+            power /= 2L;
+ 
+        }
+ 
+        return pow_value;
+ 
+    }

@@ -1,0 +1,109 @@
+ static long raw(int i) {
+        
+        sum = 0L;
+        
+        for(int j = 0; j < m; ++j) {
+            
+            sum += A[i][j];
+            
+        }
+        
+        return sum;
+        
+    }
+    
+    static long col(int j) {
+        
+        sum = 0L;
+        
+        for(int i = 0; i < n; ++i) {
+            
+            sum += A[i][j];
+            
+        }
+        
+        return sum;
+        
+    }
+    
+    static void C(int t) {
+ 
+        B = new long[n][m];
+ 
+        a = new long[n];
+        b = new long[m];
+ 
+        for (int i = 0; i < n; ++i) {
+ 
+            for (int j = 0; j < m; ++j) {
+ 
+                a[i] += A[i][j];
+                b[j] += A[i][j];
+ 
+            }
+ 
+        }
+ 
+        int i = 0, j = 0;
+ 
+        for (int index = 0; index < n + m - 2; ++index) {
+ 
+            char move = x[index];
+ 
+            if (move == 'R') {
+ 
+                A[i][j] = -col(j);
+                ++j;
+ 
+            } else {
+ 
+                A[i][j] = -raw(i);
+                ++i;
+ 
+            }
+ 
+        }
+ 
+        A[n - 1][m - 1] = -raw(n - 1);
+ 
+        for (i = 0; i < n; ++i) {
+ 
+            for (j = 0; j < m; ++j) {
+ 
+                B[i][j] = A[i][j];
+ 
+            }
+ 
+        }
+ 
+        StringBuilder sb = new StringBuilder();
+ 
+        for (i = 0; i < n; ++i) {
+ 
+            StringBuilder raw = new StringBuilder();
+ 
+            for (j = 0; j < m; ++j) {
+ 
+                raw.append(B[i][j]).append(" ");
+ 
+            }
+ 
+            sb.append(raw.toString().trim());
+ 
+            if (i != n - 1) {
+ 
+                sb.append("\n");
+ 
+            }
+ 
+        }
+ 
+        ans.append(sb.toString().trim());
+ 
+        if (t != testCases) {
+ 
+            ans.append("\n");
+ 
+        }
+ 
+    }

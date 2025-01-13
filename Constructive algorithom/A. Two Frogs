@@ -1,0 +1,21 @@
+static void A(int t) {
+ 
+        int distanceOfAliceAndBob = Math.abs(a_ - b_);
+        
+        if(mod(distanceOfAliceAndBob + "", 2L) == 0) {
+            
+            ans.append("YES");
+            
+        } else {
+            
+            ans.append("NO");
+            
+        }
+        
+        if (t != testCases) {
+ 
+            ans.append("\n");
+ 
+        }
+ 
+    }

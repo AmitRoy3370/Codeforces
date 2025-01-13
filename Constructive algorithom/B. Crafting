@@ -1,0 +1,78 @@
+ static boolean B(int i, long a[], long b[], long maxDistance, int index) {
+ 
+        if (i >= n) {
+ 
+            return true;
+ 
+        }
+ 
+        if (i == index) {
+ 
+            return B(i + 1, a, b, maxDistance, index);
+ 
+        } else {
+ 
+            if (a[i] - maxDistance < b[i]) {
+ 
+                return false;
+ 
+            }
+ 
+            return B(i + 1, a, b, maxDistance, index);
+ 
+        }
+ 
+    }
+ 
+    static long[] B(int i, long maxDistance, int index) {
+ 
+        if (i >= n) {
+ 
+            return new long[]{maxDistance, index};
+ 
+        }
+ 
+        long difference = Math.abs(a[i] - b[i]);
+ 
+        if (isSmaller(a[i] + "", b[i] + "") && isSmaller(maxDistance + "", difference + "")) {
+ 
+            maxDistance = difference;
+            index = i;
+ 
+        }
+ 
+        return B(i + 1, maxDistance, index);
+ 
+    }
+ 
+    static void B(int t) {
+ 
+        long maxDistance = 0L;
+ 
+        int index = -1;
+ 
+        c = B(0, maxDistance, index);
+ 
+        maxDistance = c[0];
+        index = (int) c[1];
+ 
+        boolean yes = B(0, a, b, maxDistance, index);
+ 
+        if (yes) {
+ 
+            ans.append("YES");
+ 
+        } else {
+ 
+            ans.append("NO");
+ 
+        }
+ 
+        if (t != testCases) {
+ 
+            ans.append("\n");
+ 
+        }
+ 
+    }
+ 

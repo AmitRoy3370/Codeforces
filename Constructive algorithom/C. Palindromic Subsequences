@@ -1,0 +1,42 @@
+ static void C(int i, long a[]) {
+
+        if (isSmaller((n - 2) + "", i + "")) {
+
+            return;
+
+        }
+
+        a[i] = n - i - 1;
+
+        C(Integer.parseInt(sum(i + "", "1")), a);
+
+    }
+
+    static void C(int t) {
+
+        StringBuilder sb = new StringBuilder();
+
+        a = new long[n];
+
+        a[0] = 1L;
+        a[1] = a[0];
+        
+        C(1, a);
+
+        a[n - 1] = a[0];
+        
+        for (long i : a) {
+
+            sb.append(i).append(" ");
+
+        }
+
+        ans.append(sb.toString().trim());
+
+        if (t != testCases) {
+
+            ans.append("\n");
+
+        }
+
+    }

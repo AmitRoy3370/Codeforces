@@ -1,0 +1,47 @@
+ static void C(int t) {
+ 
+        TreeMap<Long, Integer> count = new TreeMap<>();
+ 
+        Set<Long> set = new HashSet<>();
+        
+        for(long i : a) {
+            
+            count.put(i, count.getOrDefault(i, 0) + 1);
+            set.add(i);
+            
+        }
+ 
+        sum = 0L;
+ 
+        for (Long i : set) {
+ 
+            long first = count.getOrDefault(i, 0);
+            long second = count.getOrDefault(k - i, 0);
+ 
+            if (first > 0 && second > 0) {
+ 
+                if (i == k - i) {
+ 
+                    sum = Long.parseLong(sum(sum + "", (count.get(i) / 2) + ""));
+ 
+                } else {
+ 
+                    sum = Long.parseLong(sum(sum + "", Math.min(first, second) + ""));
+ 
+                }
+ 
+                count.remove(i);
+ 
+                try {
+ 
+                    count.remove(k - i);
+ 
+                } catch (Exception e) {
+ 
+                }
+ 
+            }
+ 
+        }
+ 
+        ans.append(sum);

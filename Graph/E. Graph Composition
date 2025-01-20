@@ -1,0 +1,127 @@
+static Map<String, Boolean> map = new HashMap<>();
+ 
+    static void E(int source, boolean visited[], List<Integer> list[], int count, boolean second) {
+ 
+        if (second) {
+ 
+            p[source] = count;
+ 
+        }
+ 
+        visited[source] = true;
+ 
+        for (int i : list[source]) {
+ 
+            if (!visited[i]) {
+ 
+                if (!second) {
+ 
+                    if (!map.containsKey(source + "_" + i)) {
+ 
+                        E(i, visited, list, count, second);
+ 
+                    }
+ 
+                } else {
+ 
+                    E(i, visited, list, count, second);
+ 
+                }
+ 
+            }
+ 
+        }
+ 
+    }
+ 
+    static void E(int t) {
+ 
+        List<Integer> list[] = new ArrayList[n];
+        List<Integer> list1[] = new ArrayList[n];
+ 
+        for (int i = 0; i < n; ++i) {
+ 
+            list[i] = new ArrayList<>();
+            list1[i] = new ArrayList<>();
+ 
+        }
+ 
+        for (int i = 0; i < m1; ++i) {
+ 
+            list[u[i]].add(v[i]);
+            list[v[i]].add(u[i]);
+ 
+        }
+ 
+        for (int i = 0; i < m2; ++i) {
+ 
+            list1[u1[i]].add(v1[i]);
+            list1[v1[i]].add(u1[i]);
+ 
+        }
+ 
+        boolean visited[] = new boolean[n + 1];
+ 
+        int countSecondGraph = 0;
+ 
+        p = new int[n];
+ 
+        for (int i = 0; i < n; ++i) {
+ 
+            if (!visited[i]) {
+ 
+                countSecondGraph = Integer.parseInt(sum(countSecondGraph + "", "1"));
+ 
+                E(i, visited, list1, countSecondGraph, true);
+ 
+            }
+ 
+        }
+ 
+        sum = 0L;
+ 
+        map = new HashMap<>();
+ 
+        for (int i = 0; i < n; ++i) {
+ 
+            for (int vertex : list[i]) {
+ 
+                if (p[i] != p[vertex]) {
+ 
+                    sum = Long.parseLong(sum(sum + "", "1"));
+                    map.put(i + "_" + vertex, true);
+ 
+                }
+ 
+            }
+ 
+        }
+ 
+        int countFirstGraph = 0;
+ 
+        boolean visited1[] = new boolean[n];
+ 
+        for (int i = 0; i < n; ++i) {
+ 
+            if (!visited1[i]) {
+ 
+                countFirstGraph = Integer.parseInt(sum(countFirstGraph + "", "1"));
+ 
+                E(i, visited1, list, countFirstGraph, false);
+ 
+            }
+ 
+        }
+ 
+        sum = (sum / 2) + countFirstGraph - countSecondGraph;
+ 
+        ans.append(sum);
+ 
+        if (t != testCases) {
+ 
+            ans.append("\n");
+ 
+        }
+ 
+    }
+ 

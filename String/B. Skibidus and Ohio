@@ -1,0 +1,35 @@
+static void B(int t) {
+
+        int length = n;
+
+        boolean find = false;
+
+        for (int i = 0; i < n; ++i) {
+
+            int j = i + 1;
+
+            if (j < n && x[i] == x[j]) {
+
+                find = true;
+
+                break;
+
+            }
+
+        }
+
+        if (find) {
+
+            length = 1;
+
+        }
+
+        ans.append(length);
+
+        if (t != testCases) {
+
+            ans.append("\n");
+
+        }
+
+    }

@@ -1,0 +1,97 @@
+
+    static boolean C2(int i, List<Long> list, long maximumValuedElement, long currentMaximumElement, long positiveMax) {
+
+        if (equal((long) i, (long) n)) {
+
+            return true;
+
+        }
+
+        maximumValuedElement = positiveMax;
+
+        if (a[i] >= currentMaximumElement) {
+
+            maximumValuedElement = a[i];
+
+        }
+
+        long required = currentMaximumElement > 0 ? Long.parseLong(sum(a[i] + "", currentMaximumElement + "")) : a[i] + currentMaximumElement;
+
+        int index = Collections.binarySearch(list, required);
+
+        if (index < 0) {
+
+            index = -(index + 1);
+
+        }
+
+        if (index >= 0 && index < m) {
+
+            long candidate = b[index] - a[i];
+
+            maximumValuedElement = Math.min(maximumValuedElement, candidate);
+
+        }
+
+        if (maximumValuedElement == positiveMax) {
+
+            return false;
+
+        } else {
+
+            currentMaximumElement = maximumValuedElement;
+
+            return C2(Integer.parseInt(sum(i + "", "1")), list, maximumValuedElement, currentMaximumElement, positiveMax);
+
+        }
+
+    }
+
+    static void C2(int i, List<Long> list) {
+
+        if (equal((long) i, (long) m)) {
+
+            return;
+
+        }
+
+        list.add(b[i]);
+
+        C2(Integer.parseInt(sum(i + "", "1")), list);
+
+    }
+
+    static void C2(int t) {
+
+        sort(b, 0, m - 1);
+
+        boolean yes;
+
+        long positiveMax = (long) (Math.pow(10, 18));
+        long negativeMax = -1 * positiveMax;
+
+        long current = negativeMax;
+
+        List<Long> list = new ArrayList<>();
+
+        C2(0, list);
+
+        yes = C2(0, list, positiveMax, current, positiveMax);
+
+        if (yes) {
+
+            ans.append("YES");
+
+        } else {
+
+            ans.append("NO");
+
+        }
+
+        if (t != testCases) {
+
+            ans.append("\n");
+
+        }
+
+    }

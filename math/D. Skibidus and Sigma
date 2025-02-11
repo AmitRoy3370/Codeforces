@@ -1,0 +1,48 @@
+static void D(int t) {
+
+        a = new long[n];
+
+        long base = 0L;
+
+        for (int i = 0; i < n; ++i) {
+
+            sum = 0L;
+            long prefixSum = 0L, prefixSumSummation = 0L;
+
+            for (int j = 0; j < m; ++j) {
+
+                sum += A[i][j];
+                prefixSum += A[i][j];
+                prefixSumSummation += prefixSum;
+
+            }
+
+            a[i] = sum;
+
+            base += prefixSumSummation;
+
+        }
+
+        sort(a, 0, n - 1);
+
+        reverse(a);
+
+        sum = 0L;
+
+        for (int i = 0; i < n; ++i) {
+
+            sum += a[i] * (n - i - 1);
+
+        }
+
+        sum = base + m * sum;
+
+        ans.append(sum);
+
+        if (t != testCases) {
+
+            ans.append("\n");
+
+        }
+
+    }

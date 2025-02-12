@@ -1,0 +1,27 @@
+static void A(int t) {
+
+        if (Long.parseLong(sub(Y + "", "1")) == X) {
+
+            ans.append("YES");
+
+        } else if (isSmaller(X + "", Y + "")) {
+
+            ans.append("NO");
+
+        } else if (isSmaller(Y + "", (X + 1) + "") && mod((X + 1 - Y) + "", 9) == 0) {
+
+            ans.append("YES");
+
+        } else {
+
+            ans.append("NO");
+
+        }
+
+        if (t != testCases) {
+
+            ans.append("\n");
+
+        }
+
+    }

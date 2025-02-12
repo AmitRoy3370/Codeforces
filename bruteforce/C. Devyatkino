@@ -1,0 +1,69 @@
+ static ArrayList1<Long> list = new ArrayList1<>();
+
+    static void collectNumbers() {
+
+        for (long i = 9; i <= 999999999L; i = 10 * i + 9) {
+
+            list.add(i);
+
+        }
+
+    }
+
+    static boolean has7(long n) {
+
+        while (n > 0) {
+
+            if (n % 10 == 7) {
+
+                return true;
+
+            }
+
+            n /= 10;
+
+        }
+
+        return false;
+
+    }
+
+    static void C(int t) {
+
+        if (has7(N)) {
+
+            ans.append("0");
+
+        } else {
+
+            m = list.size();
+
+            int operation = 100;
+
+            for (int i = 0; i < m; ++i) {
+
+                for (int j = 1; j < operation; ++j) {
+
+                    long value = (N + list.get(i) * j);
+
+                    if (has7(value)) {
+
+                        operation = j;
+
+                    }
+
+                }
+
+            }
+
+            ans.append(operation);
+
+        }
+
+        if (t != testCases) {
+
+            ans.append("\n");
+
+        }
+
+    }

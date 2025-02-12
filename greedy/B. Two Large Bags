@@ -1,0 +1,91 @@
+
+    static boolean B(int i, int count[]) {
+
+        if (equal((long) i, (long) n)) {
+
+            return true;
+
+        }
+
+        if (equal((long) count[i], 1L)) {
+
+            return false;
+
+        } else {
+
+            if (!equal((long) count[i], 0L)) {
+
+                int previous = count[i];
+
+                count[i] = 2;
+
+                count[i + 1] += previous - 2;
+
+            }
+
+            return B(Integer.parseInt(sum(i + "", "1")), count);
+
+        }
+
+    }
+
+    static void B(int i, TreeMap<Long, Integer> map) {
+
+        if (equal((long) i, (long) n)) {
+
+            return;
+
+        }
+
+        map.put(a[i], map.getOrDefault(a[i], 0) + 1);
+
+        B(Integer.parseInt(sum(i + "", "1")), map);
+
+    }
+
+    static void B(int t) {
+
+        TreeMap<Long, Integer> map = new TreeMap<>();
+
+        B(0, map);
+
+        boolean yes;
+
+        int count[] = new int[n + 1];
+
+        for (long element : map.keySet()) {
+
+            count[(int) element] = map.get(element);
+
+        }
+
+        yes = B(0, count);
+
+        for (int i : count) {
+
+            if (mod(i + "", 2) == 1) {
+
+                yes = false;
+                break;
+
+            }
+
+        }
+
+        if (yes) {
+
+            ans.append("YES");
+
+        } else {
+
+            ans.append("NO");
+
+        }
+
+        if (t != testCases) {
+
+            ans.append("\n");
+
+        }
+
+    }

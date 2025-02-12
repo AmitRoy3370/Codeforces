@@ -1,0 +1,71 @@
+static void E(int t) {
+
+        int totalZeros = 0, minPositionOfZero = Integer.MAX_VALUE;
+
+        for (int i = 0; i < n; ++i) {
+
+            if (a[i] == 0) {
+
+                ++totalZeros;
+                minPositionOfZero = Math.min(minPositionOfZero, i);
+
+            }
+
+        }
+
+        int suffixMex[] = new int[n];
+
+        for (int i = 0; i < n; ++i) {
+
+            suffixMex[i] = -1;
+
+        }
+
+        int mex = 0;
+
+        TreeMap<Long, Boolean> map = new TreeMap<>();
+
+        for (int i = n; i >= 1; --i) {
+
+            suffixMex[i - 1] = mex;
+
+            map.put(a[i - 1], true);
+
+            while (map.containsKey((long) mex)) {
+
+                ++mex;
+
+            }
+
+        }
+
+        int takeOneZero = 1;
+
+        if (totalZeros == 0) {
+
+            takeOneZero = 0;
+
+        }
+
+        for (int i = 0; i < Math.min(n, minPositionOfZero); ++i) {
+
+            if (suffixMex[i] > a[i]) {
+
+                takeOneZero = 0;
+                break;
+
+            }
+
+        }
+
+        int finalLength = n - totalZeros + takeOneZero;
+
+        ans.append(finalLength);
+
+        if (t != testCases) {
+
+            ans.append("\n");
+
+        }
+
+    }

@@ -1,0 +1,53 @@
+ static int A(int i, int operation) {
+ 
+        if (i >= n) {
+ 
+            return operation;
+ 
+        }
+ 
+        if (x[i] != x[i - 1]) {
+ 
+            operation = Integer.parseInt(sum(operation + "", "1"));
+ 
+        }
+ 
+        return A(i + 1, operation);
+ 
+    }
+ 
+    static void A(int t) {
+ 
+        int count[] = new int[2];
+ 
+        for (char i : x) {
+ 
+            count[i - '0']++;
+ 
+        }
+ 
+        if (count[0] == n) {
+ 
+            ans.append("0");
+ 
+        } else if (count[1] == n) {
+ 
+            ans.append("1");
+ 
+        } else {
+ 
+            int operation = (x[0] == '1' ? 1 : 0);
+ 
+            operation = A(1, operation);
+ 
+            ans.append(operation);
+ 
+        }
+ 
+        if (t != testCases) {
+ 
+            ans.append("\n");
+ 
+        }
+ 
+    }

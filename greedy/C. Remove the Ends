@@ -1,0 +1,59 @@
+static void C(int i, long prefix[], long suffix[]) {
+
+        if (isSmaller(n + "", i + "")) {
+
+            return;
+
+        }
+
+        long value = (suffix[i] > 0 && prefix[i] > 0) ? Long.parseLong(sum(suffix[i] + "", prefix[i] + "")) : suffix[i] + prefix[i];
+        
+        sum = Math.max(sum, value);
+
+        C(Integer.parseInt(sum(i + "", "1")), prefix, suffix);
+
+    }
+
+    static void C(int i, int end, int inc, boolean mul, long arr[]) {
+
+        if (equal((long)i, (long)end)) {
+
+            return;
+
+        }
+
+        if (mul) {
+
+            arr[i] = arr[i + -1 * inc] + Math.max(0, -1L * a[i]);
+
+        } else {
+
+            arr[i] = arr[i + -1 * inc] + Math.max(0, a[i + -1 * inc]);
+
+        }
+
+        C(i + inc, end, inc, mul, arr);
+
+    }
+
+    static void C(int t) {
+
+        prefix = new long[n + 1];
+        suffix = new long[n + 1];
+
+        C(1, n + 1, 1, false, prefix);
+        C(n - 1, -1, -1, true, suffix);
+
+        sum = 0L;
+
+        C(0, prefix, suffix);
+
+        ans.append(sum);
+
+        if (t != testCases) {
+
+            ans.append("\n");
+
+        }
+
+    }

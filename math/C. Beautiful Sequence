@@ -1,0 +1,77 @@
+ static long C(int i, int count[], long finalAns) {
+ 
+        if (i == n) {
+ 
+            return finalAns;
+ 
+        }
+ 
+        if (equal(a[i], 1L)) {
+ 
+            count[1] = Integer.parseInt(sum(count[1] + "", "1"));
+ 
+            sum = Long.parseLong(sum(sum + "", c[count[2]] + ""));
+ 
+            sum = mod(sum + "", mod);
+ 
+        } else if (equal(a[i], 2L)) {
+ 
+            count[2] = Integer.parseInt(sum(count[2] + "", "1"));
+ 
+        } else {
+ 
+            long result = ((b[count[2]] * sum)) % mod;
+            result = (result - count[1] + mod) % mod;
+ 
+            finalAns = Long.parseLong(sum(finalAns + "", result + ""));
+ 
+            finalAns = mod(finalAns + "", mod);
+ 
+        }
+ 
+        return C(i + 1, count, finalAns);
+ 
+    }
+ 
+    static void C() {
+ 
+        b = new long[(int) (2e5 + 1)];
+ 
+        c = new long[b.length];
+ 
+        b[0] = 1L;
+        c[0] = 1L;
+        long inv2 = 499122177L;
+ 
+        for (int i = 1; i < b.length; ++i) {
+ 
+            b[i] = b[i - 1] * 2L;
+            b[i] = mod(b[i] + "", mod);
+ 
+            c[i] = c[i - 1] * inv2;
+            c[i] = mod(c[i] + "", mod);
+ 
+        }
+ 
+    }
+ 
+    static void C(int t) {
+ 
+        int count[] = new int[3];
+ 
+        sum = 0L;
+ 
+        long finalAns = 0L;
+ 
+        finalAns = C(0, count, finalAns);
+ 
+        ans.append(finalAns);
+ 
+        if (t != testCases) {
+ 
+            ans.append("\n");
+ 
+        }
+ 
+    }
+ 

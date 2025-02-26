@@ -1,0 +1,69 @@
+static void E(int t) {
+
+        int countX = 0, countY = 0;
+        
+        ArrayList1<String> list = new ArrayList1<>();
+
+        while (k > 0) {
+
+            int left = 0, right = 500;
+
+            while (right > left) {
+
+                int mid = (left + right + 1) / 2;
+
+                if (mid * (mid - 1) / 2 > k) {
+
+                    right = mid - 1;
+
+                } else {
+
+                    left = mid;
+
+                }
+
+            }
+
+            int presentPair = left;
+
+            for (int i = 0; i < presentPair; ++i) {
+
+                list.add(countX + " " + (countY++));
+
+            }
+
+            ++countX;
+
+            k -= presentPair * (presentPair - 1) / 2;
+
+        }
+
+        ans.append(list.size());
+
+        if(list.size() != 0) {
+            
+            ans.append("\n");
+            
+        }
+        
+        while (!list.isEmpty()) {
+
+            ans.append(list.get(0));
+
+            if(list.size() != 1) {
+                
+                ans.append("\n");
+                
+            }
+            
+            list.popFront();
+
+        }
+
+        if (t != testCases) {
+
+            ans.append("\n");
+
+        }
+
+    }

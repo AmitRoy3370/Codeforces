@@ -1,0 +1,36 @@
+
+    static long A(int i, long remaining, long match) {
+
+        if (i > remaining) {
+
+            return match;
+
+        }
+
+        if (mod(i + "", 3) == mod(i + "", 5)) {
+
+            ++match;
+
+        }
+
+        return A(i + 1, remaining, match);
+
+    }
+
+    static void A(int t) {
+
+        long match = (((N / 15) * 3));
+
+        long remaining = mod(N + "", 15);
+
+        match = A(0, remaining, match);
+
+        ans.append(match);
+
+        if (t != testCases) {
+
+            ans.append("\n");
+
+        }
+
+    }

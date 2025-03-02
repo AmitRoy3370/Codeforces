@@ -1,0 +1,156 @@
+
+    static long D1(SegmentTree segment, long L, TreeMap<Long, Long> map) {
+
+        if (equal(L, n * 1L) || isSmaller(L + "", n + "")) {
+
+            return segment.rangeValue(1, (int) L);
+
+        } else {
+
+            if (map.containsKey(L)) {
+
+                return map.get(L);
+
+            } else {
+
+                long value;
+
+                if (equal(mod(n + "", 2L) * 1L, 1L)) {
+
+                    if (equal(mod(L + "", 2L) * 1L, 1L)) {
+
+                        value = segment.rangeValue(1, n);
+
+                    } else {
+
+                        value = segment.rangeValue(1, n) ^ D1(segment, L / 2, map);
+
+                    }
+
+                } else {
+
+                    if (equal(mod(L + "", 2L) * 1L, 1L)) {
+
+                        value = segment.rangeValue(1, n) ^ segment.rangeValue(1, n / 2);
+
+                    } else {
+
+                        value = segment.rangeValue(1, n) ^ segment.rangeValue(1, n / 2) ^ D1(segment, L / 2, map);
+
+                    }
+
+                }
+
+                map.put(L, value);
+
+                return value;
+
+            }
+
+        }
+
+    }
+
+    static void D1(int t) {
+
+        SegmentTree tree = new SegmentTree(a);
+
+        if (L[0] <= n) {
+
+            ans.append(a[(int) L[0]]);
+
+        } else {
+
+            TreeMap<Long, Long> map = new TreeMap<>();
+
+            ans.append(D1(tree, L[0] / 2, map));
+
+        }
+
+        if (t != testCases) {
+
+            ans.append("\n");
+
+        }
+
+    }
+
+    private static class SegmentTree {
+
+        private long arr[], tree[];
+
+        private int len;
+
+        public SegmentTree(long arr[]) {
+
+            this.arr = arr;
+
+            int n = this.arr.length;
+
+            int height = (int) Math.ceil(Math.log(n) / Math.log(2));
+            int maxSize = 2 * (int) Math.pow(2, height) + 10;
+
+            this.len = maxSize;
+
+            this.tree = new long[this.len];
+
+            buildSegmentTree(0, n - 1, 0);
+
+        }
+
+        private void buildSegmentTree(int start, int end, int node) {
+            if (start == end) {
+                tree[node] = arr[start];
+                return;
+            }
+            int mid = (start + end) / 2;
+            buildSegmentTree(start, mid, 2 * node + 1);
+            buildSegmentTree(mid + 1, end, 2 * node + 2);
+            tree[node] = (tree[2 * node + 1] ^ tree[2 * node + 2]);
+        }
+
+        public long rangeValue(int L, int R) {
+            return rangeValueUtil(0, arr.length - 1, L, R, 0);
+        }
+
+        private long rangeValueUtil(int start, int end, int L, int R, int node) {
+
+            if (start > R || end < L) {
+                return 0;
+            }
+
+            if (start >= L && end <= R) {
+                return tree[node];
+            }
+
+            int mid = (start + end) / 2;
+            return (rangeValueUtil(start, mid, L, R, 2 * node + 1)
+                    ^ rangeValueUtil(mid + 1, end, L, R, 2 * node + 2));
+        }
+
+        public void update(int idx, long value) {
+            if (idx < 0 || idx >= arr.length) {
+                throw new IndexOutOfBoundsException("Index out of bounds");
+            }
+
+            arr[idx] = value;
+
+            updateUtil(0, arr.length - 1, idx, value, 0);
+        }
+
+        private void updateUtil(int start, int end, int idx, long value, int node) {
+            if (start == end) {
+                tree[node] = value;
+                return;
+            }
+            int mid = (start + end) / 2;
+            if (idx <= mid) {
+                updateUtil(start, mid, idx, value, 2 * node + 1);
+            } else {
+                updateUtil(mid + 1, end, idx, value, 2 * node + 2);
+            }
+
+            tree[node] = (tree[2 * node + 1] ^ tree[2 * node + 2]);
+        }
+
+    }

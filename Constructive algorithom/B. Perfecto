@@ -1,0 +1,38 @@
+ static void C(int t) {
+
+        List<Integer> list[] = new ArrayList[n];
+
+        for (int i = 0; i < n; ++i) {
+
+            list[i] = new ArrayList<>();
+
+        }
+
+        for (int i = 0; i < n - 1; ++i) {
+
+            list[u[i]].add(v[i]);
+            list[v[i]].add(u[i]);
+
+        }
+
+        List<Integer> permutation = new ArrayList<>();
+
+        C(end, -1, list, permutation);
+
+        StringBuilder sb = new StringBuilder();
+
+        for (int i : permutation) {
+
+            sb.append(i).append(" ");
+
+        }
+
+        ans.append(sb.toString().trim());
+
+        if (t != testCases) {
+
+            ans.append("\n");
+
+        }
+
+    }

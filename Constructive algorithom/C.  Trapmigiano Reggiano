@@ -1,0 +1,77 @@
+static void B(int t) {
+
+        if (equal(n * 1L, 1L)) {
+
+            ans.append("-1");
+
+        } else {
+
+            sum = (long) n * (long) (n + 1);
+
+            sum /= 2;
+
+            if (((long) Math.floor(Math.sqrt(sum)) == (long) Math.ceil(Math.sqrt(sum)))) {
+
+                ans.append("-1");
+
+            } else {
+
+                p = new int[n];
+
+                TreeSet<Integer> set = new TreeSet<>();
+
+                for (int i = 1; i <= n; ++i) {
+
+                    set.add(i);
+
+                }
+
+                int index = 0;
+
+                sum = 0L;
+
+                while (!set.isEmpty()) {
+
+                    for (int i : set) {
+
+                        long value = i + sum;
+
+                        if (((long) Math.floor(Math.sqrt(value)) == (long) Math.ceil(Math.sqrt(value)))) {
+
+                            continue;
+
+                        }
+
+                        sum += i;
+
+                        p[index++] = i;
+
+                        set.remove(i);
+
+                        break;
+
+                    }
+
+                }
+
+                StringBuilder sb = new StringBuilder();
+
+                for (int i = 0; i < n; ++i) {
+
+                    sb.append(p[i]).append(" ");
+
+                }
+
+                ans.append(sb.toString().trim());
+
+            }
+
+        }
+
+        if (t != testCases) {
+
+            ans.append("\n");
+
+        }
+
+    }

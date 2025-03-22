@@ -1,0 +1,51 @@
+import java.util.Scanner;
+
+public class MyClass {
+    
+    static Scanner in = new Scanner(System.in);
+    
+    static int n, a, b, m;
+    
+    static void solve() {
+        
+        long withoutSpecial = n * a;
+        long withSpecial = b + Math.max(0, n - m) * a;
+        
+        long use = 1, value = m;
+        
+        while(value <= n) {
+            
+            long cost = use * b + Math.max(0, n - value) * a;
+            
+            withSpecial = Math.min(withSpecial, cost);
+            
+            value += m;
+            ++use;
+            
+        }
+        
+        long cost = use * b + Math.max(0, n - value) * a;
+            
+        withSpecial = Math.min(withSpecial, cost);
+        
+        System.out.println(Math.min(withoutSpecial, withSpecial));
+        
+    }
+    
+  public static void main(String Priya[]) {
+      
+      input();
+      solve();
+   
+  }
+  
+  private static void input() {
+      
+      n = in.nextInt();
+      m = in.nextInt();
+      a = in.nextInt();
+      b = in.nextInt();
+      
+  }
+  
+}

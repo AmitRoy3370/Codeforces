@@ -1,0 +1,40 @@
+
+    static void C(int t) {
+
+        if (equal(X, Y)) {
+
+            ans.append("-1");
+
+        } else if ((X & Y) == 0) {
+
+            ans.append("0");
+
+        } else {
+
+            if (isSmaller(Y + "", X + "")) {
+
+                long temp = X;
+                X = Y;
+                Y = temp;
+
+            }
+
+            long twosPower = (long)(Math.log(Y) / Math.log(2));
+
+            ++twosPower;
+
+            long nextPower = pow(2L, twosPower);
+
+            K = nextPower - Y;
+
+            ans.append(K);
+
+        }
+
+        if (t != testCases) {
+
+            ans.append("\n");
+
+        }
+
+    }

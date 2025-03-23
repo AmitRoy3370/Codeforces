@@ -1,0 +1,89 @@
+
+    static boolean A(int i, boolean yes) {
+
+        if (equal(i * 1L, n / 2 * 1L)) {
+
+            return yes;
+
+        }
+
+        if (x[i] != x[n - 1 - i]) {
+
+            yes = ((x[n - 1 - i] - 'a') > (x[i] - 'a'));
+            return yes;
+
+        } else {
+
+            return A(i + 1, yes);
+
+        }
+
+    }
+
+    static void A(int t) {
+
+        if (n == 1) {
+
+            ans.append("NO");
+
+        } else {
+
+            if (new String(x).compareTo(new StringBuilder().append(new String(x)).reverse().toString()) < 0) {
+
+                ans.append("YES");
+
+            } else {
+
+                int count[] = new int[26];
+
+                for (char i : x) {
+
+                    count[i - 'a']++;
+
+                }
+
+                int size = 0;
+
+                for (int i : count) {
+
+                    if (i > 0) {
+
+                        ++size;
+
+                    }
+
+                }
+
+                if (size == 1 || k == 0) {
+
+                    ans.append("NO");
+
+                } else {
+
+                    boolean yes = false;
+
+                    yes = A(0, yes);
+
+                    if (yes || k >= 1) {
+
+                        ans.append("YES");
+
+                    } else {
+
+                        ans.append("NO");
+
+                    }
+
+                }
+
+            }
+
+        }
+
+        if (t != testCases) {
+
+            ans.append("\n");
+
+        }
+
+    }

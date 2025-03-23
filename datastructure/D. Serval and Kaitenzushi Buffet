@@ -1,0 +1,40 @@
+
+    static void D(int i, PriorityQueue<Long> pq) {
+
+        if (equal(i * 1L, n * 1L)) {
+
+            return;
+
+        }
+
+        pq.add(a[i]);
+
+        if (mod((n - i) + "", k) == 0) {
+
+            sum = Long.parseLong(sum(sum + "", pq.poll() + ""));
+
+        }
+
+        D(i + 1, pq);
+
+    }
+
+    static void D(int t) {
+
+        sum = 0L;
+
+        PriorityQueue<Long> pq = new PriorityQueue<>(Collections.reverseOrder());
+
+        ++k;
+
+        D(0, pq);
+
+        ans.append(sum);
+
+        if (t != testCases) {
+
+            ans.append("\n");
+
+        }
+
+    }

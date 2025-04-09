@@ -1,0 +1,75 @@
+import java.util.Scanner;
+
+public class Main {
+  
+  static Scanner in = new Scanner(System.in);
+  
+  static int testCases, k;
+  
+  static long x;
+  
+  static void solve() {
+    
+    if(x > 1 && k > 1) {
+      
+      System.out.println("NO");
+      
+    } else if(k == 1) {
+      
+      if(x <= 1) {
+        
+        System.out.println("NO");
+        return;
+        
+      }
+      
+      for(long i = 2L; i * i <= x; ++i) {
+        
+        if(x % i == 0) {
+          
+          System.out.println("NO");
+          return;
+          
+        }
+        
+      }
+      
+      System.out.println("YES");
+      
+    } else {
+      
+      if(k == 2) {
+        
+        System.out.println("YES");
+        
+      } else {
+        
+        System.out.println("NO");
+        
+      }
+      
+    }
+    
+  }
+  
+  public static void main(String [] Amit) {
+    
+    testCases = in.nextInt();
+    
+    for(int t = 0; t < testCases; ++t) {
+      
+      input();
+      solve();
+      
+    }
+    
+  }
+  
+  private static void input() {
+    
+    x = in.nextLong();
+    k = in.nextInt();
+    
+  }
+  
+}

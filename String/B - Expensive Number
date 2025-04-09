@@ -1,0 +1,65 @@
+import java.util.Scanner;
+
+public class Main {
+  
+  static Scanner in = new Scanner(System.in);
+  
+  static int testCases, n;
+  
+  static char x[];
+  
+  static void solve() {
+    
+    int needRemove = 0;
+    
+    int index = n - 1;
+    
+    while(index >= 0) {
+      
+      if(x[index] - '0' > 0) {
+        
+        break;
+        
+      }
+      
+      ++needRemove;
+      --index;
+      
+    }
+    
+    for(int i = 0; i < index; ++i) {
+      
+      if(x[i] - '0' != 0) {
+        
+        ++needRemove;
+        
+      }
+      
+    }
+    
+    System.out.println(needRemove);
+    
+  }
+  
+  public static void main(String [] Amit) {
+    
+    testCases = in.nextInt();
+    
+    for(int t = 0; t < testCases; ++t) {
+      
+      input();
+      solve();
+      
+    }
+    
+  }
+  
+  private static void input() {
+    
+    x = in.next().toCharArray();
+    
+    n = x.length;
+    
+  }
+  
+}

@@ -1,0 +1,98 @@
+import java.util.Scanner;
+import java.util.Set;
+import java.util.HashSet;
+
+public class Main {
+  
+  static Scanner in = new Scanner(System.in);
+  
+  static int testCases, k, n;
+  
+  static long a[];
+  
+  static long x;
+  
+  static StringBuilder sb = new StringBuilder();
+  
+  static void solve() {
+    
+    long mex = 0;
+    
+    long left = 0, right = n;
+    
+    while(right >= left) {
+      
+      long mid = ((left + right) / 2);
+      long count = mid + 1, count1 = 0;
+      
+      Set<Long> set = new HashSet<>();
+     
+      long generated = 0;
+      
+      for(int i = 0; i < n; ++i) {
+        
+        if(a[i] > mid) {
+          
+        } else {
+          
+          set.add(a[i]);
+          
+        }
+        
+        if(count == set.size()) {
+          
+          ++generated;
+          set.clear();
+          
+        }
+        
+      }
+      
+      if(generated >= k) {
+        
+        left = mid + 1;
+        mex = mid + 1;
+        
+      } else {
+        
+        right = mid - 1;
+        
+      }
+      
+    }
+    
+    sb.append(mex).append("\n");
+    
+  }
+  
+  public static void main(String [] Amit) {
+    
+    testCases = in.nextInt();
+    
+    for(int t = 0; t < testCases; ++t) {
+      
+      input();
+      solve();
+      
+    }
+    
+    System.out.print(sb.toString());
+    
+  }
+  
+  private static void input() {
+    
+    n = in.nextInt();
+    k = in.nextInt();
+    
+    a = new long[n];
+    
+    for(int i = 0; i < n; ++i) {
+      
+      a[i] = in.nextLong();
+      
+    }
+    
+  }
+  
+}

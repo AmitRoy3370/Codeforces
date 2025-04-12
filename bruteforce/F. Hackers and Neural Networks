@@ -1,0 +1,96 @@
+import java.util.Scanner;
+import java.util.Set;
+import java.util.HashSet;
+
+public class Main {
+  
+  static Scanner in = new Scanner(System.in);
+  
+  static int testCases, m, n;
+  
+  static String a[];
+  static String b[][];
+  
+  static void solve() {
+    
+    int maxMatch = 0;
+    
+    boolean visited[] = new boolean[n];
+    
+    for(int i = 0; i < m; ++i) {
+      
+      int match = 0;
+      
+      for(int j = 0; j < n; ++j) {
+        
+        if(b[i][j].equals(a[j])) {
+          
+          visited[j] = true;
+          ++match;
+          
+        }
+        
+      }
+      
+      maxMatch = Math.max(maxMatch, match);
+      
+    }
+    
+    for(int i = 0; i < n; ++i) {
+      
+      if(!visited[i]) {
+        
+        System.out.println("-1");
+        return;
+        
+      }
+      
+    }
+    
+    long score = 3 * n - 2 * maxMatch;
+    
+    System.out.println(score);
+  
+  }
+  
+  public static void main(String [] Amit) {
+    
+    testCases = in.nextInt();
+    
+    for(int t = 0; t < testCases; ++t) {
+      
+      input();
+      solve();
+      
+    }
+    
+  }
+  
+  private static void input() {
+    
+    n = in.nextInt();
+    m = in.nextInt();
+    
+    a = new String[n];
+    
+    b = new String[m][n];
+    
+    for(int i = 0; i < n; ++i) {
+      
+      a[i] = in.next();
+      
+    }
+    
+    for(int i = 0; i < m; ++i) {
+      
+      for(int j = 0; j < n; ++j) {
+        
+        b[i][j] = in.next();
+        
+      }
+      
+    }
+    
+  }
+  
+}

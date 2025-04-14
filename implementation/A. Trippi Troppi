@@ -1,0 +1,19 @@
+static void A(int t) {
+
+        StringBuilder sb = new StringBuilder();
+
+        for (String i : s1) {
+
+            sb.append(i.charAt(0));
+
+        }
+
+        ans.append(sb.toString());
+
+        if (t != testCases) {
+
+            ans.append("\n");
+
+        }
+
+    }

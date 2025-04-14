@@ -1,0 +1,31 @@
+
+    static void B(int t) {
+
+        x_ = 0;
+        y_ = 0;
+
+        for (int i = 0; i < m; ++i) {
+
+            if (y_ - 1 >= l) {
+
+                --y_;
+
+            } else {
+
+                ++x_;
+
+                x_ = Math.min(x_, r);
+
+            }
+
+        }
+
+        ans.append(Math.min(x_, y_)).append(" ").append(Math.max(x_, y_));
+
+        if (t != testCases) {
+
+            ans.append("\n");
+
+        }
+
+    }

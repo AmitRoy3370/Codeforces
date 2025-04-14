@@ -1,0 +1,53 @@
+static void C(int t) {
+
+        p = new int[2 * n + 1];
+
+        visited = new boolean[2 * n + 1];
+
+        for (int i = 1; i <= n; ++i) {
+
+            for (int j = 1; j <= n; ++j) {
+
+                p[i + j] = (int) A[i - 1][j - 1];
+                visited[(int) A[i - 1][j - 1]] = true;
+
+            }
+
+        }
+
+        for (int i = 1; i <= 2 * n; ++i) {
+
+            if (!visited[i]) {
+
+                for (int j = 1; j <= 2 * n; ++j) {
+
+                    if (p[j] == 0) {
+
+                        p[j] = i;
+                        break;
+
+                    }
+
+                }
+
+            }
+
+        }
+
+        StringBuilder sb = new StringBuilder();
+
+        for (int i = 1; i <= 2 * n; ++i) {
+
+            sb.append(p[i]).append(" ");
+
+        }
+
+        ans.append(sb.toString().trim());
+
+        if (t != testCases) {
+
+            ans.append("\n");
+
+        }
+
+    }

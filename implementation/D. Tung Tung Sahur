@@ -1,0 +1,85 @@
+
+    static void D(int t) {
+
+        boolean yes;
+
+        if (n == 1) {
+
+            if (m <= 2) {
+
+                yes = m == 2 ? y[0] == x[0] && y[1] == x[0] : x[0] == y[0];
+
+            } else {
+
+                yes = false;
+
+            }
+
+        } else if (new String(x).equals(new String(y))) {
+
+            yes = true;
+
+        } else {
+
+            StringBuilder sbX = new StringBuilder();
+            StringBuilder sbY = new StringBuilder();
+
+            sbX.append(new String(x));
+            sbY.append(new String(y));
+
+            while (!sbX.isEmpty()) {
+
+                int index = 0;
+
+                while (index + 1 < sbX.length() && sbX.charAt(index) == sbX.charAt(index + 1)) {
+
+                    ++index;
+
+                }
+
+                int equalSubArray = index + 1;
+                char targetChar = sbX.charAt(index);
+
+                k = 0;
+
+                while (k < sbY.length() && sbY.charAt(k) == targetChar) {
+
+                    ++k;
+
+                }
+
+                if (k >= equalSubArray && k <= 2 * equalSubArray) {
+
+                    sbY.delete(0, k);
+
+                } else {
+
+                    break;
+
+                }
+
+                sbX.delete(0, equalSubArray);
+
+            }
+
+            yes = sbX.isEmpty() && sbY.isEmpty();
+
+        }
+
+        if (yes) {
+
+            ans.append("YES");
+
+        } else {
+
+            ans.append("NO");
+
+        }
+
+        if (t != testCases) {
+
+            ans.append("\n");
+
+        }
+
+    }

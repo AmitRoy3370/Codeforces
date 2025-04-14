@@ -1,0 +1,66 @@
+static void E(int t) {
+
+        long bit[] = new long[31];
+
+        for (int i = 0; i < n; ++i) {
+
+            for (int j = 0; j <= 30; ++j) {
+
+                long bitValue = (1 << j);
+
+                if ((a[i] & bitValue) > 0) {
+
+                    bit[j]++;
+
+                }
+
+            }
+
+        }
+
+        sum = (long) (-1e18);
+        long need = a[0];
+
+        for (int i = 0; i < n; ++i) {
+
+            long tempSum = 0L;
+
+            for (int j = 0; j <= 30; ++j) {
+
+                long bitValue = (1 << j);
+
+                if ((a[i] & bitValue) > 0) {
+
+                    tempSum += (n - bit[j]) * bitValue;
+                    tempSum -= (bit[j] * bitValue);
+
+                }
+
+            }
+            
+            if(tempSum >= sum) {
+                
+                sum = tempSum;
+                need = a[i];
+                
+            }
+
+        }
+        
+        sum = 0L;
+        
+        for(long i : a) {
+            
+            sum += i ^ need;
+            
+        }
+
+        ans.append(sum);
+        
+        if (t != testCases) {
+
+            ans.append("\n");
+
+        }
+
+    }

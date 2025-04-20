@@ -1,0 +1,61 @@
+
+    static void D(int i, TreeMap<Long, Integer> map, TreeMap<Long, Integer> map1) {
+
+        if (i == n) {
+
+            return;
+
+        }
+
+        map.put(a[i], map.getOrDefault(a[i], 0) + 1);
+        sum = a[i] > 0 && b[i] > 0 ? Long.parseLong(sum(a[i] + "", b[i] + "")) : a[i] + b[i];
+
+        map1.put(sum, map1.getOrDefault(sum, 0) + 1);
+
+        D(i + 1, map, map1);
+
+    }
+
+    static void D(int t) {
+
+        TreeMap<Long, Integer> map = new TreeMap<>();
+        TreeMap<Long, Integer> map1 = new TreeMap<>();
+
+        D(0, map, map1);
+
+        X = 0L;
+        Y = 0L;
+
+        for (long i : map.keySet()) {
+
+            if (equal(1 * mod(map.get(i) + "", 2), 1L)) {
+
+                X = i;
+                break;
+
+            }
+
+        }
+
+        for (long i : map1.keySet()) {
+
+            if (equal(1L * mod(map1.get(i) + "", 2), 1L)) {
+
+                Y = i;
+                break;
+
+            }
+
+        }
+
+        Y = (Y > X && X > 0 && Y > 0) ? Long.parseLong(sub(Y + "", X + "")) : Y - X;
+
+        ans.append(X).append(" ").append(Y);
+
+        if (t != testCases) {
+
+            ans.append("\n");
+
+        }
+
+    }

@@ -1,0 +1,61 @@
+static void A(int t) {
+
+        a = new long[n];
+
+        if (x[0] == '<') {
+
+            a[0] = 2;
+            a[1] = 1;
+
+        } else {
+
+            a[0] = 1;
+            a[1] = 2;
+
+        }
+
+        long max = Math.max(a[0], a[1]);
+
+        for (int i = 1; i < n - 1; ++i) {
+
+            if (x[i] == '<') {
+
+                long smallest = a[0];
+
+                for (int j = 0; j <= i; ++j) {
+
+                    smallest = Math.min(smallest, a[j]);
+
+                    a[j]++;
+                    max = Math.max(max, a[j]);
+
+                }
+
+                a[i + 1] = smallest;
+
+            } else {
+
+                a[i + 1] = max + 1;
+                max = a[i + 1];
+
+            }
+
+        }
+
+        StringBuilder sb = new StringBuilder();
+
+        for (long i : a) {
+
+            sb.append(i).append(" ");
+
+        }
+
+        ans.append(sb.toString().trim());
+
+        if (t != testCases) {
+
+            ans.append("\n");
+
+        }
+
+    }

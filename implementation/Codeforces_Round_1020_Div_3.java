@@ -46,6 +46,62 @@ public class Codeforces_Round_1020_Div_3 {
     static int[] dy = {0, 0, 1, -1, -1, 1, 1, -1};
     static int dir[][] = new int[][]{{0, 1}, {1, 0}, {-1, 0}, {0, -1}};
 
+    static void B(int t) {
+
+        p = new int[n];
+
+        if (X == 0L) {
+
+            for (int i = n - 1, j = 0; i >= 0; --i, ++j) {
+
+                p[j] = i;
+
+            }
+
+        } else if(X == n) {
+
+            for (int i = 0; i < n; ++i) {
+
+                p[i] = i;
+
+            }
+
+        } else {
+            
+            for(int i = 0; i < X; ++i) {
+                
+                p[i] = i;
+                
+            }
+            
+            for(int i = (int)X + 1, j = (int)X; i < n; ++i, ++j) {
+                
+                p[j] = i;
+                
+            }
+            
+            p[n - 1] = (int)X;
+            
+        }
+
+        StringBuilder sb = new StringBuilder();
+
+        for (int i : p) {
+
+            sb.append(i).append(" ");
+
+        }
+
+        ans.append(sb.toString().trim());
+
+        if (t != testCases) {
+
+            ans.append("\n");
+
+        }
+
+    }
+
     static void A(int t) {
 
         int count[] = new int[2];
@@ -91,8 +147,8 @@ public class Codeforces_Round_1020_Div_3 {
 
         for (int t = 0; t < testCases; ++t) {
 
-            A_input();
-            A(t + 1);
+            B_input();
+            B(t + 1);
 
         }
 
@@ -112,7 +168,7 @@ public class Codeforces_Round_1020_Div_3 {
     private static void B_input() throws IOException {
 
         n = in.nextInt();
-        x = ("0" + in.next()).toCharArray();
+        X = in.nextLong();
 
     }
 

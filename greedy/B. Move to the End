@@ -1,0 +1,75 @@
+
+    static void B(int i, ArrayList1<Long> list) {
+
+        if (i == n + 1) {
+
+            return;
+
+        }
+
+        int index = Integer.parseInt(sub(n + "", i + ""));
+
+        long first = suffix[index];
+        long second = Long.parseLong(sum(suffix[index + 1] + "", prefix[index] + ""));
+
+        list.add(Math.max(first, second));
+
+        B(i + 1, list);
+
+    }
+
+    static void B(int i, long prefix[]) {
+
+        if (i == n) {
+
+            return;
+
+        }
+
+        prefix[i] = Math.max(prefix[i - 1], a[i]);
+
+        B(i + 1, prefix);
+
+    }
+
+    static void B(int t) {
+
+        ArrayList1<Long> list = new ArrayList1<>();
+
+        prefix = new long[n];
+
+        prefix[0] = a[0];
+
+        B(1, prefix);
+
+        suffix = new long[n + 1];
+
+        suffix[n - 1] = a[n - 1];
+
+        for (int i = n - 2; i >= 0; --i) {
+
+            suffix[i] = Long.parseLong(sum(suffix[i + 1] + "", a[i] + ""));
+
+        }
+
+        B(1, list);
+
+        StringBuilder sb = new StringBuilder();
+
+        while (!list.isEmpty()) {
+
+            sb.append(list.get(0)).append(" ");
+
+            list.popFront();
+
+        }
+
+        ans.append(sb.toString().trim());
+
+        if (t != testCases) {
+
+            ans.append("\n");
+
+        }
+
+    }

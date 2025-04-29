@@ -1,0 +1,85 @@
+
+    static List<Integer> primes = new ArrayList<>();
+
+    static void D() {
+
+        N = (long) (1e7 + 1);
+
+        m = (int) (1e7);
+
+        visited = new boolean[m + 1];
+
+        visited[0] = true;
+        visited[1] = true;
+
+        for (int i = 2; i * i <= N; ++i) {
+
+            if (!visited[i]) {
+
+                for (int j = i * i; j < N; j += i) {
+
+                    visited[j] = true;
+
+                }
+
+            }
+
+        }
+
+        for (int i = 1; i <= m; ++i) {
+
+            if (!visited[i]) {
+
+                primes.add(i);
+
+            }
+
+        }
+
+    }
+
+    static void D(int t) {
+
+        sort(a, 0, n - 1);
+
+        long coinHave = 0L, removed = 0L;
+        int index = 0;
+
+        for (int i = n - 1; i >= 0; --i) {
+
+            if (isSmaller(primes.get(index) + "", a[i] + "")) {
+
+                sub = Long.parseLong(sub(a[i] + "", primes.get(index) + ""));
+
+                coinHave = Long.parseLong(sum(coinHave + "", sub + ""));
+
+                ++index;
+
+            } else {
+
+                long need = Long.parseLong(sub(primes.get(index) + "", a[i] + ""));
+
+                if (isSmaller(coinHave + "", need + "")) {
+
+                    ++removed;
+
+                } else {
+
+                    coinHave = Long.parseLong(sub(coinHave + "", need + ""));
+                    ++index;
+
+                }
+
+            }
+
+        }
+
+        ans.append(removed);
+
+        if (t != testCases) {
+
+            ans.append("\n");
+
+        }
+
+    }

@@ -1,0 +1,147 @@
+
+    static boolean C(ArrayList1<Integer> indexA, ArrayList1<Integer> indexB, boolean alice) {
+
+        if (indexA.isEmpty()) {
+
+            return alice;
+
+        }
+
+        int position = indexA.get(0);
+
+        boolean bob = false;
+
+        ArrayList1<Integer> copyIndexB = new ArrayList1<>();
+
+        if (equal(position * 1L, 1L)) {
+
+            while (!indexB.isEmpty()) {
+
+                long value = indexB.get(0);
+
+                if ((equal(2L, value) || isSmaller("2", value + "")) && (equal((n - 1) * 1L, value) || isSmaller(value + "", (n - 1) + ""))) {
+
+                    bob = true;
+                    break;
+
+                } else {
+
+                    copyIndexB.add((int) value);
+
+                }
+
+                indexB.popFront();
+
+            }
+
+        } else if (equal(position * 1L, n * 1L)) {
+
+            while (!indexB.isEmpty()) {
+
+                long value = indexB.get(0);
+
+                if ((equal(1L, value))) {
+
+                    bob = true;
+                    break;
+
+                } else {
+
+                    copyIndexB.add((int) value);
+
+                }
+
+                indexB.popFront();
+
+            }
+
+        } else {
+
+            while (!indexB.isEmpty()) {
+
+                long value = indexB.get(0);
+
+                if (isSmaller(position + "", value + "")) {
+
+                    bob = true;
+                    break;
+
+                } else {
+
+                    copyIndexB.add((int) value);
+
+                }
+
+                indexB.popFront();
+
+            }
+
+        }
+
+        while (!copyIndexB.isEmpty()) {
+
+            indexB.add(copyIndexB.get(0));
+
+            copyIndexB.popFront();
+
+        }
+
+        if (!bob) {
+
+            alice = true;
+            return alice;
+
+        } else {
+
+            indexA.popFront();
+
+            return C(indexA, indexB, alice);
+
+        }
+
+    }
+
+    static void C(int t) {
+
+        boolean alice = false;
+
+        ArrayList1<Integer> indexA = new ArrayList1<>();
+        ArrayList1<Integer> indexB = new ArrayList1<>();
+
+        int index = 1;
+
+        for (char i : x) {
+
+            if (i == 'A') {
+
+                indexA.add(index);
+
+            } else {
+
+                indexB.add(index);
+
+            }
+
+            ++index;
+
+        }
+
+        alice = C(indexA, indexB, alice);
+
+        if (alice) {
+
+            ans.append("Alice");
+
+        } else {
+
+            ans.append("Bob");
+
+        }
+
+        if (t != testCases) {
+
+            ans.append("\n");
+
+        }
+
+    }

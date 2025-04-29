@@ -1,0 +1,33 @@
+
+    static void A(int t) {
+
+        sum = Long.parseLong(sum(X + "", Y + ""));
+        sum = Long.parseLong(sum(sum + "", Z + ""));
+
+        if (!equal(mod(sum + "", 3) * 1L, 0L)) {
+
+            ans.append("NO");
+
+        } else {
+
+            long single = sum / 3L;
+
+            if (equal(Y, single) || isSmaller(Y + "", single + "")) {
+
+                ans.append("YES");
+
+            } else {
+
+                ans.append("NO");
+
+            }
+
+        }
+
+        if (t != testCases) {
+
+            ans.append("\n");
+
+        }
+
+    }

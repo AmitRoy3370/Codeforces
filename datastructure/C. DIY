@@ -1,0 +1,83 @@
+import java.util.Scanner;
+import java.util.TreeMap;
+import java.util.List;
+import java.util.ArrayList;
+import java.util.Collections;
+
+public class C_Remove_Exactly_Two {
+    
+    static int m, n, testCases;
+    static long a[], b[];
+    static int u[], v[];
+   
+    static Scanner in = new Scanner(System.in);
+    
+    static void solve() {
+       
+       TreeMap<Long, Integer> map = new TreeMap<>();
+       
+       List<Long> list = new ArrayList<>();
+       
+       for(int i = 0; i < n; ++i) {
+           
+           map.put(a[i], map.getOrDefault(a[i], 0) + 1);
+           
+           if(map.get(a[i]) == 2) {
+               
+               list.add(a[i]);
+               map.put(a[i], 0);
+               
+           }
+           
+       }
+       
+       if(list.size() < 4) {
+           
+           System.out.println("No");
+           return;
+           
+       }
+       
+       Collections.sort(list);
+       
+       int m = list.size();
+       
+       long x1 = list.get(0), y1 = list.get(1);
+       long x2 = list.get(0), y2 = list.get(m - 1);
+       long x3 = list.get(m - 2), y3 = list.get(1);
+       long x4 = list.get(m - 2), y4 = list.get(m - 1);
+       
+       System.out.println("YES");
+       
+       System.out.println(x1 + " " + y1 + " " + x2 + " " + y2 + " " + x3 + " " + y3 + " " + x4 + " " + y4);
+        
+    }
+    
+    public static void main(String [] priya) {
+        
+        testCases = in.nextInt();
+        
+        for(int t = 0; t < testCases; ++t) {
+            
+            input();
+            solve();
+            
+        }
+        
+    }
+    
+    private static void input() {
+        
+       n = in.nextInt();
+
+       a = new long[n];
+       
+       for(int i = 0; i < n; ++i) {
+           
+           a[i] = in.nextLong();
+           
+       }
+
+    }
+    
+}

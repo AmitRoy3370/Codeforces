@@ -1,0 +1,131 @@
+static void A(int t) {
+ 
+        boolean yes = false, unique = true;
+ 
+        p = new int[n];
+ 
+        for (int i = 1; i < n; ++i) {
+ 
+            if (a[i] != a[i - 1]) {
+ 
+                unique = false;
+                yes = true;
+                break;
+ 
+            }
+ 
+        }
+ 
+        if (unique) {
+ 
+            ans.append("NO");
+ 
+        } else {
+ 
+            long max = a[0];
+ 
+            for (long i : a) {
+ 
+                max = Math.max(max, i);
+ 
+            }
+ 
+            int maxCount = 0, maxPosition = -1;
+ 
+            for (int i = 0; i < n; ++i) {
+ 
+                if (a[i] == max) {
+ 
+                    ++maxCount;
+                    maxPosition = i;
+ 
+                }
+ 
+            }
+ 
+            if (maxCount > 1) {
+ 
+                long gcd = 0L;
+ 
+                for (int i = 0; i < n; ++i) {
+ 
+                    if (a[i] != max) {
+ 
+                        if (gcd == 0) {
+ 
+                            gcd = a[i];
+ 
+                        } else {
+ 
+                            gcd = gcd(gcd, a[i]);
+ 
+                        }
+ 
+                    }
+ 
+                }
+ 
+                if (gcd != max) {
+ 
+                    for (int i = 0; i < n; ++i) {
+ 
+                        if (a[i] == max) {
+ 
+                            p[i] = 1;
+ 
+                        } else {
+ 
+                            p[i] = 2;
+ 
+                        }
+ 
+                    }
+ 
+                } else {
+ 
+                    yes = false;
+ 
+                }
+ 
+            } else {
+ 
+                for (int i = 0; i < n; ++i) {
+ 
+                    p[i] = 2;
+ 
+                }
+ 
+                p[maxPosition] = 1;
+ 
+            }
+ 
+            if (yes) {
+ 
+                ans.append("YES").append("\n");
+ 
+                StringBuilder sb = new StringBuilder();
+ 
+                for (int i : p) {
+ 
+                    sb.append(i).append(" ");
+ 
+                }
+ 
+                ans.append(sb.toString().trim());
+ 
+            } else {
+ 
+                ans.append("NO");
+ 
+            }
+ 
+        }
+ 
+        if (t != testCases) {
+ 
+            ans.append("\n");
+ 
+        }
+ 
+    }
+ 

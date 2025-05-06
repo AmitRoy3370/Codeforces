@@ -1,0 +1,48 @@
+
+    static void B(int t) {
+
+        long max = max_element(a, 0, n, a[0]);
+        long min = min_element(a, 0, n, a[0]);
+        sum = sum(a, 0, 0L);
+
+        int maxCount = 0;
+
+        for (long i : a) {
+
+            if (equal(i, max)) {
+
+                ++maxCount;
+
+            }
+
+        }
+
+        sub = Long.parseLong(sub(max + "", min + ""));
+
+        K = Integer.parseInt(sum(K + "", "1"));
+
+        if (isSmaller(K + "", sub + "")) {
+
+            ans.append("Jerry");
+
+        } else if (equal(K, sub) && isSmaller("1", maxCount + "")) {
+
+            ans.append("Jerry");
+
+        } else if (mod(sum + "", 2L) == 0) {
+
+            ans.append("Jerry");
+
+        } else {
+
+            ans.append("Tom");
+
+        }
+
+        if (t != testCases) {
+
+            ans.append("\n");
+
+        }
+
+    }

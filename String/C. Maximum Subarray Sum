@@ -1,0 +1,123 @@
+static void C(int t) {
+
+        sum = 0L;
+
+        long maxSumSubArray = 0L;
+
+        int firstZero = -1;
+
+        for (int i = 0, count = 0; i < n; ++i) {
+
+            if (x[i] == '0') {
+
+                sum = 0L;
+
+                ++count;
+
+                if (count == 1) {
+
+                    firstZero = i;
+
+                }
+
+            } else {
+
+                sum += a[i];
+                sum = Math.max(sum, 0);
+                maxSumSubArray = Math.max(maxSumSubArray, sum);
+
+            }
+
+        }
+
+        if (isSmaller(K + "", maxSumSubArray + "")) {
+
+            ans.append("NO");
+
+        } else if (equal(maxSumSubArray, K)) {
+
+            ans.append("YES").append("\n");
+
+            StringBuilder sb = new StringBuilder();
+
+            for (int i = 0; i < n; ++i) {
+
+                if (x[i] == '0') {
+
+                    a[i] = -1L * (long) (1e18);
+
+                }
+
+                sb.append(a[i]).append(" ");
+
+            }
+
+            ans.append(sb.toString().trim());
+            
+        } else {
+
+            if (firstZero != -1) {
+
+                ans.append("YES").append("\n");
+
+                sum = 0L;
+
+                long leftMaxSubArray = 0L;
+
+                for (int i = firstZero - 1; i >= 0 && x[i] == '1'; --i) {
+
+                    sum += a[i];
+
+                    leftMaxSubArray = Math.max(leftMaxSubArray, sum);
+
+                }
+
+                sum = 0L;
+
+                long rightMaxSubArray = 0L;
+
+                for (int i = firstZero + 1; i < n && x[i] == '1'; ++i) {
+
+                    sum += a[i];
+
+                    rightMaxSubArray = Math.max(sum, rightMaxSubArray);
+
+                }
+
+                for (int i = 0; i < n; ++i) {
+
+                    if (x[i] == '0') {
+
+                        a[i] = -1L * (long) (1e18);
+
+                    }
+
+                }
+
+                a[firstZero] = K - leftMaxSubArray - rightMaxSubArray;
+
+                StringBuilder sb = new StringBuilder();
+
+                for (long i : a) {
+
+                    sb.append(i).append(" ");
+
+                }
+
+                ans.append(sb.toString().trim());
+
+            } else {
+
+                ans.append("NO");
+
+            }
+
+        }
+
+        if (t != testCases) {
+
+            ans.append("\n");
+
+        }
+
+    }

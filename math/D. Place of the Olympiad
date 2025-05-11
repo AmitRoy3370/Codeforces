@@ -1,0 +1,42 @@
+import java.util.Scanner;
+
+public class C_Sakurako_s_Field_Trip {
+    
+   static long N, M, K;
+   static int testCases;
+   
+    static Scanner in = new Scanner(System.in);
+    
+    static void solve(int t) {
+        
+        long remainingSpace = M - (long)Math.ceil((double)K / (double)N);
+        ++remainingSpace;
+        
+        long benchLength = M / remainingSpace;
+        
+        System.out.println(benchLength);
+      
+    }
+    
+    public static void main(String [] priya) {
+        
+        testCases = in.nextInt();
+        
+        for(int t = 0; t < testCases; ++t) {
+            
+            input();
+            solve(t + 1);
+            
+        }
+        
+    }
+    
+    private static void input() {
+        
+        N = in.nextLong();
+        M = in.nextLong();
+        K = in.nextLong();
+
+    }
+    
+}

@@ -1,0 +1,62 @@
+
+    static int[] B(int i, int greater, int smaller, long first) {
+
+        if (equal(i * 1L, n * 1L)) {
+
+            return new int[]{smaller, greater};
+
+        }
+
+        long value = Math.abs(a[i]);
+
+        if (isSmaller(first + "", value + "")) {
+
+            greater = Integer.parseInt(sum(greater + "", "1"));
+
+        } else {
+
+            smaller = Integer.parseInt(sum(smaller + "", "1"));
+
+        }
+
+        return B(i + 1, greater, smaller, first);
+    }
+
+    static void B(int t) {
+
+        long first = Math.abs(a[0]);
+
+        int greater = 0, smaller = 0;
+
+        p = B(0, greater, smaller, first);
+
+        smaller = p[0];
+        greater = p[1];
+
+        n = Integer.parseInt(sum(n + "", "1"));
+
+        int mid = n / 2;
+
+        --mid;
+
+        if (isSmaller(smaller + "", mid + "") || equal(smaller * 1L, mid * 1L)) {
+
+            ans.append("YES");
+
+        } else if (isSmaller(mid + "", greater + "") || equal(greater * 1L, mid * 1L)) {
+
+            ans.append("YES");
+
+        } else {
+
+            ans.append("NO");
+
+        }
+
+        if (t != testCases) {
+
+            ans.append("\n");
+
+        }
+
+    }

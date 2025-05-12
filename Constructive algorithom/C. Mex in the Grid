@@ -1,0 +1,131 @@
+
+    static int setCol(int rawIndex, int colIndex, int endPoint, int value, int inc) {
+
+        if (equal(rawIndex * 1L, endPoint * 1L)) {
+
+            return value;
+
+        }
+
+        try {
+
+            A[rawIndex][colIndex] = value;
+
+            value = Integer.parseInt(sum(value + "", "1"));
+
+        } catch (NumberFormatException e) {
+
+            return value;
+
+        }
+
+        return setCol(rawIndex + inc, colIndex, endPoint, value, inc);
+
+    }
+
+    static int setRaw(int rawIndex, int colIndex, int endPoint, int value, int inc) {
+
+        if (equal(colIndex * 1L, endPoint * 1L)) {
+
+            return value;
+
+        }
+
+        A[rawIndex][colIndex] = value;
+
+        value = Integer.parseInt(sum(value + "", "1"));
+
+        return setRaw(rawIndex, colIndex + inc, endPoint, value, inc);
+
+    }
+
+    static boolean C(int leftCol, int rightCol, int topRaw, int bottomRaw, int value) {
+
+        boolean willRun = (equal(rightCol * 1L, leftCol * 1L) || isSmaller(leftCol + "", rightCol + "")) && (equal(topRaw * 1L, bottomRaw * 1L) || isSmaller(topRaw + "", bottomRaw + ""));
+
+        if (!willRun) {
+
+            return true;
+
+        } else {
+
+            value = setRaw(topRaw, leftCol, rightCol + 1, value, +1);
+
+            topRaw = Integer.parseInt(sum(topRaw + "", "1"));
+
+            value = setCol(topRaw, rightCol, bottomRaw + 1, value, +1);
+
+            rightCol = Integer.parseInt(sub(rightCol + "", "1"));
+
+            if (bottomRaw >= topRaw) {
+
+                value = setRaw(bottomRaw, rightCol, leftCol - 1, value, -1);
+
+                bottomRaw = Integer.parseInt(sub(bottomRaw + "", "1"));
+
+            }
+
+            if (rightCol >= leftCol) {
+
+                value = setCol(bottomRaw, leftCol, topRaw - 1, value, -1);
+
+                leftCol = Integer.parseInt(sum(leftCol + "", "1"));
+
+            }
+
+            return C(leftCol, rightCol, topRaw, bottomRaw, value);
+
+        }
+
+    }
+
+    static void C(int t) {
+
+        A = new long[n][n];
+
+        int leftCol = 0, rightCol = Integer.parseInt(sub(n + "", "1"));
+        int topRaw = 0, bottomRaw = Integer.parseInt(sub(n + "", "1"));
+
+        int value = 0;
+
+        C(leftCol, rightCol, topRaw, bottomRaw, value);
+
+        long max = pow(n, 2L) - 1;
+
+        for (int i = 0; i < n; ++i) {
+
+            for (int j = 0; j < n; ++j) {
+
+                A[i][j] = Long.parseLong(sub(max + "", A[i][j] + ""));
+
+            }
+
+        }
+
+        for (int i = 0; i < n; ++i) {
+
+            StringBuilder sb = new StringBuilder();
+
+            for (int j = 0; j < n; ++j) {
+
+                sb.append(A[i][j]).append(" ");
+
+            }
+
+            ans.append(sb.toString().trim());
+
+            if (i != n - 1) {
+
+                ans.append("\n");
+
+            }
+
+        }
+
+        if (t != testCases) {
+
+            ans.append("\n");
+
+        }
+
+    }

@@ -1,0 +1,37 @@
+
+    static void A(int t) {
+
+        boolean yes = true;
+
+        int totalPSubArray = n / _p;
+        int extraElements = (int) mod(n + "", _p * 1L);
+
+        if (equal(extraElements * 1L, 0L)) {
+
+            int total = Integer.parseInt(mul(totalPSubArray + "", q + ""));
+
+            if (!equal(total * 1L, m * 1L)) {
+
+                yes = false;
+
+            }
+
+        }
+
+        if (yes) {
+
+            ans.append("YES");
+
+        } else {
+
+            ans.append("NO");
+
+        }
+
+        if (t != testCases) {
+
+            ans.append("\n");
+
+        }
+
+    }

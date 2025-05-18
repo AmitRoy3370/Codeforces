@@ -1,0 +1,53 @@
+
+    static void A(int t) {
+
+        boolean allEqual = true;
+
+        for (int i = 1; i < n; ++i) {
+
+            if (p[i] != p[i - 1]) {
+
+                allEqual = false;
+
+            }
+
+        }
+
+        if (allEqual) {
+
+            ans.append("YES");
+
+        } else {
+
+            boolean yes = true;
+
+            for (int i = 1; i < n; ++i) {
+
+                if (p[i] == p[i - 1] && p[i] == 0) {
+
+                    yes = false;
+                    break;
+
+                }
+
+            }
+
+            if (yes) {
+
+                ans.append("NO");
+
+            } else {
+
+                ans.append("YES");
+
+            }
+
+        }
+
+        if (t != testCases) {
+
+            ans.append("\n");
+
+        }
+
+    }

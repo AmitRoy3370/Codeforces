@@ -1,0 +1,110 @@
+
+    static void C3(int t) {
+
+        System.out.println("mul 999999999");
+        System.out.flush();
+
+        R_ = in.nextLong();
+
+        if (equal(R_, -1L)) {
+
+            return;
+
+        }
+
+        System.out.println("digit");
+
+        R_ = in.nextLong();
+
+        if (equal(R_, -1L)) {
+
+            return;
+
+        }
+
+        if (!equal(N, 81L)) {
+
+            System.out.println("add " + (N - 81L));
+            System.out.flush();
+
+            R_ = in.nextLong();
+
+            if (equal(R_, -1L)) {
+
+                return;
+
+            }
+
+        }
+
+        System.out.println("!");
+        System.out.flush();
+
+        R_ = in.nextLong();
+
+        if (equal(R_, -1L)) {
+
+            return;
+
+        }
+
+        if (t != testCases) {
+
+            ans.append("\n");
+
+        }
+
+    }
+
+    static void C(int t) {
+
+        System.out.println("mul 9");
+        System.out.flush();
+
+        R_ = in.nextLong();
+
+        if (equal(R_, -1L)) {
+
+            return;
+
+        }
+
+        System.out.println("digit");
+        System.out.flush();
+
+        R_ = in.nextLong();
+
+        if (equal(R_, -1L)) {
+
+            return;
+
+        }
+
+        System.out.println("digit");
+        System.out.flush();
+
+        R_ = in.nextLong();
+
+        if (equal(R_, -1L)) {
+
+            return;
+
+        }
+
+        System.out.println("add " + (isSmaller("9", N + "") ? Long.valueOf(sub(N + "", "9")) : N - 9L));
+        System.out.flush();
+
+        R_ = in.nextLong();
+
+        if (equal(R_, -1L)) {
+
+            return;
+
+        }
+
+        System.out.println("!");
+        System.out.flush();
+
+        R_ = in.nextLong();
+
+    }

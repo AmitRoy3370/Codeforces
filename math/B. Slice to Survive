@@ -1,0 +1,50 @@
+
+    static long B(long num) {
+
+        return Long.parseLong(sub("64", Long.numberOfLeadingZeros(--num) + ""));
+
+    }
+
+    static void B(int t) {
+
+        long distanceFromRaw = Long.parseLong(sub(N + "", a[0] + ""));
+        distanceFromRaw = Long.parseLong(sum(distanceFromRaw + "", "1"));
+
+        if (isSmaller(a[0] + "", distanceFromRaw + "")) {
+
+            distanceFromRaw = a[0];
+
+        }
+
+        long distanceFromCol = Long.parseLong(sub(M + "", a[1] + ""));
+        distanceFromCol = Long.parseLong(sum(distanceFromCol + "", "1"));
+
+        if (isSmaller(a[1] + "", distanceFromCol + "")) {
+
+            distanceFromCol = a[1];
+
+        }
+
+        long cutRaw = Long.parseLong(sum(B(M) + "", B(distanceFromRaw) + ""));
+        cutRaw = Long.parseLong(sum(cutRaw + "", "1"));
+
+        long cutCol = Long.parseLong(sum(B(N) + "", B(distanceFromCol) + ""));
+        cutCol = Long.parseLong(sum(cutCol + "", "1"));
+
+        long operation = cutRaw;
+
+        if (isSmaller(cutCol + "", operation + "")) {
+
+            operation = cutCol;
+
+        }
+
+        ans.append(operation);
+
+        if (t != testCases) {
+
+            ans.append("\n");
+
+        }
+
+    }

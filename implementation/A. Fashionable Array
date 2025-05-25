@@ -1,0 +1,64 @@
+
+    static void A(int t) {
+
+        if (n == 1) {
+
+            ans.append("0");
+
+        } else {
+
+            sort(a, 0, n - 1);
+
+            if ((a[0] + a[n - 1]) % 2 == 0) {
+
+                ans.append("0");
+
+            } else {
+
+                int operation = 0;
+
+                for (int i = 0; i < n - 1; ++i) {
+
+                    if (a[i] % 2 == a[n - 1] % 2) {
+
+                        break;
+
+                    } else {
+
+                        operation++;
+
+                    }
+
+                }
+
+                int _operation = 0;
+
+                for (int i = n - 1; i >= 1; --i) {
+
+                    if (a[0] % 2 == a[i] % 2) {
+
+                        break;
+
+                    } else {
+
+                        ++_operation;
+
+                    }
+
+                }
+
+                operation = Math.min(operation, _operation);
+
+                ans.append(operation);
+
+            }
+
+        }
+
+        if (t != testCases) {
+
+            ans.append("\n");
+
+        }
+
+    }

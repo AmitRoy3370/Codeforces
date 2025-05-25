@@ -1,0 +1,54 @@
+
+    static boolean B(int i, ArrayList1<Integer> list, boolean yes) {
+
+        if (equal(i * 1L, n * 1L)) {
+
+            return yes;
+
+        }
+
+        if (x[i] == '(') {
+
+            list.add(i);
+
+        } else {
+
+            list.popFront();
+
+        }
+
+        if (!equal(i * 1L, (n - 1) * 1L) && list.size() == 0) {
+
+            return true;
+
+        } else {
+
+            return B(i + 1, list, yes);
+
+        }
+
+    }
+
+    static void B(int t) {
+
+        boolean yes = false;
+
+        yes = B(0, new ArrayList1<>(), yes);
+
+        if (yes) {
+
+            ans.append("YES");
+
+        } else {
+
+            ans.append("NO");
+
+        }
+
+        if (t != testCases) {
+
+            ans.append("\n");
+
+        }
+
+    }

@@ -1,0 +1,115 @@
+
+    static void C(int i, long height, long dp[][]) {
+
+        if (equal(i * 1L, 0L)) {
+
+            return;
+
+        }
+
+        if (!equal(a[i], -1L)) {
+
+            p[i - 1] = (int) a[i];
+            height = Long.parseLong(sub(height + "", a[i] + ""));
+
+        } else {
+
+            if (height >= dp[i - 1][0] && height <= dp[i - 1][1]) {
+
+            } else {
+
+                p[i - 1] = 1;
+                height = Long.parseLong(sub(height + "", "1"));
+
+            }
+
+        }
+
+        C(i - 1, height, dp);
+
+    }
+
+    static boolean C(int i, long dp[][]) {
+
+        if (isSmaller(n + "", i + "")) {
+
+            return true;
+
+        }
+
+        long left, right;
+
+        if (equal(a[i], 0L)) {
+
+            left = dp[i - 1][0];
+            right = dp[i - 1][1];
+
+        } else if (equal(a[i], 1L)) {
+
+            left = Long.parseLong(sum(dp[i - 1][0] + "", "1"));
+            right = Long.parseLong(sum(dp[i - 1][1] + "", "1"));
+
+        } else {
+
+            left = dp[i - 1][0];
+            right = Long.parseLong(sum(dp[i - 1][1] + "", "1"));
+
+        }
+
+        left = isSmaller(left + "", u[i] + "") ? u[i] : left;
+        right = isSmaller(v[i] + "", right + "") ? v[i] : right;
+
+        if (isSmaller(right + "", left + "")) {
+
+            return false;
+
+        } else {
+
+            dp[i][0] = left;
+            dp[i][1] = right;
+
+            return C(i + 1, dp);
+
+        }
+
+    }
+
+    static void C(int t) {
+
+        p = new int[n];
+
+        boolean yes;
+
+        long dp[][] = new long[n + 1][2];
+        yes = C(1, dp);
+
+        if (!yes) {
+
+            p = new int[1];
+            p[0] = -1;
+
+        } else {
+
+            long height = dp[n][0];
+
+            C(n, height, dp);
+
+        }
+
+        StringBuilder sb = new StringBuilder();
+
+        for (int i : p) {
+
+            sb.append(i).append(" ");
+
+        }
+
+        ans.append(sb.toString().trim());
+
+        if (t != testCases) {
+
+            ans.append("\n");
+
+        }
+
+    }

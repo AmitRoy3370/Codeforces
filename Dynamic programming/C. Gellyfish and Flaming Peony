@@ -1,0 +1,132 @@
+
+    static void C(PriorityQueue<Long> pq, Set<Long> set, Map<Long, Integer> map, long gcd) {
+
+        if (pq.isEmpty()) {
+
+            return;
+
+        }
+
+        long removed = pq.poll();
+
+        if (equal(removed, gcd)) {
+
+        } else {
+
+            for (long element : set) {
+
+                long _gcd = gcd(element, removed);
+
+                if (!map.containsKey(_gcd)) {
+
+                    map.put(_gcd, map.get(removed) + 1);
+                    pq.add(_gcd);
+
+                }
+
+            }
+
+            C(pq, set, map, gcd);
+
+        }
+
+    }
+
+    static void C(int i, Set<Long> set) {
+
+        if (equal(i * 1L, n * 1L)) {
+
+            return;
+
+        }
+
+        set.add(a[i]);
+
+        C(i + 1, set);
+
+    }
+
+    static int C(int i, long gcd, int countGCD) {
+
+        if (equal(i * 1L, n * 1L)) {
+
+            return countGCD;
+
+        }
+
+        if(equal(a[i], gcd)) {
+            
+            countGCD = Integer.parseInt(sum(countGCD + "", "1"));
+            
+        }
+        
+        return C(i + 1, gcd, countGCD);
+
+    }
+
+    static long C(int i, long gcd) {
+
+        if (equal(i * 1L, n * 1L)) {
+
+            return gcd;
+
+        }
+
+        return C(i + 1, gcd(gcd, a[i]));
+
+    }
+
+    static void C(int t) {
+
+        long gcd = a[0];
+
+        gcd = C(1, gcd);
+
+        int countGCD = 0;
+
+        countGCD = C(0, gcd, countGCD);
+
+        if (isSmaller("0", countGCD + "")) {
+
+            n = Integer.parseInt(sub(n + "", countGCD + ""));
+
+            ans.append(n);
+
+        } else {
+
+            sort(a, 0, n - 1);
+
+            Set<Long> set = new HashSet<>();
+
+            C(0, set);
+
+            Map<Long, Integer> map = new HashMap<>();
+
+            PriorityQueue<Long> pq = new PriorityQueue<>(Comparator.reverseOrder());
+
+            for (long i : set) {
+
+                map.put(i, 0);
+                pq.add(i);
+
+            }
+
+            C(pq, set, map, gcd);
+
+            sum = map.getOrDefault(gcd, -1);
+
+            n = Integer.parseInt(sub(n + "", "1"));
+
+            sum = Long.parseLong(sum(sum + "", n + ""));
+
+            ans.append(sum);
+
+        }
+
+        if (t != testCases) {
+
+            ans.append("\n");
+
+        }
+
+    }

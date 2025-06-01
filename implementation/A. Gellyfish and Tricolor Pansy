@@ -1,0 +1,28 @@
+
+    static void A(int t) {
+
+        if ((equal(a[0], a[1]) || isSmaller(a[1] + "", a[0] + "")) && (equal(a[1], a[2]) || isSmaller(a[1] + "", a[2] + ""))) {
+
+            ans.append("Gellyfish");
+
+        } else if (isSmaller(a[0] + "", a[3] + "")) {
+
+            ans.append("Flower");
+
+        } else if ((equal(a[2], a[3]) || isSmaller(a[3] + "", a[2] + ""))) {
+
+            ans.append("Gellyfish");
+
+        } else {
+
+            ans.append("Flower");
+
+        }
+
+        if (t != testCases) {
+
+            ans.append("\n");
+
+        }
+
+    }

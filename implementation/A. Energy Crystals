@@ -1,0 +1,17 @@
+
+    static void A(int t) {
+
+        int value = Integer.parseInt(sub("63", Long.numberOfLeadingZeros(X) + ""));
+
+        long crystal = Long.parseLong(mul("2", value + ""));
+        crystal = Long.parseLong(sum(crystal + "", "3"));
+
+        ans.append(crystal);
+
+        if (t != testCases) {
+
+            ans.append("\n");
+
+        }
+
+    }

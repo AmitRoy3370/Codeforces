@@ -1,0 +1,63 @@
+
+static int C(int i, int j) {
+
+        while (isSmaller(j + 1 + "", n + "") && equal(a[i], a[j + 1])) {
+
+            ++j;
+
+        }
+
+        return j;
+
+    }
+ 
+
+static void C(int t) {
+
+        sum = Long.MAX_VALUE;
+
+        ArrayList1<Long> list = new ArrayList1<>();
+
+        list.add(sum);
+
+        long _n = Long.parseLong(sub(n + "", "1"));
+
+        for (int i = 0; i < n;) {
+
+            int j = i;
+
+            j = C(i, j);
+
+            long index = _n - j;
+
+            long _index = i + index;
+
+            long cost = a[i] * _index;
+
+            if (cost < list.get(0)) {
+
+                if (!list.isEmpty()) {
+
+                    list.popFront();
+
+                }
+
+                list.inserFirst(cost);
+
+            }
+
+            i = j + 1;
+
+        }
+
+        sum = list.get(0);
+
+        ans.append(sum);
+
+        if (t != testCases) {
+
+            ans.append("\n");
+
+        }
+
+    }

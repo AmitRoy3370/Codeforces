@@ -1,0 +1,48 @@
+
+    static void B(int t) {
+
+        long fib[] = new long[n + 1];
+
+        fib[1] = 1;
+        fib[2] = 2;
+
+        for (int i = 3; i <= n; ++i) {
+
+            fib[i] = Long.parseLong(sum(fib[i - 1] + "", fib[i - 2] + ""));
+
+        }
+
+        StringBuilder sb = new StringBuilder();
+
+        sum = Long.parseLong(sum(fib[n] + "", fib[n - 1] + ""));
+
+        for (int i = 0; i < m; ++i) {
+
+            long min = Math.min(Math.min(A[i][0], A[i][1]), A[i][2]);
+            long max = Math.max(Math.max(A[i][0], A[i][1]), A[i][2]);
+
+            if (isSmaller(min + "", fib[n] + "")) {
+
+                sb.append("0");
+
+            } else if (equal(sum, max) || isSmaller(sum + "", max + "")) {
+
+                sb.append("1");
+
+            } else {
+
+                sb.append("0");
+
+            }
+
+        }
+
+        ans.append(sb.toString());
+
+        if (t != testCases) {
+
+            ans.append("\n");
+
+        }
+
+    }

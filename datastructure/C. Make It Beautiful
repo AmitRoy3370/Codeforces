@@ -1,0 +1,182 @@
+
+    static long C(PriorityQueue<Pair_> pq, long increased) {
+
+        if (pq.isEmpty()) {
+
+            return increased;
+
+        } else {
+
+            Pair_ pair = pq.poll();
+
+            if (K < pair.u) {
+
+                return increased;
+
+            } else {
+
+                K -= pair.u;
+                increased++;
+                a[(int) pair.v] +=  pair.u;
+
+                int index = (int) pair.v;
+
+                long value = (a[index] | (((a[index] + 1))));
+
+                value -= a[index];
+
+                if (value > 0L) {
+
+                    pq.add(new Pair_(value, index * 1L));
+
+                }
+
+                return C(pq, increased);
+
+            }
+
+        }
+
+    }
+
+    static void C(int i, PriorityQueue<Pair_> pq) {
+
+        if (equal(i * 1L, n * 1L)) {
+
+            return;
+
+        }
+
+        long value = (a[i] | (Long.parseLong(sum(a[i] + "", "1"))));
+
+        if (value > 0 && value > a[i]) {
+
+            value = Long.parseLong(sub(value + "", a[i] + ""));
+
+        } else {
+
+            value -= a[i];
+
+        }
+
+        if (value > 0L) {
+
+            pq.add(new Pair_(value, i * 1L));
+
+        }
+
+        C(i + 1, pq);
+
+    }
+
+    static void C(int i, long a[]) {
+
+        if (equal(i * 1L, n * 1L)) {
+
+            return;
+
+        }
+
+        long value = Long.bitCount(a[i]);
+
+        sum = Long.parseLong(sum(sum + "", value + ""));
+
+        C(i + 1, a);
+
+    }
+
+    static void C(int t) {
+
+        sum = 0L;
+
+        C(0, a);
+
+        long increased = 0L;
+
+        PriorityQueue<Pair_> pq = new PriorityQueue<>();
+
+        C(0, pq);
+
+        increased = C(pq, increased);
+
+        sum = Long.parseLong(sum(sum + "", increased + ""));
+
+        ans.append(sum);
+
+        if (t != testCases) {
+
+            ans.append("\n");
+
+        }
+
+    }
+
+    private static class Pair_ implements Comparable<Pair_> {
+
+        long u, v;
+
+        public Pair_(long u, long v) {
+            this.u = u;
+            this.v = v;
+        }
+
+        @Override
+        public int compareTo(Pair_ p) {
+
+            if (this.u > p.u) {
+
+                return 1;
+
+            } else if (this.u < p.u) {
+
+                return -1;
+
+            } else if (this.u == p.u) {
+
+                if (this.v > p.v) {
+
+                    return 1;
+
+                } else if (this.v < p.v) {
+
+                    return -1;
+
+                } else {
+
+                    return 0;
+
+                }
+
+            }
+
+            return 0;
+
+        }
+
+        @Override
+        public int hashCode() {
+            int hash = 5;
+            hash = 11 * hash + (int) (this.u ^ (this.u >>> 32));
+            hash = 11 * hash + (int) (this.v ^ (this.v >>> 32));
+            return hash;
+        }
+
+        @Override
+        public boolean equals(Object obj) {
+            if (this == obj) {
+                return true;
+            }
+            if (obj == null) {
+                return false;
+            }
+            if (getClass() != obj.getClass()) {
+                return false;
+            }
+            final Pair_ other = (Pair_) obj;
+            if (this.u != other.u) {
+                return false;
+            }
+            return this.v == other.v;
+        }
+
+    }

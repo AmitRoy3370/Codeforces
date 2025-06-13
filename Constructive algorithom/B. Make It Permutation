@@ -1,0 +1,81 @@
+
+    static void B(int i, ArrayList1<int[]> list) {
+
+        if (isSmaller(n + "", i + "")) {
+
+            return;
+
+        }
+
+        int left = 1, right = Integer.parseInt(sub(n + "", i + ""));
+        right = Integer.parseInt(sum(right + "", "1"));
+
+        list.add(new int[]{i, left, right});
+
+        left = Integer.parseInt(sum(right + "", "1"));
+        right = n;
+
+        list.add(new int[]{i, left, right});
+
+        B(i + 1, list);
+
+    }
+
+    static void B(int t) {
+
+        ArrayList1<int[]> list = new ArrayList1<>();
+
+        list.add(new int[]{1, 1, n});
+
+        B(2, list);
+
+        m = list.size();
+
+        A = new long[m][3];
+
+        int index = 0;
+
+        while (!list.isEmpty()) {
+
+            p = list.get(0);
+
+            A[index][0] = p[0];
+            A[index][1] = p[1];
+            A[index++][2] = p[2];
+
+            list.popFront();
+
+        }
+
+        long operation = Long.parseLong(mul("2", n + ""));
+        operation = Long.parseLong(sub(operation + "", "1"));
+
+        ans.append(operation).append("\n");
+
+        for (int i = 0; i < m; ++i) {
+
+            StringBuilder sb = new StringBuilder();
+
+            for (int j = 0; j < 3; ++j) {
+
+                sb.append(A[i][j]).append(" ");
+
+            }
+
+            ans.append(sb.toString().trim());
+
+            if (i != m - 1) {
+
+                ans.append("\n");
+
+            }
+
+        }
+
+        if (t != testCases) {
+
+            ans.append("\n");
+
+        }
+
+    }

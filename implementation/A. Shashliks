@@ -1,0 +1,71 @@
+import java.util.Scanner;
+
+public class MyClass {
+    
+    static Scanner in = new Scanner(System.in);
+    
+    static int testCases;
+    static long k, a, b, x, y;
+    
+    static void solve() {
+        
+        long costForFirst = 0L;
+        
+        if(x > y) {
+            
+            long temp = a;
+            a = b;
+            b = temp; 
+            
+            temp = x;
+            x = y;
+            y = temp;
+        
+        }
+        
+        if(k >= a) {
+            
+            costForFirst = (k - a) / x + 1;
+            
+        }
+        
+        k -= costForFirst * x;
+        
+        long costForSecond = 0L;
+        
+        if(k >= b) {
+            
+            costForSecond = (k - b) / y + 1;
+            
+        }
+        
+        long total = costForFirst + costForSecond;
+        
+        System.out.println(total);
+        
+    }
+    
+  public static void main(String args[]) {
+      
+      testCases = in.nextInt();
+      
+      for(int t = 0; t < testCases; ++t) {
+          
+          input();
+          solve();
+          
+      }
+   
+  }
+  
+  private static void input() {
+      
+      k = in.nextLong();
+      a = in.nextLong();
+      b = in.nextLong();
+      x = in.nextLong();
+      y = in.nextLong();
+      
+  }
+  
+}

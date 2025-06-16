@@ -1,0 +1,62 @@
+import java.util.Scanner;
+public class MyClass {
+    
+    static Scanner in = new Scanner(System.in);
+    static int testCases;
+    static long w, h, a, b;
+    static long x1, y1, x2, y2;
+    
+    static void solve() {
+        
+        long first = x1 - x2, second = y1 - y2;
+        
+        if(first % a == 0 && second % b == 0) {
+            
+            System.out.println("YES");
+            
+        } else if(first % a == 0 && x1 != x2) {
+            
+            System.out.println("YES");
+            
+        } else if(second % b == 0 && y1 != y2) {
+            
+            System.out.println("YES");
+            
+        } else {
+            
+            System.out.println("NO");
+            
+        }
+        
+    }
+    
+  public static void main(String args[]) {
+      
+      testCases = in.nextInt();
+      
+      for(int t = 0; t < testCases; ++t) {
+          
+          input();
+          solve();
+          
+      }
+   
+  }
+  
+  private static void input() {
+      
+      w = in.nextLong();
+      h = in.nextLong();
+      
+      a = in.nextLong();
+      b = in.nextLong();
+      
+      x1 = in.nextLong();
+      y1 = in.nextLong();
+      
+      x2 = in.nextLong();
+      y2 = in.nextLong();
+      
+  }
+  
+}

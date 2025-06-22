@@ -1,0 +1,113 @@
+  static void D() {
+
+        factorial = new long[(int) N];
+
+        factorial[0] = 1L;
+
+        for (int i = 1; i < N; ++i) {
+
+            factorial[i] = (Long.parseLong(mul(factorial[i - 1] + "", i + ""))) % mod;
+
+        }
+
+        inverseFactorial = new long[(int) N];
+
+        inverseFactorial[(int) N - 1] = pow(factorial[(int) N - 1], mod - 2);
+
+        for (int i = (int) N - 2; i >= 0; --i) {
+
+            inverseFactorial[i] = (Long.parseLong(mul(inverseFactorial[i + 1] + "", (i + 1) + ""))) % mod;
+
+        }
+
+    }
+
+    static long D(long val, int n) {
+
+        if (n < 0) {
+
+            return 0L;
+
+        }
+
+        if (equal(n * 1L, 0L)) {
+
+            return 1L;
+
+        }
+
+        long num = 1L;
+
+        long n_mod = mod(val + "", mod);
+
+        for (int i = 0; i < n; ++i) {
+
+            long value = n_mod - i + mod;
+
+            num = Long.parseLong(mul(num + "", (mod((value) + "", mod)) + "")) % mod;
+
+        }
+
+        num = Long.parseLong(mul(num + "", inverseFactorial[n] + ""));
+
+        return mod(num + "", mod);
+
+    }
+
+    static void D(int t) {
+
+        long first = Long.parseLong(sub(a[0] + "", "1"));
+        first = Long.parseLong(mul(first + "", a[2] + ""));
+        first = Long.parseLong(sum(first + "", "1")); // n = (a - 1) * k + 1
+
+        long second = D(first, (int) a[0]);
+
+        long value = Long.parseLong(sub(a[1] + "", "1"));
+        value = Long.parseLong(mul(value + "", a[2] + ""));
+        value = mod(value + "", mod); 
+
+        second = Long.parseLong(mul(value + "", second + ""));
+        second = Long.parseLong(sum(second + "", "1"));
+        second = mod(second + "", mod); // m = nCa * k * (b - 1) + 1
+
+        first = mod(first + "", mod);
+
+        ans.append(first).append(" ").append(second);
+
+        if (t != testCases) {
+
+            ans.append("\n");
+
+        }
+
+    }
+
+    private static void D_input() throws IOException {
+
+        a = in.nextLongArray(3);
+
+    }
+
+    static long pow(long value, long power) {
+
+        long pow_value = 1L;
+
+        while (power > 0L) {
+
+            if (power % 2L == 1L) {
+
+                pow_value *= value;
+
+                pow_value %= mod;
+            }
+
+            value *= value;
+
+            value %= mod;
+            power /= 2L;
+
+        }
+
+        return pow_value;
+
+    }

@@ -1,0 +1,110 @@
+
+    static boolean B(int i, boolean yes, long a[]) {
+
+        if (equal(i * 1L, (n - 1) * 1L)) {
+
+            return yes;
+
+        }
+
+        long min, max;
+
+        if (isSmaller(a[i] + "", a[i + 1] + "")) {
+
+            min = a[i];
+            max = a[i + 1];
+
+        } else {
+
+            min = a[i + 1];
+            max = a[i];
+
+        }
+
+        if (i > 0) {
+
+            long prev = a[i - 1];
+
+            if ((equal((prev - 1), max) || isSmaller((prev - 1) + "", max + "")) && (equal((prev + 1), min) || isSmaller(min + "", (prev + 1) + ""))) {
+
+                yes = true;
+
+            }
+
+        }
+
+        if (i < n - 2) {
+
+            long next = a[i + 2];
+
+            if ((equal((next - 1), max) || isSmaller((next - 1) + "", max + "")) && (equal((next + 1), min) || isSmaller(min + "", (next + 1) + ""))) {
+
+                yes = true;
+
+            }
+
+        }
+
+        return B(i + 1, yes, a);
+
+    }
+
+    static boolean B(int i, boolean yes) {
+
+        if (equal(i * 1L, (n - 1) * 1L)) {
+
+            return yes;
+
+        }
+
+        long consecutiveElementDifference = Long.parseLong(sub(Math.max(a[i], a[i + 1]) + "", Math.min(a[i], a[i + 1]) + ""));
+
+        if (equal(consecutiveElementDifference, 0L) || equal(consecutiveElementDifference, 1L)) {
+
+            yes = true;
+
+            return yes;
+
+        } else {
+
+            return B(i + 1, yes);
+
+        }
+
+    }
+
+    static void B(int t) {
+
+        boolean yes = false;
+
+        yes = B(0, yes);
+
+        if (yes) {
+
+            ans.append("0");
+
+        } else {
+
+            yes = false;
+
+            yes = B(0, yes, a);
+
+            if (yes) {
+
+                ans.append("1");
+
+            } else {
+
+                ans.append("-1");
+
+            }
+
+        }
+
+        if (t != testCases) {
+
+            ans.append("\n");
+
+        }
+
+    }

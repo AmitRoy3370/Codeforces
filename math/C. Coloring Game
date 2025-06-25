@@ -1,0 +1,60 @@
+
+    static void C(int left, int right, long difference) {
+
+        if (!(right > left)) {
+
+            return;
+
+        }
+
+        long _sum = a[left] + a[right];
+
+        if (isSmaller(difference + "", _sum + "")) {
+
+            sum += (right - left);
+
+            --right;
+            
+            C(left, right, difference);
+
+        } else {
+
+            ++left;
+            
+            C(left, right, difference);
+
+        }
+
+    }
+
+    static void C(int t) {
+
+        long max = a[n - 1];
+        long secondMax = a[n - 2];
+
+        sum = 0L;
+
+        for (int i = 2; i < n; ++i) {
+
+            long first = a[i] * 2L;
+            long second = equal(i * 1L, (n - 1) * 1L) ? secondMax : max;
+
+            long _final = isSmaller(second + "", first + "") ? first : second;
+
+            long difference = _final - a[i];
+
+            int left = 0, right = i - 1;
+
+            C(left, right, difference);
+
+        }
+
+        ans.append(sum);
+
+        if (t != testCases) {
+
+            ans.append("\n");
+
+        }
+
+    }

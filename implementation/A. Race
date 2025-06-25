@@ -1,0 +1,58 @@
+
+    static boolean A(int i, long differenceWithX, long differenceWithY) {
+
+        if (isSmaller("100", i + "")) {
+
+            return false;
+
+        }
+
+        if (equal(a[0], i * 1L)) {
+
+            return A(i + 1, differenceWithX, differenceWithY);
+
+        } else {
+
+            long _differenceWithX = Long.parseLong(sub(Math.max(i, a[1]) + "", Math.min(i, a[1]) + ""));
+            long _differenceWithY = Long.parseLong(sub(Math.max(i, a[2]) + "", Math.min(i, a[2]) + ""));
+
+            if (isSmaller(_differenceWithX + "", differenceWithX + "") && isSmaller(_differenceWithY + "", differenceWithY + "")) {
+
+                return true;
+
+            } else {
+
+                return A(i + 1, differenceWithX, differenceWithY);
+
+            }
+
+        }
+
+    }
+
+    static void A(int t) {
+
+        long differenceWithX = Long.parseLong(sub(Math.max(a[0], a[1]) + "", Math.min(a[0], a[1]) + ""));
+        long differenceWithY = Long.parseLong(sub(Math.max(a[0], a[2]) + "", Math.min(a[0], a[2]) + ""));
+
+        boolean yes;
+
+        yes = A(1, differenceWithX, differenceWithY);
+
+        if (yes) {
+
+            ans.append("YES");
+
+        } else {
+
+            ans.append("NO");
+
+        }
+
+        if (t != testCases) {
+
+            ans.append("\n");
+
+        }
+
+    }

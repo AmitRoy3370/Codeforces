@@ -1,0 +1,96 @@
+
+    static void D(PriorityQueue<Long> pq, long now) {
+
+        if (pq.isEmpty()) {
+
+            return;
+
+        }
+
+        if (!(equal(pq.peek(), now) || isSmaller(pq.peek() + "", now + ""))) {
+
+        } else {
+
+            pq.poll();
+
+            D(pq, now);
+
+        }
+
+    }
+
+    static int D(int index, PriorityQueue<Long> pq, long now, Element element[]) {
+
+        if (index >= n) {
+
+            return index;
+
+        }
+
+        if (!(equal(element[index].first, now) || isSmaller(element[index].first + "", now + ""))) {
+
+            return index;
+
+        } else {
+
+            pq.add(element[index].third);
+
+            return D(index + 1, pq, now, element);
+
+        }
+
+    }
+
+    static void D(int i, Element element[]) {
+
+        if (i == n) {
+
+            return;
+
+        }
+
+        element[i] = new Element(L[i], R[i], a[i]);
+
+        D(i + 1, element);
+
+    }
+
+    static void D(int t) {
+
+        Element element[] = new Element[n];
+
+        D(0, element);
+
+        Arrays.sort(element);
+
+        PriorityQueue<Long> pq = new PriorityQueue<>(Collections.reverseOrder());
+
+        int index = 0;
+
+        long now = K;
+
+        while (true) {
+
+            index = D(index, pq, now, element);
+
+            D(pq, now);
+
+            if (pq.isEmpty()) {
+
+                break;
+
+            }
+
+            now = pq.poll();
+
+        }
+
+        ans.append(now);
+
+        if (t != testCases) {
+
+            ans.append("\n");
+
+        }
+
+    }

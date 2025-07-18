@@ -1,0 +1,155 @@
+
+    static boolean yes;
+
+    static boolean E(int i, int term, long a[]) {
+
+        if (i >= n - 1) {
+
+            return true;
+
+        }
+
+        long value;
+
+        if (term == 1) {
+
+            value = L[i];
+
+            if (!equal(value, 0L)) {
+
+                return false;
+
+            }
+
+        } else {
+
+            value = R[i];
+
+            if (!equal(value, a[n - 1])) {
+
+                return false;
+
+            }
+
+        }
+
+        return E(i + 1, term, a);
+
+    }
+
+    static boolean E(int i, long a[], int term) {
+
+        if (i == n) {
+
+            if (term == 2) {
+
+                long value = d[0];
+
+                return equal(value, a[n - 1]);
+
+            } else {
+
+                return true;
+
+            }
+
+        }
+
+        long value;
+
+        if (term == 1) {
+
+            value = c[i];
+
+            if (!equal(value, 0L)) {
+
+                return false;
+
+            }
+
+        } else {
+
+            value = d[i];
+
+            if (!equal(value, a[n - 1])) {
+
+                return false;
+
+            }
+
+        }
+
+        return E(i + 1, a, term);
+
+    }
+
+    static void E(int i, long L[], long R[], long a[], long b[]) {
+
+        if (i + 1 >= n) {
+
+            return;
+
+        }
+
+        L[i] = mod(b[i + 1] + "", b[i]);
+        R[i] = gcd(a[i], b[i + 1]);
+
+        E(i + 1, L, R, a, b);
+
+    }
+
+    static void E(int i, long c[], long d[]) {
+
+        if (i >= n) {
+
+            return;
+
+        }
+
+        c[i] = mod(a[i - 1] + "", a[i]);
+        d[i] = gcd(a[i], b[i]);
+
+        E(i + 1, c, d);
+
+    }
+
+    static void E(int t) {
+
+        yes = equal(b[0], a[n - 1]);
+
+        c = new long[n];
+        d = new long[n];
+        L = new long[n];
+        R = new long[n];
+
+        d[0] = gcd(a[0], b[0]);
+
+        E(1, c, d);
+
+        E(0, L, R, a, b);
+
+        yes = yes ? E(1, a, 1) : false;
+
+        yes = yes ? E(0, 1, a) : false;
+
+        yes = yes ? E(1, a, 2) : false;
+
+        yes = yes ? E(0, 2, a) : false;
+
+        if (yes) {
+
+            ans.append("YES");
+
+        } else {
+
+            ans.append("NO");
+
+        }
+
+        if (t != testCases) {
+
+            ans.append("\n");
+
+        }
+
+    }

@@ -1,0 +1,24 @@
+
+    static void A(int t) {
+
+        int digit = 11;
+
+        while (n > 0) {
+
+            int num = mod(n + "", 10);
+
+            digit = Math.min(digit, num);
+
+            n /= 10;
+
+        }
+
+        ans.append(digit);
+
+        if (t != testCases) {
+
+            ans.append("\n");
+
+        }
+
+    }

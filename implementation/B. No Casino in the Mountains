@@ -1,0 +1,59 @@
+
+    static int B(int i, int count) {
+
+        if (i + k > n) {
+
+            return count;
+
+        }
+
+        sub = Long.parseLong(sub(prefix[i + k] + "", prefix[i] + ""));
+
+        if (equal(sub, 0L)) {
+
+            i += k + 1;
+            ++count;
+
+        } else {
+
+            ++i;
+
+        }
+
+        return B(i, count);
+
+    }
+
+    static void B(int i, long prefix[]) {
+
+        if (isSmaller(n + "", i + "")) {
+
+            return;
+
+        }
+
+        prefix[i] = Long.parseLong(sum(prefix[i - 1] + "", a[i - 1] + ""));
+
+        B(i + 1, prefix);
+
+    }
+
+    static void B(int t) {
+
+        prefix = new long[n + 1];
+
+        B(1, prefix);
+
+        int count = 0;
+
+        count = B(0, count);
+
+        ans.append(count);
+
+        if (t != testCases) {
+
+            ans.append("\n");
+
+        }
+
+    }

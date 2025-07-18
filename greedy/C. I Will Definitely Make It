@@ -1,0 +1,58 @@
+
+    static void C(int i, long level, long comparator) {
+
+        if (i >= n) {
+
+            return;
+
+        }
+
+        if (equal(a[i], comparator) || isSmaller(a[i] + "", comparator + "")) {
+
+            C(i + 1, level, comparator);
+
+        } else {
+
+            sub = Long.parseLong(sub(Math.max(a[i], a[i - 1]) + "", Math.min(a[i], a[i - 1]) + ""));
+
+            level = Long.parseLong(sum(level + "", sub + ""));
+
+            if (isSmaller(a[i - 1] + "", level + "")) {
+
+                yes = false;
+
+            }
+
+            C(i + 1, level, comparator);
+
+        }
+
+    }
+
+    static void C(int t) {
+
+        long comparator = a[k - 1];
+
+        sort(a, 0, n - 1);
+
+        yes = true;
+
+        C(0, 0L, comparator);
+
+        if (yes) {
+
+            ans.append("YES");
+
+        } else {
+
+            ans.append("NO");
+
+        }
+
+        if (t != testCases) {
+
+            ans.append("\n");
+
+        }
+
+    }

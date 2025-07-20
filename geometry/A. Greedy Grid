@@ -1,0 +1,51 @@
+
+    static void A(int t) {
+
+        int max = isSmaller(n + "", m + "") ? m : n;
+        int min = isSmaller(n + "", m + "") ? n : m;
+
+        yes = (equal(min * 1L, 2L) || isSmaller("2", min + ""));
+
+        yes &= (equal(max * 1L, 3L) || isSmaller("3", max + ""));
+
+        if (yes) {
+
+            ans.append("YES");
+
+        } else {
+
+            ans.append("NO");
+
+        }
+
+        if (t != testCases) {
+
+            ans.append("\n");
+
+        }
+
+    }
+
+    public static void main(String[] Priya) throws IOException {
+
+        testCases = in.nextInt();
+        //testCases = 1;
+
+        for (int t = 0; t < testCases; ++t) {
+
+            C_input();
+            C(t + 1);
+
+        }
+
+        out.print(ans.toString());
+        out.flush();
+
+    }
+
+    private static void A_input() throws IOException {
+
+        n = in.nextInt();
+        m = in.nextInt();
+
+    }

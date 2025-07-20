@@ -1,0 +1,55 @@
+
+    static void B(int t) {
+
+        yes = true;
+
+        for (int i = 0; i < n; ++i) {
+
+            if (A[i][0] == A[i][2] && A[i][1] == A[i][3]) {
+
+                continue;
+
+            }
+
+            yes = false;
+            break;
+
+        }
+
+        if (yes) {
+
+            ans.append("0");
+
+        } else {
+
+            sum = 0L;
+
+            for (int i = 0; i < n; ++i) {
+
+                long first = isSmaller(A[i][0] + "", A[i][2] + "") ? 0L : (A[i][0] - A[i][2]);
+
+                long second = isSmaller(A[i][1] + "", A[i][3] + "") ? 0L : (A[i][1] - A[i][3]);
+
+                sum = Long.parseLong(sum(sum + "", (first + second) + ""));
+
+                if (isSmaller(A[i][3] + "", A[i][1] + "")) {
+
+                    second = isSmaller(A[i][0] + "", A[i][2] + "") ? A[i][0] : A[i][2];
+
+                    sum = Long.parseLong(sum(sum + "", second + ""));
+
+                }
+
+            }
+
+            ans.append(sum);
+
+        }
+
+        if (t != testCases) {
+
+            ans.append("\n");
+
+        }
+
+    }

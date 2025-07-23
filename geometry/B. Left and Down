@@ -1,0 +1,33 @@
+
+    static void B(int t) {
+
+        long gcd = gcd(a[0], a[1]);
+
+        long firstCoOrdinate = Long.parseLong(sum(a[0] + "", a[2] + ""));
+        long secondCoOrdinate = Long.parseLong(sum(a[1] + "", a[2] + ""));
+
+        firstCoOrdinate = Long.parseLong(sub(firstCoOrdinate + "", "1"));
+        secondCoOrdinate = Long.parseLong(sub(secondCoOrdinate + "", "1"));
+
+        firstCoOrdinate /= a[2];
+        secondCoOrdinate /= a[2];
+
+        long max = isSmaller(firstCoOrdinate + "", secondCoOrdinate + "") ? secondCoOrdinate : firstCoOrdinate;
+
+        if (equal(gcd, max) || isSmaller(max + "", gcd + "")) {
+
+            ans.append("1");
+
+        } else {
+
+            ans.append("2");
+
+        }
+
+        if (t != testCases) {
+
+            ans.append("\n");
+
+        }
+
+    }

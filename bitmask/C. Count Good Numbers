@@ -1,0 +1,83 @@
+
+    static long C(int i, int j, long mul) {
+
+        if (equal(j * 1L, 4L)) {
+
+            return mul;
+
+        }
+
+        long value = ((i * 1L) & pow(2L, j * 1L));
+
+        if (isSmaller("0", value + "")) {
+
+            mul = Long.parseLong(mul(mul + "", p[j] + ""));
+
+        }
+
+        return C(i, j + 1, mul);
+    }
+
+    static long C(long num, int i) {
+
+        if (equal(i * 1L, timer * 1L)) {
+
+            return sum;
+
+        }
+
+        long mul = 1L;
+
+        int bitCount = Long.bitCount(i * 1L);
+
+        mul = C(i, 0, mul);
+
+        long _num = num / mul;
+
+        if (equal(mod(bitCount + "", 2L), 1L)) {
+
+            sum = Long.parseLong(sub(sum + "", _num + ""));
+
+        } else {
+
+            sum = Long.parseLong(sum(sum + "", _num + ""));
+
+        }
+
+        return C(num, i + 1);
+
+    }
+
+    static long C(long num) {
+
+        if (num <= 0L) {
+
+            return 0L;
+
+        }
+
+        p = new int[]{2, 3, 5, 7};
+
+        timer = (int) pow(2L, 4L);
+
+        sum = num;
+
+        C(num, 1);
+
+        return sum;
+
+    }
+
+    static void C(int t) {
+
+        long result = Long.parseLong(sub(C(Y) + "", C(X - 1) + ""));
+
+        ans.append(result);
+
+        if (t != testCases) {
+
+            ans.append("\n");
+
+        }
+
+    }

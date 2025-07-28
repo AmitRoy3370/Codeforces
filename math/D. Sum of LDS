@@ -1,0 +1,36 @@
+
+    static void D(int t) {
+
+        long total = Long.parseLong(mul(n + "", (n + 1) + ""));
+        total = Long.parseLong(mul(total + "", (n + 2) + ""));
+
+        total /= 6L;
+
+        long deduct = 0L;
+
+        for (int i = 0; i < n - 1; ++i) {
+
+            if (isSmaller(a[i] + "", a[i + 1] + "")) {
+
+                long left = i + 1;
+                long right = n - i - 1;
+
+                left = Long.parseLong(mul(left + "", right + ""));
+
+                deduct = Long.parseLong(sum(left + "", deduct + ""));
+
+            }
+
+        }
+
+        sum = Long.parseLong(sub(total + "", deduct + ""));
+
+        ans.append(sum);
+
+        if (t != testCases) {
+
+            ans.append("\n");
+
+        }
+
+    }

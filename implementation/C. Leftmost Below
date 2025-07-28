@@ -1,0 +1,88 @@
+
+    static boolean C(int i, long min, boolean yes) {
+
+        if (equal(i * 1L, n * 1L)) {
+
+            return yes;
+
+        }
+
+        if (equal(min, 0L)) {
+
+            yes = equal(a[i], 0L);
+
+        } else {
+
+            long value = 2L * min - 1L;
+
+            if (isSmaller(value + "", a[i] + "")) {
+
+                yes = false;
+
+            }
+
+        }
+
+        if (isSmaller(a[i] + "", min + "")) {
+
+            min = a[i];
+
+        }
+
+        return C(i + 1, min, yes);
+
+    }
+
+    static boolean C(int i, long first) {
+
+        if (equal(i * 1L, n * 1L)) {
+
+            return true;
+
+        }
+
+        if (!equal(a[i], first)) {
+
+            return false;
+
+        } else {
+
+            return C(i + 1, first);
+
+        }
+
+    }
+
+    static void C(int t) {
+
+        yes = true;
+
+        long first = a[0];
+
+        if (equal(first, 0L)) {
+
+            yes = C(1, first);
+
+        } else {
+
+            yes = C(1, first, yes);
+
+        }
+
+        if (yes) {
+
+            ans.append("YES");
+
+        } else {
+
+            ans.append("NO");
+
+        }
+
+        if (t != testCases) {
+
+            ans.append("\n");
+
+        }
+
+    }

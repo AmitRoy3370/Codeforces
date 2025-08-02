@@ -1,0 +1,105 @@
+
+    static void D(int i, long b[], long c[]) {
+
+        if (equal(i * 1L, (n + 1) * 1L)) {
+
+            return;
+
+        }
+
+        long difference = Long.parseLong(sub(n + "", i + ""));
+
+        long _sum = Long.parseLong(sum(b[i] + "", c[i] + ""));
+
+        if (isSmaller(_sum + "", difference + "")) {
+
+            difference = Long.parseLong(sub(difference + "", _sum + ""));
+
+        } else {
+
+            difference -= _sum;
+
+        }
+
+        if (difference < 0) {
+
+            sub = Long.parseLong(sum(sub + "", Math.abs(difference) + ""));
+
+        }
+
+        D(i + 1, b, c);
+
+    }
+
+    static void D(int i, Binary_Index_Tree bit, int type) {
+
+        if (type == 1 && equal(i * 1L, 0L)) {
+
+            return;
+
+        } else if (type == 2 && equal(i * 1L, (n + 1) * 1L)) {
+
+            return;
+
+        }
+
+        if (type == 1) {
+
+            b[i] = bit.query(Integer.parseInt(sub(a[i - 1] + "", "1")));
+
+            sum = Long.parseLong(sum(sum + "", b[i] + ""));
+
+            bit.add((int) a[i - 1]);
+
+        } else {
+
+            c[i] = (i - 1) - bit.query((int) a[i - 1]);
+
+            bit.add((int) a[i - 1]);
+
+        }
+
+        if (type == 1) {
+
+            D(i - 1, bit, type);
+
+        } else {
+
+            D(i + 1, bit, type);
+
+        }
+
+    }
+
+    static void D(int t) {
+
+        Binary_Index_Tree bit = new Binary_Index_Tree(n);
+
+        b = new long[n + 1];
+        c = new long[n + 1];
+
+        sum = 0L;
+
+        D(n, bit, 1);
+
+        bit = new Binary_Index_Tree(n);
+
+        D(1, bit, 2);
+
+        sub = 0L;
+
+        D(1, b, c);
+
+        //print(b);
+        //print(c);
+        sum -= sub;
+
+        ans.append(sum);
+
+        if (t != testCases) {
+
+            ans.append("\n");
+
+        }
+
+    }

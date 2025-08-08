@@ -1,0 +1,59 @@
+
+    static void B(int t) {
+
+        if (equal(k * 1L, 1L) || equal(k * 1L, n * 1L)) {
+
+            ans.append("1");
+
+        } else {
+
+            int wall = 0;
+
+            for (char i : x) {
+
+                if (i == '#') {
+
+                    wall = Integer.parseInt(sum(wall + "", "1"));
+
+                }
+
+            }
+
+            if (equal(wall * 1L, 0L)) {
+
+                ans.append("1");
+
+            } else {
+
+                int left = k - 1;
+                int right = k - 1;
+
+                while (left >= 0 && x[left] == '.') {
+
+                    --left;
+
+                }
+
+                while (right < n && x[right] == '.') {
+
+                    ++right;
+
+                }
+
+                int daysFromLeft = Math.min(++left + 1, n - k + 1);
+                int daysFromRight = Math.min(k, n - right + 1);
+
+                //System.out.println("left :- " + daysFromLeft + " right :- " + daysFromRight);
+                ans.append(Math.max(daysFromLeft, daysFromRight));
+
+            }
+
+        }
+
+        if (t != testCases) {
+
+            ans.append("\n");
+
+        }
+
+    }

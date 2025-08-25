@@ -1,0 +1,49 @@
+
+    static long D(int i, long first, long second) {
+
+        if (equal(i * 1L, n * 1L)) {
+
+            return second;
+
+        }
+
+        long min = (isSmaller(i + "", a[i] + "") ? i : a[i]) - 2L;
+
+        if (min < 0) {
+
+            min = 0L;
+
+        }
+
+        long third = Long.parseLong(sum(first + "", min + ""));
+
+        if (isSmaller(third + "", second + "")) {
+
+            third = second;
+
+        }
+
+        first = second;
+        second = third;
+
+        return D(i + 1, first, second);
+
+    }
+
+    static void D(int t) {
+
+        sum = sum(a, 0, 0L); 
+
+        sub = Long.parseLong(sub(sum + "", (n - 1) + ""));
+
+        sub = Long.parseLong(sub(sub + "", D(1, 0L, 0L) + ""));
+
+        ans.append(sub);
+
+        if (t != testCases) {
+
+            ans.append("\n");
+
+        }
+
+    }

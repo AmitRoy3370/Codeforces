@@ -1,0 +1,38 @@
+
+    static void B(int i, long a[]) {
+
+        if (i == n) {
+
+            return;
+
+        }
+
+        mod = mod(a[i] + "", (K + 1L));
+        long mul = Long.parseLong(mul(mod + "", (K) + ""));
+        a[i] = Long.parseLong(sum(a[i] + "", mul + ""));
+
+        B(i + 1, a);
+
+    }
+
+    static void B(int t) {
+
+        StringBuilder sb = new StringBuilder();
+
+        B(0, a);
+
+        for (long i : a) {
+
+            sb.append(i).append(" ");
+
+        }
+
+        ans.append(sb.toString().trim());
+
+        if (t != testCases) {
+
+            ans.append("\n");
+
+        }
+
+    }

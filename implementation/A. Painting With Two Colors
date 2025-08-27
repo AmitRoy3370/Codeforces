@@ -1,0 +1,41 @@
+
+    static void A(int t) {
+
+        if (isSmaller(a[0] + "", a[1] + "")) {
+
+            sub = Long.parseLong(sub(N + "", a[1] + ""));
+
+            if (mod(sub + "", 2L) == 0L) {
+
+                ans.append("YES");
+
+            } else {
+
+                ans.append("NO");
+
+            }
+
+        } else {
+
+            sub = Long.parseLong(sub(N + "", a[1] + ""));
+            long _sub = Long.parseLong(sub(N + "", a[0] + ""));
+
+            if (mod(sub + "", 2L) == 0L && mod(_sub + "", 2L) == 0L) {
+
+                ans.append("YES");
+
+            } else {
+
+                ans.append("NO");
+
+            }
+
+        }
+
+        if (t != testCases) {
+
+            ans.append("\n");
+
+        }
+
+    }

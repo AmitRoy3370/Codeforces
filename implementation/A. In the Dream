@@ -1,0 +1,37 @@
+
+    static boolean A(long x, long y) {
+
+        long max = isSmaller(x + "", y + "") ? y : x;
+        long min = isSmaller(y + "", x + "") ? y : x;
+
+        min = Long.parseLong(sum(min + "", "1"));
+        min = Long.parseLong(mul(min + "", "2"));
+
+        return (equal(max, min) || isSmaller(max + "", min + ""));
+
+    }
+
+    static void A(int t) {
+
+        boolean first = A(a[0], a[1]);
+        boolean second = A(Long.parseLong(sub(a[2] + "", a[0] + "")), Long.parseLong(sub(a[n - 1] + "", a[1] + "")));
+
+        yes = first && second;
+
+        if (yes) {
+
+            ans.append("YES");
+
+        } else {
+
+            ans.append("NO");
+
+        }
+
+        if (t != testCases) {
+
+            ans.append("\n");
+
+        }
+
+    }

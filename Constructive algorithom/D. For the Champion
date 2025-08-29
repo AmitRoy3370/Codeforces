@@ -1,0 +1,50 @@
+
+    static long D(char direction, long jump) {
+        
+        System.out.println("? " + direction + " " + jump);
+        
+        return in.nextLong();
+        
+    }
+
+    static void D(int t) {
+
+        sum = Long.MIN_VALUE;
+        sub = Long.MIN_VALUE;
+        
+        for(int i = 0; i < n; ++i) {
+            
+            sum = Math.max(sum, a[i] + b[i]);
+            sub = Math.max(sub, a[i] - b[i]);
+            
+        }
+        
+        long large = (long)(1e9);
+        
+        D('R', large);
+        D('R', large);
+        D('U', large);
+        
+        long up = D('U', large);
+        
+        D('D', large);
+        D('D', large);
+        D('D', large);
+        
+        long down = D('D', large);
+        
+        sum = up - 4L * large + sum;
+        sub = down - 4L * large + sub;
+        
+        long first = (sum + sub) / 2L;
+        long second = (sum - sub) / 2L;
+        
+        System.out.println("! " + first + " " + second);
+        
+        if (t != testCases) {
+
+            ans.append("\n");
+
+        }
+
+    }

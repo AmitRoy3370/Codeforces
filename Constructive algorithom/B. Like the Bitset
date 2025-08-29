@@ -1,0 +1,71 @@
+
+    static void B(int i, int p[], int len) {
+
+        if (i == n) {
+
+            return;
+
+        }
+
+        if (x[i] == '1') {
+
+            len = Integer.parseInt(sum(len + "", "1"));
+            p[i] = len;
+
+        } else {
+
+            len = 0;
+
+        }
+
+        B(i + 1, p, len);
+
+    }
+
+    static void B(int t) {
+
+        p = new int[n];
+
+        B(0, p, 0);
+
+        yes = true;
+
+        B(0, p);
+
+        ArrayList1<Integer> ones = new ArrayList1<>();
+        ArrayList1<Integer> zeros = new ArrayList1<>();
+
+        B(0, ones, zeros);
+
+        int value = n;
+
+        value = B(zeros, p, value);
+        B(ones, p, value);
+
+        if (yes) {
+
+            ans.append("YES").append("\n");
+
+            StringBuilder sb = new StringBuilder();
+
+            for (int i : p) {
+
+                sb.append(i).append(" ");
+
+            }
+
+            ans.append(sb.toString().trim());
+
+        } else {
+
+            ans.append("NO");
+
+        }
+
+        if (t != testCases) {
+
+            ans.append("\n");
+
+        }
+
+    }

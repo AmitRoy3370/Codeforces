@@ -1,0 +1,147 @@
+
+    static void C(int i, long dp[]) {
+
+        if (i == dp.length) {
+
+            return;
+
+        }
+
+        long first = a[i - 1];
+        int second = Arrays.binarySearch(b, 0, m, first);
+
+        if (second < 0) {
+            second = -second - 1;
+        }
+
+        sum = Long.parseLong(sum(dp[second] + "", c[i - 1] + ""));
+
+        dp[i] = isSmaller(dp[i - 1] + "", (sum) + "") ? (sum) : dp[i - 1];
+
+        C(i + 1, dp);
+
+    }
+
+    static void C(int i, List<Element> list, long a[], long b[], long c[]) {
+
+        if (i == list.size()) {
+
+            return;
+
+        }
+
+        a[i] = list.get(i).first;
+        b[i] = list.get(i).second;
+        c[i] = list.get(i).third;
+
+        C(i + 1, list, a, b, c);
+
+    }
+
+    static void C(int i, int j, int end, List<Element> list, List<Integer> index) {
+
+        if (j == end + 1) {
+
+            return;
+
+        }
+
+        list.add(new Element(index.get(j - i) * 1L, index.get(j - 1) * 1L, i * 1L));
+
+        C(i, j + 1, end, list, index);
+
+    }
+
+    static void C(int i, List<Integer> indexes[], List<Element> list) {
+
+        if (i == n + 1) {
+
+            return;
+
+        }
+
+        List<Integer> index = indexes[i];
+
+        int len = index.size();
+
+        if (equal(len * 1L, i * 1L) || isSmaller(i + "", len + "")) {
+
+            C(i, i, len, list, index);
+
+        }
+
+        C(i + 1, indexes, list);
+
+    }
+
+    static void C(int i, List<Integer> list[]) {
+
+        if (i == n) {
+
+            return;
+
+        }
+
+        list[p[i]].add(i);
+
+        C(i + 1, list);
+
+    }
+
+    static void C(List<Integer> indexes[], int i) {
+
+        if (i > n) {
+
+            return;
+
+        }
+
+        indexes[i] = new ArrayList<>();
+
+        C(indexes, i + 1);
+
+    }
+
+    static void C(int t) {
+
+        List<Integer> indexes[] = new ArrayList[n + 1];
+
+        C(indexes, 0);
+
+        C(0, indexes);
+
+        List<Element> list = new ArrayList<>();
+
+        C(1, indexes, list);
+
+        if (list.isEmpty()) {
+
+            ans.append("0");
+
+        } else {
+
+            Collections.sort(list);
+
+            m = list.size();
+
+            a = new long[m];
+            b = new long[m];
+            c = new long[m];
+
+            C(0, list, a, b, c);
+
+            dp = new long[m + 1];
+
+            C(1, dp);
+
+            ans.append(dp[m]);
+
+        }
+
+        if (t != testCases) {
+
+            ans.append("\n");
+
+        }
+
+    }

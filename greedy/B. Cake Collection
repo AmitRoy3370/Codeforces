@@ -1,0 +1,27 @@
+ static void B(int t) {
+
+        sort(a, 0, n - 1);
+
+        reverse(a);
+
+        int runTime = isSmaller(n + "", M + "") ? n : (int) M;
+
+        sum = 0L;
+
+        for (int i = 0; i < runTime; ++i) {
+
+            sub = Long.parseLong(sub(M + "", i + ""));
+            mul = Long.parseLong(mul(a[i] + "", sub + ""));
+            sum = Long.parseLong(sum(sum + "", mul + ""));
+
+        }
+
+        ans.append(sum);
+
+        if (t != testCases) {
+
+            ans.append("\n");
+
+        }
+
+    }

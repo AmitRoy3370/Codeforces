@@ -1,0 +1,150 @@
+
+    static void C(long current, ArrayList1<Integer> list, Map<Long, Long> parent, Map<Long, Integer> operation) {
+
+        if (equal(current, a[1])) {
+
+            return;
+
+        }
+
+        list.add(operation.get(current));
+        current = parent.get(current);
+
+        C(current, list, parent, operation);
+
+    }
+
+    static void C(Queue<Long> bfsDeque, Set<Long> visited, Map<Long, Integer> operation, Map<Long, Long> parent, long limit, long target) {
+
+        if (!(!bfsDeque.isEmpty() && !yes)) {
+
+            return;
+
+        }
+
+        long current = bfsDeque.poll();
+
+        long next = Long.parseLong(mul(current + "", "2"));
+
+        if ((equal(next, 0L) || isSmaller("0", next + "")) && (equal(next, limit) || isSmaller(next + "", limit + ""))) {
+
+            if (!visited.contains(next)) {
+
+                visited.add(next);
+
+                parent.put(next, current);
+                operation.put(next, 1);
+
+                if (equal(next, target)) {
+
+                    yes = true;
+
+                }
+
+                if (!yes) {
+
+                    bfsDeque.add(next);
+
+                }
+
+            }
+
+        }
+
+        if (yes) {
+
+        } else {
+
+            next = Long.parseLong(mul(current + "", "2"));
+            next = Long.parseLong(sub(next + "", limit + ""));
+
+            if ((equal(next, 0L) || isSmaller("0", next + "")) && (equal(next, limit) || isSmaller(next + "", limit + ""))) {
+
+                if (!visited.contains(next)) {
+
+                    visited.add(next);
+
+                    parent.put(next, current);
+                    operation.put(next, 2);
+
+                    if (equal(next, target)) {
+
+                        yes = true;
+
+                    }
+
+                    if (!yes) {
+
+                        bfsDeque.add(next);
+
+                    }
+                }
+
+            }
+
+            C(bfsDeque, visited, operation, parent, limit, target);
+
+        }
+
+    }
+
+    static void C(int t) {
+
+        long limit = pow(2L, Long.parseLong(sum(a[0] + "", "1")));
+        long target = pow(2L, a[0]);
+
+        if (equal(limit, target)) {
+
+            ans.append("0");
+
+        } else {
+
+            Map<Long, Long> parent = new HashMap<>();
+            Map<Long, Integer> operation = new HashMap<>();
+            Set<Long> _visited = new HashSet<>();
+            Queue<Long> bfsDeque = new ArrayDeque<>();
+
+            bfsDeque.add(a[1]);
+            _visited.add(a[1]);
+
+            yes = false;
+
+            C(bfsDeque, _visited, operation, parent, limit, target);
+
+            ArrayList1<Integer> list = new ArrayList1<>();
+
+            long current = target;
+
+            C(current, list, parent, operation);
+
+            StringBuilder sb = new StringBuilder();
+
+            sb.append(list.size());
+
+            if (list.size() == 0) {
+
+            } else {
+
+                sb.append("\n");
+
+                while (!list.isEmpty()) {
+
+                    sb.append(list.get(0)).append(" ");
+
+                    list.popFront();
+
+                }
+
+            }
+
+            ans.append(sb.toString().trim());
+
+        }
+
+        if (t != testCases) {
+
+            ans.append("\n");
+
+        }
+
+    }

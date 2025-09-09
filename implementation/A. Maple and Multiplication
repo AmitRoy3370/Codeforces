@@ -1,0 +1,27 @@
+
+    static void A(int t) {
+
+        boolean first = equal(mod(a[0] + "", a[1]), 0L);
+        boolean second = equal(mod(a[1] + "", a[0]), 0L);
+
+        if (equal(a[0], a[1])) {
+
+            ans.append("0");
+
+        } else if (first || second) {
+
+            ans.append("1");
+
+        } else {
+
+            ans.append("2");
+
+        }
+
+        if (t != testCases) {
+
+            ans.append("\n");
+
+        }
+
+    }

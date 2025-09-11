@@ -1,0 +1,164 @@
+
+    static long D(int i, long sum, long best) {
+
+        if (i == n) {
+
+            return best;
+
+        }
+
+        sub = sum - b[i];
+
+        long sum_small = 0;
+        if (m > 0) {
+            if (i >= m) {
+                sum_small = prefix[m - 1];
+            } else {
+                sum_small = prefix[m] - a[i];
+            }
+        }
+
+        best = Math.max(best, sub - sum_small);
+
+        return D(i + 1, sum, best);
+
+    }
+
+    static void D(int i, long a[]) {
+
+        if (i == n) {
+
+            return;
+
+        }
+
+        prefix[i] = prefix[i - 1] + a[i];
+
+        D(i + 1, a);
+
+    }
+
+    static void D(int i, long a[], Integer index[], long b[]) {
+
+        if (i == n) {
+
+            return;
+
+        }
+
+        a[i] = b[index[i]];
+
+        D(i + 1, a, index, b);
+
+    }
+
+    static void D(int i, long a[], Integer index[], List<Long> list) {
+
+        if (i == n) {
+
+            return;
+
+        }
+
+        a[i] = list.get(index[i]);
+
+        D(i + 1, a, index, list);
+
+    }
+
+    static void D(int i, Integer index[]) {
+
+        if (i == n) {
+
+            return;
+
+        }
+
+        index[i] = i;
+
+        D(i + 1, index);
+
+    }
+
+    static long[] D(int i, long sum, long diffSum, List<Long> list) {
+
+        if (i == n) {
+
+            return new long[]{sum, diffSum};
+
+        }
+
+        sub = R[i] - L[i];
+        diffSum += sub;
+
+        sum += R[i];
+
+        long _sum = L[i] + R[i];
+
+        list.add(_sum);
+
+        return D(i + 1, sum, diffSum, list);
+
+    }
+
+    static void D(int t) {
+
+        List<Long> list = new ArrayList<>();
+        sum = 0L;
+        long diffSum = 0L;
+
+        b = D(0, sum, diffSum, list);
+
+        sum = b[0];
+        diffSum = b[1];
+
+        Integer index[] = new Integer[n];
+
+        D(0, index);
+
+        Arrays.sort(index, (i, j) -> Long.compare(list.get(i), list.get(j)));
+
+        b = new long[n];
+        a = new long[n];
+
+        D(0, a, index, list);
+        D(0, b, index, R);
+
+        prefix = new long[n];
+
+        if (n > 0) {
+
+            prefix[0] = a[0];
+
+        }
+
+        D(1, a);
+
+        long best = Long.MIN_VALUE;
+ 
+        if (mod(n + "", 2L) == 0L) {
+
+            m = n / 2;
+
+            long sum_small = (m > 0) ? prefix[m - 1] : 0;
+            best = sum - sum_small;
+
+        } else {
+
+            m = Integer.parseInt(sub(n + "", "1")) / 2;
+
+            best = D(0, sum, best);
+
+        }
+
+        long answer = Long.parseLong(sum(diffSum + "", Math.max(0L, best) + ""));
+
+        ans.append(answer);
+
+        if (t != testCases) {
+
+            ans.append("\n");
+
+        }
+
+    }

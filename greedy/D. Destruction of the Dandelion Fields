@@ -1,0 +1,88 @@
+
+    static long D(int i, long sum) {
+
+        if (i == ((b.length + 1) / 2) ) {
+
+            return sum;
+
+        }
+
+        sum = Long.parseLong(sum(sum + "", b[i] + ""));
+
+        return D(i + 1, sum);
+
+    }
+
+    static void D(int i, ArrayList1<Long> list, long b[]) {
+
+        if (list.isEmpty()) {
+
+            return;
+
+        }
+
+        b[i] = list.get(0);
+        list.popFront();
+
+        D(i + 1, list, b);
+
+    }
+
+    static void D(int i, ArrayList1<Long> list) {
+
+        if (i == n) {
+
+            return;
+
+        }
+
+        if (mod(a[i] + "", 2L) == 0L) {
+
+            sum = Long.parseLong(sum(a[i] + "", sum + ""));
+
+        } else {
+
+            list.add(a[i]);
+
+        }
+
+        D(i + 1, list);
+
+    }
+
+    static void D(int t) {
+
+        sum = 0L;
+
+        ArrayList1<Long> list = new ArrayList1<>();
+
+        D(0, list);
+
+        if (list.isEmpty()) {
+
+            ans.append(0);
+
+        } else {
+
+            b = new long[list.size()];
+
+            D(0, list, b);
+
+            sort(b, 0, b.length - 1);
+            reverse(b);
+
+            long maximumsOddSum = D(0, 0L);
+
+            sum = Long.parseLong(sum(sum + "", maximumsOddSum + ""));
+
+            ans.append(sum);
+
+        }
+
+        if (t != testCases) {
+
+            ans.append("\n");
+
+        }
+
+    }

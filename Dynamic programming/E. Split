@@ -1,0 +1,55 @@
+
+    static void E(int t) {
+        
+        Map<Long, Integer> map = new HashMap<>();
+        
+        for(long i : a) {
+            
+            map.put(i, map.getOrDefault(i, 0) + 1);
+            
+        }
+        
+        int index = 0, _index = 0;
+        
+        Map<Long, Integer> _map = new HashMap<>();
+        
+        sum = 0L;
+        mul = 1L;
+        
+        while(index < n) {
+            
+            _map.put(a[index], _map.getOrDefault(a[index], 0) + 1);
+            
+            if(mod(map.get(a[index]) + "", K) != 0L) {
+                
+                mul = 0L;
+                
+            }
+            
+            while(_map.get(a[index]) > map.get(a[index]) / K) {
+                
+                _map.put(a[_index], _map.getOrDefault(a[_index], 0) - 1);
+                
+                _index++;
+                
+            }
+            
+            sub = index - _index + 1;
+            
+            sum = Long.parseLong(sum(sum + "", sub + ""));
+            
+            ++index;
+            
+        }
+        
+        mul = Long.parseLong(mul(sum + "", mul + ""));
+        
+        ans.append(mul);
+        
+        if(t != testCases) {
+            
+            ans.append("\n");
+            
+        }
+        
+    }

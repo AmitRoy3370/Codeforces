@@ -1,0 +1,14 @@
+
+    static void B(int t) {
+
+        sum = Long.parseLong(sum(n + "", m + ""));
+
+        ans.append(sum);
+
+        if (t != testCases) {
+
+            ans.append("\n");
+
+        }
+
+    }

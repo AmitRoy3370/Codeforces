@@ -1,0 +1,20 @@
+
+    static void A(int t) {
+
+        if (mod(N + "", 2L) == 0L) {
+
+            ans.append("0");
+
+        } else {
+
+            ans.append(X);
+
+        }
+
+        if (t != testCases) {
+
+            ans.append("\n");
+
+        }
+
+    }

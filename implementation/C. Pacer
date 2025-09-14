@@ -1,0 +1,39 @@
+
+    static void C(int t) {
+
+        sum = 0L;
+
+        long current = 0L, previous = 0L;
+
+        for (int i = 0; i < n; ++i) {
+
+            sub = a[i] - previous;
+            long need = (current ^ b[i]);
+
+            if (equal(mod(sub + "", 2L), need)) {
+
+                sum = Long.parseLong(sum(sum + "", sub + ""));
+
+            } else {
+
+                sum = Long.parseLong(sum(sum + "", (sub - 1L) + ""));
+
+            }
+
+            current = b[i];
+            previous = a[i];
+
+        }
+
+        M = Long.parseLong(sub(M + "", previous + ""));
+        sum = Long.parseLong(sum(sum + "", M + ""));
+
+        ans.append(sum);
+
+        if (t != testCases) {
+
+            ans.append("\n");
+
+        }
+
+    }

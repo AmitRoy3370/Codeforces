@@ -1,0 +1,52 @@
+
+    static void A(int i, int p[]) {
+ 
+        if (i == n - 1) {
+ 
+            return;
+ 
+        }
+ 
+        if (isSmaller(p[i] + "", p[i - 1] + "") && isSmaller(p[i] + "", p[i + 1] + "")) {
+ 
+            yes = false;
+            return;
+ 
+        }
+ 
+        A(i + 1, p);
+ 
+    }
+ 
+    static void A(int t) {
+ 
+        if (n == 1) {
+ 
+            ans.append("YES");
+ 
+        } else {
+ 
+            yes = true;
+ 
+            A(1, p);
+ 
+            if (yes) {
+ 
+                ans.append("YES");
+ 
+            } else {
+ 
+                ans.append("NO");
+ 
+            }
+ 
+        }
+ 
+        if (t != testCases) {
+ 
+            ans.append("\n");
+ 
+        }
+ 
+    }
+ 

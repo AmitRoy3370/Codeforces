@@ -1,0 +1,45 @@
+ static void B(int t) {
+ 
+        sort(a, 0, n - 1);
+        reverse(a);
+ 
+        sort(b, 0, k - 1);
+ 
+        sum = sum(a, 0, 0L);
+ 
+        int index = 0;
+ 
+        for (int i = 0; i < k && index < n; ++i) {
+ 
+            if (equal(b[i], 1L)) {
+ 
+                sum -= a[index++];
+ 
+            } else {
+ 
+                index += (int) b[i] - 1;
+ 
+                if (index >= n) {
+ 
+                    break;
+ 
+                } else {
+ 
+                    sum -= a[index++];
+ 
+                }
+ 
+            }
+ 
+        }
+ 
+        ans.append(sum);
+ 
+        if (t != testCases) {
+ 
+            ans.append("\n");
+ 
+        }
+ 
+    }
+ 

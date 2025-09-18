@@ -1,0 +1,79 @@
+ static void C(int t) {
+
+        p = new int[n];
+        
+        List<Integer> list[] = new ArrayList[n + 1];
+        
+        for(int i = 0; i <= n; ++i) {
+            
+            list[i] = new ArrayList<>();
+            
+        }
+
+        int depth[] = new int[n + 1];
+        
+        for(int i = 0; i < n - 1; ++i) {
+            
+            if(isSmaller(a[i] + "", b[i] + "")) {
+                
+                list[u[i]].add(v[i]);
+                depth[v[i]] = Integer.parseInt(sum(depth[v[i]] + "", "1"));
+                
+            } else {
+                
+                list[v[i]].add(u[i]);
+                depth[u[i]] = Integer.parseInt(sum(depth[u[i]] + "", "1"));
+                
+            }
+            
+        }
+        
+        Queue<Integer> queue = new ArrayDeque<>();
+        
+        for(int i = 1; i <= n; ++i) {
+            
+            if(depth[i] == 0) {
+                
+                queue.add(i);
+                
+            }
+            
+        }
+        
+        timer = 0;
+        
+        while(!queue.isEmpty()) {
+            
+            int source = queue.poll();
+            
+            p[source - 1] = ++timer;
+            
+            for(int child : list[source]) {
+                
+                if(--depth[child] == 0) {
+                    
+                    queue.add(child);
+                    
+                }
+                
+            }
+            
+        }
+        
+        StringBuilder sb = new StringBuilder();
+
+        for (int i : p) {
+
+            sb.append(i).append(" ");
+
+        }
+
+        ans.append(sb.toString().trim());
+
+        if (t != testCases) {
+
+            ans.append("\n");
+
+        }
+
+    }

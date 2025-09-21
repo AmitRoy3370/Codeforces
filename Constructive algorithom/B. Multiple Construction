@@ -1,0 +1,53 @@
+
+    static void B(int t) {
+
+        m = Integer.parseInt(mul(n + "", "2"));
+
+        a = new long[m];
+        visited = new boolean[m + 1];
+
+        timer = 1;
+
+        for (int i = n; !equal(i * 1L, 0L); --i) {
+
+            while (visited[timer]) {
+
+                timer = Integer.parseInt(sum(timer + "", "1"));
+
+            }
+
+            int index = timer;
+
+            int j = Integer.parseInt(sum(index + "", i + ""));
+
+            while (!isSmaller(m + "", j + "") && visited[j]) {
+
+                j = Integer.parseInt(sum(j + "", i + ""));
+
+            }
+
+            a[index - 1] = i;
+            a[j - 1] = i;
+
+            visited[index] = true;
+            visited[j] = true;
+
+        }
+
+        StringBuilder sb = new StringBuilder();
+
+        for (long i : a) {
+
+            sb.append(i).append(" ");
+
+        }
+
+        ans.append(sb.toString().trim());
+
+        if (t != testCases) {
+
+            ans.append("\n");
+
+        }
+
+    }

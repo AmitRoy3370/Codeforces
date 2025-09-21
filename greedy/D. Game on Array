@@ -1,0 +1,128 @@
+
+    static long[] D(int i, List<Element> list, long Alice, long Bob) {
+
+        if (i == list.size()) {
+
+            return new long[]{Alice, Bob};
+
+        }
+
+        Element element = list.get(i);
+
+        long first = element.first;//count
+        long second = element.second;//element
+
+        long alice_moves = Long.parseLong(sum(second + "", (timer == 0 ? "1" : "0"))) / 2L;
+        long bob_moves = second - alice_moves;
+
+        Alice = Long.parseLong(sum((alice_moves * first) + "", Alice + ""));
+        Bob = Long.parseLong(sum((bob_moves * first) + "", Bob + ""));
+
+        if (equal((second & 1) * 1L, 1L)) {
+            timer ^= 1;
+        }
+
+        return D(i + 1, list, Alice, Bob);
+
+    }
+
+    static void D(int i, Map<Long, Integer> map) {
+
+        if (i == n) {
+
+            return;
+
+        }
+
+        map.put(a[i], map.getOrDefault(a[i], 0) + 1);
+
+        D(i + 1, map);
+
+    }
+
+    static void D(int t) {
+
+        Map<Long, Integer> map = new HashMap<>();
+
+        D(0, map);
+
+        List<Element> list = new ArrayList<>();
+
+        for (long i : map.keySet()) {
+
+            list.add(new Element(map.get(i) * 1L, i));
+
+        }
+
+        Collections.sort(list);
+
+        long Alice = 0L, Bob = 0L;
+
+        timer = 0;
+
+        b = D(0, list, Alice, Bob);
+
+        Alice = b[0];
+        Bob = b[1];
+
+        ans.append(Alice).append(" ").append(Bob);
+
+        if (t != testCases) {
+
+            ans.append("\n");
+
+        }
+
+    }
+
+    private static class Element implements Comparable<Element> {
+
+        long first, second, third;
+
+        public Element(long first, long second) {
+            this.first = first;
+            this.second = second;
+        }
+
+        public Element(long first, long second, long third) {
+            this.first = first;
+            this.second = second;
+            this.third = third;
+        }
+
+        public Element(long first) {
+
+            this.first = first;
+
+        }
+
+        @Override
+        public int compareTo(Element element) {
+
+            if (this.first > element.first) {
+
+                return -1;
+
+            } else if (this.first < element.first) {
+
+                return 1;
+
+            } else {
+
+                if (this.second > element.second) {
+
+                    return -1;
+
+                } else if (this.second < element.second) {
+
+                    return 1;
+
+                }
+
+            }
+
+            return 0;
+
+        }
+
+    }

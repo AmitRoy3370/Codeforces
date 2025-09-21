@@ -1,0 +1,32 @@
+
+    static void A(int t) {
+
+        if (isSmaller(X + "", Y + "")) {
+
+            ans.append("2");
+
+        } else if (equal(Y, 2L) || isSmaller("2", Y + "")) {
+
+            if (Long.parseLong(sub(X + "", Y + "")) >= 2L) {
+
+                ans.append("3");
+
+            } else {
+
+                ans.append("-1");
+
+            }
+
+        } else {
+
+            ans.append("-1");
+
+        }
+
+        if (t != testCases) {
+
+            ans.append("\n");
+
+        }
+
+    }

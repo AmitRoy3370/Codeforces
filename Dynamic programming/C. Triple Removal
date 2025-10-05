@@ -1,0 +1,127 @@
+
+    static void C(int i, long prefix[]) {
+
+        for (; i <= n; ++i) {
+
+            prefix[i] = Long.parseLong(sum(prefix[i] + "", prefix[i - 1] + ""));
+
+        }
+
+    }
+
+    static void C(int i, long prefix[], long element, boolean equal) {
+
+        for (; i <= n; ++i) {
+
+            if (equal) {
+
+                if (isSmaller((i) + "", n + "")) {
+
+                    prefix[i] = equal(p[i] * 1L, p[i + 1] * 1L) ? 1L : 0L;
+
+                }
+
+            } else {
+
+                prefix[i] = Long.parseLong(sum(prefix[i - 1] + "", equal(p[i] * 1L, element) ? "1" : "0"));
+
+            }
+
+        }
+
+    }
+
+    static void C(int t) {
+
+        prefix = new long[n + 1];
+        a = new long[n + 1];
+        b = new long[n + 1];
+
+        C(1, prefix, 0L, false);
+        C(1, a, 1L, false);
+        C(1, b, 0L, true);
+
+        C(1, b);
+
+        if (isSmaller("1", n + "") || equal(n * 1L, 1L)) {
+
+            b[n] = b[n - 1];
+
+        }
+
+        c = new long[q];
+
+        for (int i = 0; i < q; ++i) {
+
+            long subZero = equal(u[i] * 1L, v[i] * 1L) ? prefix[v[i]] - prefix[u[i] - 1] : Long.parseLong(sub(prefix[v[i]] + "", (prefix[u[i] - 1]) + ""));
+            long subOne = equal(u[i] * 1L, v[i] * 1L) ? a[v[i]] - a[u[i] - 1] : Long.parseLong(sub(a[v[i]] + "", (a[u[i] - 1]) + ""));
+
+            if (mod(Math.abs(subZero) + "", 3L) != 0L || mod(Math.abs(subOne) + "", 3L) != 0L) {
+
+                c[i] = -1L;
+
+            } else {
+
+                try {
+
+                    sum = equal(u[i] * 1L, v[i] * 1L) ? ((subZero / 3L) + (subOne / 3L)) : Long.parseLong(sum((subZero / 3L) + "", (subOne / 3L) + ""));
+
+                } catch (NumberFormatException e) {
+
+                    sum = (subZero / 3L) + (subOne / 3L);
+
+                }
+
+                yes = false;
+
+                if (isSmaller(u[i] + "", v[i] + "")) {
+
+                    yes = isSmaller(b[u[i] - 1] + "", b[v[i] - 1] + "");
+
+                }
+
+                if (yes) {
+
+                    c[i] = sum;
+
+                } else {
+
+                    try {
+
+                        c[i] = equal(u[i] * 1L, v[i] * 1L) ? ++sum : Long.parseLong(sum(sum + "", "1"));
+
+                    } catch (NumberFormatException e) {
+
+                        c[i] = ++sum;
+
+                    }
+
+                }
+
+            }
+
+        }
+
+        StringBuilder sb = new StringBuilder();
+
+        for (int i = 0; i < q; ++i) {
+
+            sb.append(c[i]);
+
+            if (i != q - 1) {
+
+                sb.append("\n");
+
+            }
+
+        }
+
+        ans.append(sb.toString().trim());
+
+        if (t != testCases) {
+
+            ans.append("\n");
+
+        }
+
+    }

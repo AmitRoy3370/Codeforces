@@ -1,0 +1,85 @@
+
+    static void C(int t) {
+
+        ArrayList1<Long> even = new ArrayList1<>();
+
+        ArrayList1<Long> odd = new ArrayList1<>();
+
+        for (long i : a) {
+
+            if (mod(i + "", 2L) == 0L) {
+
+                even.add(i);
+
+            } else {
+
+                odd.add(i);
+
+            }
+
+        }
+
+        b = new long[even.size()];
+        c = new long[odd.size()];
+
+        int index = 0;
+
+        while (!even.isEmpty()) {
+
+            b[index++] = even.get(0);
+
+            even.popFront();
+
+        }
+
+        index = 0;
+
+        while (!odd.isEmpty()) {
+
+            c[index++] = odd.get(0);
+
+            odd.popFront();
+
+        }
+
+        StringBuilder sb = new StringBuilder();
+
+        if (b.length == 0 || c.length == 0) {
+
+            for (long i : a) {
+
+                sb.append(i).append(" ");
+
+            }
+
+        } else {
+
+            m = Math.min(b.length, c.length);
+
+            d = new long[n];
+
+            for (int i = 0; i < n; ++i) {
+
+                d[i] = a[i];
+
+            }
+
+            sort(d, 0, n - 1);
+
+            for (int i = 0; i < n; ++i) {
+
+                sb.append(d[i]).append(" ");
+
+            }
+
+        }
+
+        ans.append(sb.toString().trim());
+
+        if (t != testCases) {
+
+            ans.append("\n");
+
+        }
+
+    }

@@ -1,0 +1,91 @@
+ 
+    static void F(int i, int p[]) {
+        
+        if(i > n) {
+            
+            return;
+            
+        }
+        
+        sub = n - p[i];
+        
+        if(!isSmaller(p[i] + "", k + "")) {
+            
+            sum = Long.parseLong(sum(sum + "", sub + ""));
+            
+        }
+        
+        if(!isSmaller(sub + "", k + "")) {
+            
+            sum = Long.parseLong(sum(sum + "", p[i] + ""));
+            
+        }
+        
+        F(i + 1, p);
+        
+    }
+    
+    static void F(int source, int parent, List<Integer> list[]) {
+        
+        p[source] = 1;
+        
+        for(int node : list[source]) {
+            
+            if(equal(node * 1L, parent * 1L)) {
+                
+                continue;
+                
+            }
+            
+            F(node, source, list);
+            
+            p[source] = Integer.parseInt(sum(p[source] + "", p[node] + ""));
+            
+        }
+        
+    }
+    
+    static void F(int i, List<Integer> list[]) {
+        
+        if(i == n - 1) {
+            
+            return;
+            
+        }
+        
+        list[u[i]].add(v[i]);
+        list[v[i]].add(u[i]);
+        
+        F(i + 1, list);
+        
+    }
+    
+    static void F(int t) {
+        
+        List<Integer> list[] = new ArrayList[n + 1];
+        
+        for(int i = 0; i <= n; ++i) {
+            
+            list[i] = new ArrayList<>();
+            
+        }
+        
+        F(0, list);
+        
+        p = new int[n + 1];
+        
+        F(1, 0, list);
+        
+        sum = n;
+        
+        F(2, p);
+        
+        ans.append(sum);
+        
+        if(t != testCases) {
+            
+            ans.append("\n");
+            
+        }
+        
+    }

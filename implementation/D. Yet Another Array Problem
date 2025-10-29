@@ -1,0 +1,44 @@
+
+    static void D(int t) {
+
+        long gcd = a[0];
+
+        for (long i : a) {
+
+            gcd = gcd(i, gcd);
+
+        }
+
+        b = new long[]{2, 3, 5, 7,
+             11, 13, 17, 19,
+             23, 29,
+             31, 37,
+             41, 43, 47,
+             53, 59,
+             61, 67,
+             71, 73, 79,
+             83, 89,
+             97};
+
+        X = -1L;
+
+        for (long i : b) {
+
+            if (gcd % i != 0L) {
+
+                X = i;
+                break;
+
+            }
+
+        }
+
+        ans.append(X);
+
+        if (t != testCases) {
+
+            ans.append("\n");
+
+        }
+
+    }

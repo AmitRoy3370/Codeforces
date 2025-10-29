@@ -1,0 +1,32 @@
+static void A(int t) {
+
+        yes = true;
+
+        for (int i = 1; i < n; ++i) {
+
+            if (a[i] != a[i - 1]) {
+
+                yes = false;
+                break;
+
+            }
+
+        }
+
+        if (yes) {
+
+            ans.append("YES");
+
+        } else {
+
+            ans.append("NO");
+
+        }
+
+        if (t != testCases) {
+
+            ans.append("\n");
+
+        }
+
+    }

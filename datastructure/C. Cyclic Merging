@@ -1,0 +1,125 @@
+
+    static void C(int remaining, PriorityQueue<_Array> pq, int leftIndex[], int rightIndex[], boolean removed[]) {
+
+        if (!(remaining > 1)) {
+
+            return;
+
+        }
+
+        _Array element;
+
+        do {
+
+            element = pq.poll();
+
+        } while (removed[element.index]);
+
+        int index = element.index;
+        int left = leftIndex[index];
+        int right = rightIndex[index];
+
+        sum = Long.parseLong(sum(Math.min(a[left], a[right]) + "", sum + ""));
+
+        removed[index] = true;
+
+        rightIndex[left] = right;
+        leftIndex[right] = left;
+
+        --remaining;
+
+        C(remaining, pq, leftIndex, rightIndex, removed);
+
+    }
+
+    static void C(int i, int leftIndex[], int rightIndex[]) {
+
+        if (i == n) {
+
+            return;
+
+        }
+
+        leftIndex[i] = mod((i - 1 + n) + "", n);
+        rightIndex[i] = mod((i + 1) + "", n);
+
+        C(i + 1, leftIndex, rightIndex);
+
+    }
+
+    static void C(int i, _Array arr[]) {
+
+        if (i == n) {
+
+            return;
+
+        }
+
+        arr[i] = new _Array(a[i], i);
+
+        C(i + 1, arr);
+
+    }
+
+    static void C(int t) {
+
+        _Array arr[] = new _Array[n];
+
+        C(0, arr);
+
+        PriorityQueue<_Array> pq = new PriorityQueue<>();
+
+        pq.addAll(Arrays.asList(arr));
+
+        boolean removed[] = new boolean[n];
+
+        sum = 0L;
+
+        int remaining = n;
+
+        int leftIndex[] = new int[n];
+        int rightIndex[] = new int[n];
+
+        C(0, leftIndex, rightIndex);
+
+        C(remaining, pq, leftIndex, rightIndex, removed);
+
+        ans.append(sum);
+
+        if (t != testCases) {
+
+            ans.append("\n");
+
+        }
+
+    }
+private static class _Array implements Comparable<_Array> {
+
+        long element;
+        int index;
+
+        public _Array(long element, int index) {
+
+            this.element = element;
+            this.index = index;
+
+        }
+
+        @Override
+        public int compareTo(_Array arr) {
+
+            if (this.element > arr.element) {
+
+                return 1;
+
+            } else if (this.element < arr.element) {
+
+                return -1;
+
+            }
+
+            return 0;
+
+        }
+
+    }

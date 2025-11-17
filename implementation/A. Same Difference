@@ -1,0 +1,38 @@
+
+    static void A(int t) {
+
+        int count[] = new int[26];
+
+        for (char i : x) {
+
+            count[i - 'a']++;
+
+        }
+
+        int maxCount = 0;
+
+        for (int i : count) {
+
+            maxCount = Math.max(i, maxCount);
+
+        }
+
+        if (maxCount == n) {
+
+            ans.append("0");
+
+        } else {
+
+            int operation = n - count[x[n - 1] - 'a'];
+
+            ans.append(operation);
+
+        }
+
+        if (t != testCases) {
+
+            ans.append("\n");
+
+        }
+
+    }

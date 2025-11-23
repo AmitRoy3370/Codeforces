@@ -6,6 +6,7 @@ import java.io.OutputStream;
 import java.io.OutputStreamWriter;
 import java.io.PrintWriter;
 import java.io.Writer;
+import java.util.Arrays;
 import java.util.InputMismatchException;
 import java.util.Map;
 import java.util.HashMap;
@@ -49,6 +50,72 @@ public class Codeforces_Round_1066_Div_1_Div_2 {
     static int dir[][] = new int[][]{{0, 1}, {1, 0}, {-1, 0}, {0, -1}};
 
     static boolean yes;
+
+    static void B(int t) {
+
+        X = Math.abs(X);
+        Y = Math.abs(Y);
+
+        Arrays.sort(x);
+
+        for (int i = 0; i < n / 2; ++i) {
+
+            char temp = x[i];
+            x[i] = x[n - i - 1];
+            x[n - i - 1] = temp;
+
+        }
+
+        for (char i : x) {
+
+            int num = (i - '0');
+
+            switch (num) {
+
+                case 4 -> {
+                    if (X <= 0L) {
+
+                        --Y;
+
+                    } else {
+
+                        --X;
+
+                    }
+                }
+
+                case 8 -> {
+                    --X;
+                    --Y;
+                }
+
+            }
+
+            if (X <= 0L && Y <= 0L) {
+
+                break;
+
+            }
+
+        }
+
+        if (X <= 0L && Y <= 0L) {
+
+            ans.append("YES");
+
+        } else {
+
+            ans.append("NO");
+
+        }
+
+        if (t != testCases) {
+
+            ans.append("\n");
+
+        }
+
+    }
 
     static void A(int t) {
 
@@ -101,8 +168,8 @@ public class Codeforces_Round_1066_Div_1_Div_2 {
 
         for (int t = 0; t < testCases; ++t) {
 
-            A_input();
-            A(t + 1);
+            B_input();
+            B(t + 1);
 
         }
 
@@ -121,9 +188,12 @@ public class Codeforces_Round_1066_Div_1_Div_2 {
 
     private static void B_input() throws IOException {
 
+        n = in.nextInt();
+
         X = in.nextLong();
         Y = in.nextLong();
-        N = in.nextLong();
+
+        x = in.next().toCharArray();
 
     }
 

@@ -1,0 +1,31 @@
+
+    static void B(int t) {
+ 
+        long maxLen, positive = 0;
+ 
+        sum = 0L;
+ 
+        for (long i : a) {
+ 
+            if (i > 0) {
+ 
+                ++positive;
+ 
+            }
+ 
+            sum += i;
+ 
+        }
+ 
+        maxLen = Math.min(positive, sum - n + 1);
+ 
+        ans.append(maxLen);
+ 
+        if (t != testCases) {
+ 
+            ans.append("\n");
+ 
+        }
+ 
+    }
+ 

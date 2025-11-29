@@ -1,0 +1,72 @@
+static void C(int t) {
+ 
+        TreeMap<Long, Integer> map = new TreeMap<>();
+ 
+        for (long i : a) {
+ 
+            map.put(i, map.getOrDefault(i, 0) + 1);
+ 
+        }
+ 
+        ArrayList1<Long> list = new ArrayList1<>();
+        
+        for(long i : b) {
+            
+            if(i >= K) {
+                
+                continue;
+                
+            }
+            
+            sub = K - i;
+            
+            long div = sub / (i + 1);
+            
+            if(div >= 1L) {
+                
+                list.add(div);
+                
+            }
+            
+        }
+        
+        c = new long[list.size()];
+        
+        int index = 0;
+        
+        while(!list.isEmpty()) {
+            
+            c[index++] = list.get(0);
+            
+            list.popFront();
+            
+        }
+        
+        sort(c, 0, c.length - 1);
+       
+        sum = 0L;
+        
+        for(long i : c) {
+            Long key = map.floorKey(i);
+            if (key == null) {
+                continue;
+            }
+            int count = map.get(key);
+            if (count == 1) {
+                map.remove(key);
+            } else {
+                map.put(key, count - 1);
+            }
+            sum++;
+        }
+        
+        ans.append(sum);
+        
+        if (t != testCases) {
+ 
+            ans.append("\n");
+ 
+        }
+ 
+    }
+ 

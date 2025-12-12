@@ -1,0 +1,99 @@
+
+    static void C(int t) {
+
+        ArrayList1<Long> even = new ArrayList1<>();
+        ArrayList1<Long> odd = new ArrayList1<>();
+
+        for (long i : a) {
+
+            if (i % 2L == 0) {
+
+                even.add(i);
+
+            } else {
+
+                odd.add(i);
+
+            }
+
+        }
+
+        b = new long[even.size()];
+        c = new long[odd.size()];
+
+        int index = 0;
+
+        while (!even.isEmpty()) {
+
+            b[index++] = even.get(0);
+
+            even.popFront();
+
+        }
+
+        index = 0;
+
+        while (!odd.isEmpty()) {
+
+            c[index++] = odd.get(0);
+
+            odd.popFront();
+
+        }
+
+        sort(b, 0, b.length - 1);
+        sort(c, 0, c.length - 1);
+
+        prefix = new long[b.length + 1];
+
+        for (int i = 1; i <= b.length; ++i) {
+
+            prefix[i] = prefix[i - 1] + b[i - 1];
+
+        }
+
+        d = new long[n];
+
+        for (int i = 1; i <= n; ++i) {
+
+            int left = Math.min(b.length, i - 1);
+            int right = i - left;
+
+            if (right % 2 == 0) {
+
+                ++right;
+                --left;
+
+            }
+
+            if (left < 0 || right > c.length) {
+
+                d[i - 1] = 0L;
+
+            } else {
+
+                sum = c[c.length - 1] + prefix[b.length] - prefix[b.length - left];
+
+                d[i - 1] = sum;
+
+            }
+
+        }
+
+        StringBuilder sb = new StringBuilder();
+
+        for (long i : d) {
+
+            sb.append(i).append(" ");
+
+        }
+
+        ans.append(sb.toString().trim());
+
+        if (t != testCases) {
+
+            ans.append("\n");
+
+        }
+
+    }

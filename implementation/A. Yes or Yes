@@ -1,0 +1,47 @@
+ static void A(int t) {
+ 
+        int countOfY = 0, countOfN = 0;
+ 
+        for (char i : x) {
+ 
+            if (i == 'Y') {
+ 
+                ++countOfY;
+ 
+            } else {
+ 
+                ++countOfN;
+ 
+            }
+ 
+        }
+ 
+        if (countOfY == n) {
+ 
+            ans.append("NO");
+ 
+        } else if (countOfN == n) {
+ 
+            ans.append("YES");
+ 
+        } else {
+ 
+            if (countOfN == n - 1) {
+ 
+                ans.append("YES");
+ 
+            } else {
+ 
+                ans.append("NO");
+ 
+            }
+ 
+        }
+ 
+        if (t != testCases) {
+ 
+            ans.append("\n");
+ 
+        }
+ 
+    }

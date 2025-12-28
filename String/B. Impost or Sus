@@ -1,0 +1,73 @@
+ static void B(int t) {
+ 
+        int countOfU = 0, countOfS = 0;
+ 
+        for (char i : x) {
+ 
+            if (i == 's') {
+ 
+                countOfS = Integer.parseInt(sum(countOfS + "", "1"));
+ 
+            } else {
+ 
+                countOfU = Integer.parseInt(sum(countOfU + "", "1"));
+ 
+            }
+ 
+        }
+ 
+        if (equal(countOfU * 1L, n * 1L)) {
+ 
+            int operation = Integer.parseInt(sum((n / 2) + "", "1"));
+ 
+            ans.append(operation);
+ 
+        } else {
+ 
+            int remainingU = 0;
+ 
+            for (int i = 0; i < n;) {
+ 
+                if (x[i] == 's') {
+ 
+                    ++i;
+ 
+                    continue;
+ 
+                }
+ 
+                int leftIndex = i;
+ 
+                while (i < n && x[i] == 'u') {
+ 
+                    ++i;
+ 
+                }
+ 
+                int rightIndex = Math.min(i - 1, n - 2);
+                leftIndex = Math.max(leftIndex, 1);
+ 
+                if (isSmaller(leftIndex + "", rightIndex + "") || equal(leftIndex * 1L, rightIndex * 1L)) {
+ 
+                    int len = Integer.parseInt(sub(rightIndex + "", leftIndex + ""));
+                    len = Integer.parseInt(sum(len + "", "1"));
+ 
+                    remainingU = Integer.parseInt(sum(remainingU + "", (Integer.parseInt(sum(len + "", "1")) / 2) + ""));
+ 
+                }
+ 
+            }
+ 
+            int cost = Integer.parseInt(sub(countOfU + "", remainingU + ""));
+ 
+            ans.append(cost);
+ 
+        }
+ 
+        if (t != testCases) {
+ 
+            ans.append("\n");
+ 
+        }
+ 
+    }

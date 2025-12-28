@@ -1,0 +1,161 @@
+static void C(int t) {
+ 
+        b = new long[n];
+        c = new long[n];
+ 
+        for (int i = 0, j = n - 1; i < n && j >= 0; ++i, --j) {
+ 
+            b[i] = a[j];
+            c[i] = Math.abs(a[i]);
+ 
+        }
+ 
+        FenWickTree suffixSum = new FenWickTree(b);
+ 
+        suffixSum.build();
+        
+        FenWickTree prefixSum = new FenWickTree(c);
+        
+        prefixSum.build();
+ 
+        long max = Long.MIN_VALUE;
+ 
+        sum = 0L;
+ 
+        for (int j = 0; j < n; ++j) {
+ 
+            long currentSum;
+ 
+            if (j == 0) {
+ 
+                currentSum = -1L * suffixSum.getSum(n - j - 2);
+ 
+            } else {
+ 
+                sum = prefixSum.getSum(j - 1) - Math.abs(a[0]);
+                
+                currentSum = sum + a[0] - ( (n - j - 2 >= 0 && n - j - 2 < n) ? suffixSum.getSum(n - j - 2) : 0);
+               
+            }
+ 
+            max = Math.max(max, currentSum);
+ 
+        }
+ 
+        ans.append(max);
+ 
+        if (t != testCases) {
+ 
+            ans.append("\n");
+ 
+        }
+ 
+    }
+
+ static class FenWickTree {
+ 
+        long a[], tree[];
+        int n;
+ 
+        public FenWickTree(long a[]) {
+ 
+            this.a = a;
+            this.n = this.a.length;
+            this.tree = new long[n + 1];
+ 
+        }
+ 
+        void build() {
+ 
+            for (int i = 1; i != n + 1; ++i) {
+ 
+                prepare(i, a[i - 1]);
+ 
+            }
+ 
+        }
+ 
+        void prepare(int i, long value) {
+ 
+            while (i < tree.length) {
+ 
+                tree[i] += value;
+ 
+                i = next(i);
+ 
+            }
+ 
+        }
+ 
+        long getSum(int i) {
+ 
+            ++i;
+ 
+            long sum = 0;
+ 
+            while (i > 0) {
+ 
+                sum += tree[i];
+ 
+                //System.out.println("i :- " + i);
+                i = back(i);
+ 
+            }
+ 
+            return sum;
+ 
+        }
+ 
+        long query(int l, int r) {
+ 
+            return getSum(r) - getSum(l - 1);
+ 
+        }
+ 
+        int next(int x) {
+ 
+            return x + (x & -x);
+ 
+        }
+ 
+        int back(int x) {
+ 
+            return x - (x & -x);
+ 
+        }
+ 
+        void print() {
+ 
+            for (long i : tree) {
+ 
+                System.out.print(i + " ");
+ 
+            }
+ 
+            System.out.println();
+ 
+        }
+ 
+    }
+ 
+    static int search(long a[], long x, int last) {
+ 
+        int i = 0, j = last;
+ 
+        while (i <= j) {
+            int mid = i + (j - i) / 2;
+ 
+            if (a[mid] == x) {
+                return mid;
+            }
+ 
+            if (a[mid] < x) {
+                i = mid + 1;
+            } else {
+                j = mid - 1;
+            }
+        }
+ 
+        return -1;
+ 
+    }
